@@ -10,11 +10,12 @@ const navItems = [
   { href: '/flashcards', label: '暗記カード', icon: '🃏' },
   { href: '/topics', label: 'トピック', icon: '📖' },
   { href: '/drill', label: '過去問', icon: '🎯' },
+  { href: '/doomscroll', label: '用語集', icon: '📜' },
   { href: '/mistakes', label: '間違いノート', icon: '📓' },
   { href: '/settings', label: '設定', icon: '⚙️' },
 ];
 
-const mobileNavItems = navItems.slice(0, 5);
+const mobileNavItems = navItems.slice(0, 6);
 
 export default function NavBar() {
   const pathname = usePathname();

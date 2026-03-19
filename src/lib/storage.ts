@@ -12,6 +12,7 @@ const DEFAULT_PROGRESS: UserProgress = {
   dailyProgress: { date: '', cardsReviewed: 0, questionsAnswered: 0 },
   mistakeNotebook: {},
   theme: 'light',
+  doomscrollRead: [],
 };
 
 export function getProgress(): UserProgress {
@@ -25,6 +26,7 @@ export function getProgress(): UserProgress {
     if (!data.dailyProgress) data.dailyProgress = DEFAULT_PROGRESS.dailyProgress;
     if (!data.mistakeNotebook) data.mistakeNotebook = {};
     if (!data.theme) data.theme = 'light';
+    if (!data.doomscrollRead) data.doomscrollRead = [];
     return data;
   } catch {
     return DEFAULT_PROGRESS;
