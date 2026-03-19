@@ -83,6 +83,7 @@ export interface UserProgress {
   mistakeNotebook?: Record<string, MistakeEntry>;
   theme?: 'light' | 'dark';
   doomscrollRead?: string[];
+  doomscrollBookmarks?: string[];
 }
 
 export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
