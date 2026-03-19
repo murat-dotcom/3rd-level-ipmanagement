@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Question, SubjectSlug } from '@/types/question';
 import { allQuestions } from '@/data/questions';
-import { getProgress, saveProgress, updateStreak } from '@/lib/storage';
+import { getProgress, saveProgress, updateStreak, addMistake, incrementDailyQuestions } from '@/lib/storage';
 
 export default function QuizSession() {
   const searchParams = useSearchParams();
@@ -19,7 +19,6 @@ export default function QuizSession() {
     if (subjectFilter !== 'all') {
       pool = pool.filter((q) => q.subject === subjectFilter);
     }
-    // Shuffle and take requested count
     const shuffled = [...pool].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(questionCount, shuffled.length));
   }, [examType, subjectFilter, questionCount]);
@@ -45,6 +44,39 @@ export default function QuizSession() {
     return () => clearInterval(timer);
   }, [finished]);
 
+  // Keyboard shortcuts
+  useEffect(() => {
+    if (finished) return;
+    const handler = (e: KeyboardEvent) => {
+      const key = e.key;
+      // Number keys 1-4 to select answer
+      if (key >= '1' && key <= '4') {
+        const ci = parseInt(key) - 1;
+        if (ci < (questions[currentIndex]?.choices.length || 0)) {
+          setAnswers((prev) => ({ ...prev, [currentIndex]: ci }));
+        }
+      }
+      // Arrow keys for navigation
+      if (key === 'ArrowRight' || key === 'n') {
+        if (currentIndex < questions.length - 1) setCurrentIndex((prev) => prev + 1);
+      }
+      if (key === 'ArrowLeft' || key === 'p') {
+        if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
+      }
+      // F to flag
+      if (key === 'f') {
+        setFlagged((prev) => {
+          const next = new Set(prev);
+          if (next.has(currentIndex)) next.delete(currentIndex);
+          else next.add(currentIndex);
+          return next;
+        });
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [finished, currentIndex, questions]);
+
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -66,7 +98,6 @@ export default function QuizSession() {
 
   const finishQuiz = useCallback(() => {
     setFinished(true);
-    // Calculate score and save
     let score = 0;
     const wrongIds: string[] = [];
     questions.forEach((q, i) => {
@@ -79,18 +110,28 @@ export default function QuizSession() {
 
     const totalTime = (questionCount === 30 ? 45 * 60 : Math.round((questionCount / 30) * 45 * 60)) - timeLeft;
 
-    const progress = getProgress();
-    const updated = updateStreak(progress);
-    updated.quizHistory.push({
+    let progress = getProgress();
+    progress = updateStreak(progress);
+    progress = incrementDailyQuestions(progress, questions.length);
+
+    // Add mistakes to notebook
+    questions.forEach((q, i) => {
+      if (answers[i] !== q.correctIndex) {
+        progress = addMistake(progress, q.id, answers[i] ?? -1);
+      }
+    });
+
+    progress.quizHistory.push({
       date: new Date().toISOString().split('T')[0],
       type: examType as 'gakka' | 'jitsugu',
       score,
       total: questions.length,
       timeSpent: totalTime,
       wrongQuestionIds: wrongIds,
+      subject: subjectFilter as SubjectSlug | 'all',
     });
-    saveProgress(updated);
-  }, [answers, questions, timeLeft, questionCount, examType]);
+    saveProgress(progress);
+  }, [answers, questions, timeLeft, questionCount, examType, subjectFilter]);
 
   if (questions.length === 0) {
     return (
@@ -119,7 +160,7 @@ export default function QuizSession() {
       <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
         <h1 className="text-2xl font-bold text-primary">試験結果</h1>
 
-        <div className={`text-center p-6 rounded-xl border-2 ${passed ? 'border-success bg-emerald-50' : 'border-error bg-red-50'}`}>
+        <div className={`text-center p-6 rounded-xl border-2 ${passed ? 'border-success bg-emerald-50 dark:bg-emerald-900/30' : 'border-error bg-red-50 dark:bg-red-900/30'}`}>
           <p className="text-4xl font-bold mb-2">{score} / {questions.length}</p>
           <p className={`text-xl font-bold ${passed ? 'text-success' : 'text-error'}`}>
             {percentage}% — {passed ? '合格ライン達成!' : '不合格'}
@@ -130,7 +171,7 @@ export default function QuizSession() {
           <div className="space-y-4">
             <h2 className="text-lg font-bold">間違えた問題</h2>
             {wrongQuestions.map(({ q, selected }) => (
-              <div key={q.id} className="bg-white rounded-xl p-4 border border-slate-200 space-y-2">
+              <div key={q.id} className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-2">
                 <p className="font-medium">{q.question}</p>
                 <div className="space-y-1">
                   {q.choices.map((choice, ci) => (
@@ -138,10 +179,10 @@ export default function QuizSession() {
                       key={ci}
                       className={`p-2 rounded text-sm ${
                         ci === q.correctIndex
-                          ? 'bg-emerald-50 text-success font-medium border border-success'
+                          ? 'bg-emerald-50 dark:bg-emerald-900/30 text-success font-medium border border-success'
                           : ci === selected
-                          ? 'bg-red-50 text-error border border-error'
-                          : 'bg-slate-50 text-slate-600'
+                          ? 'bg-red-50 dark:bg-red-900/30 text-error border border-error'
+                          : 'bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                       }`}
                     >
                       {ci + 1}. {choice}
@@ -150,7 +191,18 @@ export default function QuizSession() {
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-slate-600 bg-blue-50 p-2 rounded">{q.explanation}</p>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-2 rounded text-sm text-slate-700 dark:text-slate-300">
+                  <p className="font-medium mb-1">解説</p>
+                  <p>{q.explanation}</p>
+                </div>
+                {q.relatedArticle && (
+                  <p className="text-xs text-slate-500">
+                    <span className="font-medium">関連条文:</span> {q.relatedArticle}
+                  </p>
+                )}
+                <p className="text-xs text-primary font-medium">
+                  ポイント: {q.keyPoint}
+                </p>
               </div>
             ))}
           </div>
@@ -165,7 +217,7 @@ export default function QuizSession() {
           </button>
           <button
             onClick={() => router.push('/')}
-            className="flex-1 py-3 bg-slate-200 text-slate-700 rounded-xl font-medium hover:bg-slate-300"
+            className="flex-1 py-3 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-medium hover:bg-slate-300 dark:hover:bg-slate-600"
           >
             ダッシュボードへ
           </button>
@@ -180,7 +232,7 @@ export default function QuizSession() {
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-4">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <span className="text-sm font-medium text-slate-600">
+        <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
           問 {currentIndex + 1} / {questions.length}
         </span>
         <span className={`text-sm font-bold ${timeLeft < 300 ? 'text-error' : 'text-primary'}`}>
@@ -189,22 +241,28 @@ export default function QuizSession() {
       </div>
 
       {/* Progress bar */}
-      <div className="w-full bg-slate-200 rounded-full h-1.5">
+      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
         <div
           className="bg-primary h-1.5 rounded-full transition-all"
           style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
         />
       </div>
 
+      {/* Keyboard hint */}
+      <p className="text-xs text-slate-400 hidden md:block" aria-hidden="true">
+        キーボード: 1-3で選択 / ←→で移動 / Fでフラグ
+      </p>
+
       {/* Question */}
-      <div className="bg-white rounded-xl p-5 border border-slate-200 space-y-4">
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 space-y-4">
         <div className="flex justify-between">
           <span className="text-xs text-slate-500">{currentQuestion.topic}</span>
           <button
             onClick={toggleFlag}
             className={`text-sm px-2 py-0.5 rounded ${
-              flagged.has(currentIndex) ? 'bg-accent text-white' : 'bg-slate-100 text-slate-500'
+              flagged.has(currentIndex) ? 'bg-accent text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500'
             }`}
+            aria-label={flagged.has(currentIndex) ? 'フラグを解除' : 'フラグを付ける'}
           >
             {flagged.has(currentIndex) ? 'フラグ済' : 'フラグ'}
           </button>
@@ -212,18 +270,20 @@ export default function QuizSession() {
 
         <p className="text-base font-medium leading-relaxed">{currentQuestion.question}</p>
 
-        <div className="space-y-2">
+        <div className="space-y-2" role="radiogroup" aria-label="解答選択">
           {currentQuestion.choices.map((choice, ci) => (
             <button
               key={ci}
               onClick={() => selectAnswer(ci)}
               className={`w-full text-left p-3 rounded-lg border transition-colors text-sm ${
                 answers[currentIndex] === ci
-                  ? 'border-primary bg-blue-50 text-primary font-medium'
-                  : 'border-slate-200 hover:border-primary hover:bg-slate-50'
+                  ? 'border-primary bg-blue-50 dark:bg-blue-900/30 text-primary font-medium'
+                  : 'border-slate-200 dark:border-slate-600 hover:border-primary hover:bg-slate-50 dark:hover:bg-slate-700'
               }`}
+              role="radio"
+              aria-checked={answers[currentIndex] === ci}
             >
-              {ci + 1}. {choice}
+              <span className="inline-block w-6 text-slate-400 font-mono">{ci + 1}.</span> {choice}
             </button>
           ))}
         </div>
@@ -234,7 +294,8 @@ export default function QuizSession() {
         <button
           onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
           disabled={currentIndex === 0}
-          className="flex-1 py-3 bg-slate-200 text-slate-700 rounded-xl font-medium disabled:opacity-40"
+          className="flex-1 py-3 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-medium disabled:opacity-40"
+          aria-label="前の問題"
         >
           前の問題
         </button>
@@ -249,6 +310,7 @@ export default function QuizSession() {
           <button
             onClick={() => setCurrentIndex(currentIndex + 1)}
             className="flex-1 py-3 bg-primary text-white rounded-xl font-medium hover:bg-blue-900"
+            aria-label="次の問題"
           >
             次の問題
           </button>
@@ -256,7 +318,7 @@ export default function QuizSession() {
       </div>
 
       {/* Question dots */}
-      <div className="flex flex-wrap gap-1 justify-center">
+      <div className="flex flex-wrap gap-1 justify-center" role="navigation" aria-label="問題一覧">
         {questions.map((_, i) => (
           <button
             key={i}
@@ -265,11 +327,13 @@ export default function QuizSession() {
               i === currentIndex
                 ? 'bg-primary text-white'
                 : answers[i] !== undefined
-                ? 'bg-blue-100 text-primary'
+                ? 'bg-blue-100 dark:bg-blue-900/50 text-primary'
                 : flagged.has(i)
-                ? 'bg-amber-100 text-accent'
-                : 'bg-slate-100 text-slate-500'
+                ? 'bg-amber-100 dark:bg-amber-900/50 text-accent'
+                : 'bg-slate-100 dark:bg-slate-700 text-slate-500'
             }`}
+            aria-label={`問題${i + 1}`}
+            aria-current={i === currentIndex ? 'step' : undefined}
           >
             {i + 1}
           </button>

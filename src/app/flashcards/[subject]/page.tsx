@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Flashcard, SubjectSlug, SUBJECT_LABELS } from '@/types/question';
 import { allFlashcards } from '@/data/flashcards';
-import { getProgress, saveProgress, getFlashcardState, isDueForReview, updateStreak } from '@/lib/storage';
+import { getProgress, saveProgress, getFlashcardState, isDueForReview, updateStreak, incrementDailyCards } from '@/lib/storage';
 import { sm2 } from '@/lib/sm2';
 
 const RATING_BUTTONS = [
@@ -38,21 +38,39 @@ export default function FlashcardSession() {
     setCards(pool.sort(() => Math.random() - 0.5));
   }, [subject]);
 
+  // Keyboard shortcuts
+  useEffect(() => {
+    if (sessionDone) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        if (!flipped) setFlipped(true);
+      }
+      if (flipped && e.key >= '1' && e.key <= '4') {
+        const quality = parseInt(e.key);
+        rateCard(quality);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [sessionDone, flipped, currentIndex, cards]);
+
   const rateCard = (quality: number) => {
     const card = cards[currentIndex];
-    const progress = getProgress();
+    let progress = getProgress();
     const state = getFlashcardState(progress, card.id);
     const result = sm2(quality, state.repetition, state.easeFactor, state.interval);
 
     const nextDate = new Date();
     nextDate.setDate(nextDate.getDate() + result.interval);
 
-    const updated = updateStreak(progress);
-    updated.flashcardState[card.id] = {
+    progress = updateStreak(progress);
+    progress = incrementDailyCards(progress);
+    progress.flashcardState[card.id] = {
       ...result,
       nextReview: nextDate.toISOString().split('T')[0],
     };
-    saveProgress(updated);
+    saveProgress(progress);
 
     setReviewed((prev) => prev + 1);
     setFlipped(false);
@@ -68,7 +86,7 @@ export default function FlashcardSession() {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto text-center space-y-4">
         <h1 className="text-2xl font-bold text-primary">暗記カード</h1>
-        <p className="text-slate-500">
+        <p className="text-slate-500 dark:text-slate-400">
           {subject === 'all' ? '今日復習するカードはありません' : 'このカテゴリにカードがありません'}
         </p>
         <button onClick={() => router.push('/flashcards')} className="text-primary underline">
@@ -82,9 +100,9 @@ export default function FlashcardSession() {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto text-center space-y-6">
         <h1 className="text-2xl font-bold text-primary">セッション完了!</h1>
-        <div className="bg-white rounded-xl p-6 border border-slate-200">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
           <p className="text-4xl font-bold text-success">{reviewed}</p>
-          <p className="text-sm text-slate-600 mt-1">枚のカードを復習しました</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">枚のカードを復習しました</p>
         </div>
         <div className="flex gap-3">
           <button
@@ -95,7 +113,7 @@ export default function FlashcardSession() {
           </button>
           <button
             onClick={() => router.push('/')}
-            className="flex-1 py-3 bg-slate-200 text-slate-700 rounded-xl font-medium"
+            className="flex-1 py-3 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-medium"
           >
             ホームへ
           </button>
@@ -111,23 +129,32 @@ export default function FlashcardSession() {
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-4">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-bold text-primary">{subjectLabel}</h1>
-        <span className="text-sm text-slate-500">
+        <span className="text-sm text-slate-500 dark:text-slate-400">
           {currentIndex + 1} / {cards.length}
         </span>
       </div>
 
       {/* Progress */}
-      <div className="w-full bg-slate-200 rounded-full h-1.5">
+      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
         <div
           className="bg-primary h-1.5 rounded-full transition-all"
           style={{ width: `${((currentIndex + 1) / cards.length) * 100}%` }}
         />
       </div>
 
+      {/* Keyboard hint */}
+      <p className="text-xs text-slate-400 hidden md:block" aria-hidden="true">
+        スペース/Enterで裏返し / 1-4で評価
+      </p>
+
       {/* Card */}
       <div
         onClick={() => !flipped && setFlipped(true)}
-        className="bg-white rounded-xl border border-slate-200 min-h-[250px] flex items-center justify-center p-6 cursor-pointer select-none"
+        className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 min-h-[250px] flex items-center justify-center p-6 cursor-pointer select-none"
+        role="button"
+        aria-label={flipped ? '答え' : 'タップで答えを表示'}
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); !flipped && setFlipped(true); } }}
       >
         <div className="text-center">
           {!flipped ? (
@@ -146,13 +173,15 @@ export default function FlashcardSession() {
 
       {/* Rating buttons */}
       {flipped && (
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2" role="group" aria-label="評価">
           {RATING_BUTTONS.map((btn) => (
             <button
               key={btn.quality}
               onClick={() => rateCard(btn.quality)}
               className={`${btn.color} text-white py-3 rounded-lg text-sm font-medium`}
+              aria-label={`${btn.label} (${btn.quality})`}
             >
+              <span className="hidden md:inline text-xs opacity-70 mr-1">{btn.quality}</span>
               {btn.label}
             </button>
           ))}
@@ -162,7 +191,7 @@ export default function FlashcardSession() {
       {/* Tags */}
       <div className="flex flex-wrap gap-1">
         {currentCard.tags.map((tag) => (
-          <span key={tag} className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded">
+          <span key={tag} className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs px-2 py-0.5 rounded">
             {tag}
           </span>
         ))}

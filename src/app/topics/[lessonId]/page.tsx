@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { allTopics } from '@/data/topics';
 import { allQuestions } from '@/data/questions';
 import { getProgress, saveProgress, updateStreak } from '@/lib/storage';
-import { TopicLesson, Question } from '@/types/question';
+import { Question } from '@/types/question';
 
 export default function LessonView() {
   const params = useParams();
@@ -49,7 +49,7 @@ export default function LessonView() {
   if (!lesson) {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto text-center">
-        <p className="text-slate-500">レッスンが見つかりません</p>
+        <p className="text-slate-500 dark:text-slate-400">レッスンが見つかりません</p>
         <button onClick={() => router.push('/topics')} className="text-primary underline mt-2">
           戻る
         </button>
@@ -65,10 +65,10 @@ export default function LessonView() {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
         <h1 className="text-xl font-bold text-primary">理解度チェック</h1>
-        <p className="text-sm text-slate-500">{lesson.title}</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">{lesson.title}</p>
 
         {quizQuestions.map((q, qi) => (
-          <div key={q.id} className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
+          <div key={q.id} className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
             <p className="font-medium text-sm">{qi + 1}. {q.question}</p>
             <div className="space-y-1">
               {q.choices.map((choice, ci) => (
@@ -79,13 +79,13 @@ export default function LessonView() {
                   className={`w-full text-left p-2 rounded text-sm transition-colors ${
                     quizSubmitted
                       ? ci === q.correctIndex
-                        ? 'bg-emerald-50 text-success border border-success'
+                        ? 'bg-emerald-50 dark:bg-emerald-900/30 text-success border border-success'
                         : ci === quizAnswers[qi]
-                        ? 'bg-red-50 text-error border border-error'
-                        : 'bg-slate-50 text-slate-500'
+                        ? 'bg-red-50 dark:bg-red-900/30 text-error border border-error'
+                        : 'bg-slate-50 dark:bg-slate-700 text-slate-500'
                       : quizAnswers[qi] === ci
-                      ? 'bg-blue-50 border border-primary text-primary'
-                      : 'bg-slate-50 hover:bg-slate-100 border border-transparent'
+                      ? 'bg-blue-50 dark:bg-blue-900/30 border border-primary text-primary'
+                      : 'bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-transparent'
                   }`}
                 >
                   {ci + 1}. {choice}
@@ -93,7 +93,12 @@ export default function LessonView() {
               ))}
             </div>
             {quizSubmitted && (
-              <p className="text-xs text-slate-600 bg-blue-50 p-2 rounded">{q.explanation}</p>
+              <div className="space-y-1">
+                <p className="text-xs text-slate-600 dark:text-slate-400 bg-blue-50 dark:bg-blue-900/30 p-2 rounded">{q.explanation}</p>
+                {q.relatedArticle && (
+                  <p className="text-xs text-slate-500">関連条文: {q.relatedArticle}</p>
+                )}
+              </div>
             )}
           </div>
         ))}
@@ -107,7 +112,7 @@ export default function LessonView() {
           </button>
         ) : (
           <div className="space-y-3">
-            <div className={`text-center p-4 rounded-xl ${score >= Math.ceil(quizQuestions.length * 0.7) ? 'bg-emerald-50' : 'bg-red-50'}`}>
+            <div className={`text-center p-4 rounded-xl ${score >= Math.ceil(quizQuestions.length * 0.7) ? 'bg-emerald-50 dark:bg-emerald-900/30' : 'bg-red-50 dark:bg-red-900/30'}`}>
               <p className="text-2xl font-bold">{score} / {quizQuestions.length}</p>
             </div>
             <button
@@ -131,23 +136,23 @@ export default function LessonView() {
       <h1 className="text-xl font-bold text-primary">{lesson.title}</h1>
 
       {lesson.sections.map((section, i) => (
-        <div key={i} className="bg-white rounded-xl p-5 border border-slate-200 space-y-3">
+        <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 space-y-3">
           <h2 className="font-bold text-base">{section.heading}</h2>
-          <div className="text-sm leading-relaxed text-slate-700 whitespace-pre-line">
+          <div className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-line">
             {section.content}
           </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+          <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
             <p className="text-xs font-bold text-accent mb-1">ポイント</p>
-            <p className="text-sm text-slate-700">{section.keyTakeaway}</p>
+            <p className="text-sm text-slate-700 dark:text-slate-300">{section.keyTakeaway}</p>
           </div>
         </div>
       ))}
 
       {lesson.mnemonics && lesson.mnemonics.length > 0 && (
-        <div className="bg-purple-50 rounded-xl p-4 border border-purple-200">
-          <h3 className="font-bold text-sm text-purple-700 mb-2">覚え方のコツ</h3>
+        <div className="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-4 border border-purple-200 dark:border-purple-800">
+          <h3 className="font-bold text-sm text-purple-700 dark:text-purple-300 mb-2">覚え方のコツ</h3>
           {lesson.mnemonics.map((m, i) => (
-            <p key={i} className="text-sm text-purple-600">・{m}</p>
+            <p key={i} className="text-sm text-purple-600 dark:text-purple-400">・{m}</p>
           ))}
         </div>
       )}
