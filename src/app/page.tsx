@@ -110,6 +110,12 @@ export default function Dashboard() {
               ? `苦手: ${SUBJECT_LABELS[weakSubjects[0].subject]}`
               : '苦手分野を復習'}
           </Link>
+          <Link
+            href="/doomscroll"
+            className="bg-purple-600 text-white rounded-xl p-4 text-center font-medium hover:bg-purple-700 transition-colors"
+          >
+            📜 用語をスクロール学習
+          </Link>
         </div>
       </div>
 

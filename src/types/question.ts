@@ -82,6 +82,7 @@ export interface UserProgress {
   };
   mistakeNotebook?: Record<string, MistakeEntry>;
   theme?: 'light' | 'dark';
+  doomscrollRead?: string[];
 }
 
 export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
@@ -94,3 +95,17 @@ export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
 };
 
 export const ALL_SUBJECTS: SubjectSlug[] = ['patent', 'copyright', 'trademark', 'design', 'treaties', 'other'];
+
+export type TermCategory = '定義' | '手続' | '期間' | '権利' | '要件' | '制度' | '条約' | '比較';
+
+export interface DoomscrollTerm {
+  id: string;
+  term: string;
+  reading?: string;
+  definition: string;
+  subject: SubjectSlug;
+  category: TermCategory;
+  keyPoint: string;
+  relatedTermIds: string[];
+  difficulty: 1 | 2 | 3;
+}
