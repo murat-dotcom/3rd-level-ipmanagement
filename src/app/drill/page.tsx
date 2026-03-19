@@ -1,13 +1,16 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useMemo, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { SubjectSlug, SUBJECT_LABELS, ALL_SUBJECTS } from '@/types/question';
 import { allQuestions } from '@/data/questions';
 
-export default function DrillSetup() {
+function DrillSetupInner() {
   const router = useRouter();
-  const [subject, setSubject] = useState<SubjectSlug>('patent');
+  const searchParams = useSearchParams();
+  const initialSubject = (searchParams.get('subject') as SubjectSlug) || 'patent';
+
+  const [subject, setSubject] = useState<SubjectSlug>(initialSubject);
   const [difficulty, setDifficulty] = useState<1 | 2 | 3 | 0>(0);
 
   const topics = useMemo(() => {
@@ -37,10 +40,10 @@ export default function DrillSetup() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">過去問演習</h1>
-      <p className="text-sm text-slate-600">科目・トピック別に問題を解きます（即時フィードバック）</p>
+      <p className="text-sm text-slate-600 dark:text-slate-400">科目・トピック別に問題を解きます（即時フィードバック）</p>
 
       {/* Subject */}
-      <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
         <h2 className="font-bold">科目</h2>
         <div className="grid grid-cols-2 gap-2">
           {ALL_SUBJECTS.map((s) => (
@@ -48,7 +51,7 @@ export default function DrillSetup() {
               key={s}
               onClick={() => { setSubject(s); setSelectedTopic('all'); }}
               className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                subject === s ? 'bg-primary text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                subject === s ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
               }`}
             >
               {SUBJECT_LABELS[s]}
@@ -59,13 +62,13 @@ export default function DrillSetup() {
 
       {/* Topic */}
       {topics.length > 0 && (
-        <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
           <h2 className="font-bold">トピック</h2>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setSelectedTopic('all')}
               className={`py-1.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                selectedTopic === 'all' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-700'
+                selectedTopic === 'all' ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
               }`}
             >
               全トピック
@@ -75,7 +78,7 @@ export default function DrillSetup() {
                 key={topic}
                 onClick={() => setSelectedTopic(topic)}
                 className={`py-1.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                  selectedTopic === topic ? 'bg-primary text-white' : 'bg-slate-100 text-slate-700'
+                  selectedTopic === topic ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
                 }`}
               >
                 {topic}
@@ -86,7 +89,7 @@ export default function DrillSetup() {
       )}
 
       {/* Difficulty */}
-      <div className="bg-white rounded-xl p-4 border border-slate-200 space-y-3">
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
         <h2 className="font-bold">難易度</h2>
         <div className="flex gap-2">
           {[
@@ -99,7 +102,7 @@ export default function DrillSetup() {
               key={d.value}
               onClick={() => setDifficulty(d.value as 0 | 1 | 2 | 3)}
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${
-                difficulty === d.value ? 'bg-primary text-white' : 'bg-slate-100 text-slate-700'
+                difficulty === d.value ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
               }`}
             >
               {d.label}
@@ -117,5 +120,13 @@ export default function DrillSetup() {
         演習を開始する（{availableCount}問）
       </button>
     </div>
+  );
+}
+
+export default function DrillSetup() {
+  return (
+    <Suspense fallback={<div className="p-6 text-center text-slate-500">読み込み中...</div>}>
+      <DrillSetupInner />
+    </Suspense>
   );
 }

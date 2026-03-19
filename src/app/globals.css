@@ -9,6 +9,12 @@ body {
   background-color: #F8FAFC;
 }
 
+.dark body,
+html.dark body {
+  background-color: #0F172A;
+  color: #E2E8F0;
+}
+
 .card-flip {
   perspective: 1000px;
 }
@@ -28,4 +34,122 @@ body {
 
 .card-back {
   transform: rotateY(180deg);
+}
+
+/* Progress ring animation */
+@keyframes progress-ring {
+  from { stroke-dashoffset: 283; }
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Chart grid lines */
+.chart-grid line {
+  stroke: #e2e8f0;
+}
+
+.dark .chart-grid line {
+  stroke: #334155;
+}
+
+/* Dark mode overrides */
+.dark .bg-white {
+  background-color: #1E293B;
+}
+
+.dark .bg-bg,
+.dark .bg-\\[\\#F8FAFC\\] {
+  background-color: #0F172A;
+}
+
+.dark .border-slate-200 {
+  border-color: #334155;
+}
+
+.dark .border-slate-100 {
+  border-color: #1E293B;
+}
+
+.dark .text-slate-900 {
+  color: #F1F5F9;
+}
+
+.dark .text-slate-700 {
+  color: #CBD5E1;
+}
+
+.dark .text-slate-600 {
+  color: #94A3B8;
+}
+
+.dark .text-slate-500 {
+  color: #64748B;
+}
+
+.dark .text-slate-400 {
+  color: #64748B;
+}
+
+.dark .bg-slate-100 {
+  background-color: #334155;
+}
+
+.dark .bg-slate-200 {
+  background-color: #475569;
+}
+
+.dark .bg-slate-50 {
+  background-color: #1E293B;
+}
+
+.dark .bg-blue-50 {
+  background-color: #1E3A5F;
+}
+
+.dark .bg-amber-50 {
+  background-color: #422006;
+}
+
+.dark .bg-emerald-50 {
+  background-color: #064E3B;
+}
+
+.dark .bg-red-50 {
+  background-color: #450A0A;
+}
+
+.dark .bg-purple-50 {
+  background-color: #3B0764;
+}
+
+.dark .border-blue-200 {
+  border-color: #1E40AF;
+}
+
+.dark .border-amber-200 {
+  border-color: #D97706;
+}
+
+.dark .border-purple-200 {
+  border-color: #7C3AED;
+}
+
+.dark .hover\:bg-slate-100:hover {
+  background-color: #334155;
+}
+
+.dark .hover\:bg-slate-200:hover {
+  background-color: #475569;
+}
+
+.dark .hover\:bg-slate-50:hover {
+  background-color: #1E293B;
+}
+
+.dark .divide-slate-100 > :not(:last-child) {
+  border-color: #1E293B;
 }

@@ -29,7 +29,7 @@ export default function FlashcardsIndex() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">暗記カード</h1>
-      <p className="text-sm text-slate-600">SM-2アルゴリズムによるスペースドリピティション学習</p>
+      <p className="text-sm text-slate-600 dark:text-slate-400">SM-2アルゴリズムによるスペースドリピティション学習</p>
 
       {/* Today's cards */}
       <Link
@@ -49,12 +49,12 @@ export default function FlashcardsIndex() {
             <Link
               key={subject}
               href={`/flashcards/${subject}`}
-              className="block bg-white rounded-xl p-4 border border-slate-200 hover:border-primary transition-colors"
+              className="block bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors"
             >
               <div className="flex justify-between items-center">
                 <div>
                   <p className="font-medium">{SUBJECT_LABELS[subject]}</p>
-                  <p className="text-xs text-slate-500">{stats?.total || 0}枚</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">{stats?.total || 0}枚</p>
                 </div>
                 {(stats?.due || 0) > 0 && (
                   <span className="bg-accent text-white text-xs px-2 py-1 rounded-full font-bold">

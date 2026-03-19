@@ -52,6 +52,20 @@ export interface QuizResult {
   total: number;
   timeSpent: number;
   wrongQuestionIds: string[];
+  subject?: SubjectSlug | 'all';
+}
+
+export interface DailyGoal {
+  cardsPerDay: number;
+  questionsPerDay: number;
+}
+
+export interface MistakeEntry {
+  questionId: string;
+  date: string;
+  selectedAnswer: number;
+  reviewCount: number;
+  mastered: boolean;
 }
 
 export interface UserProgress {
@@ -60,6 +74,14 @@ export interface UserProgress {
   topicsCompleted: string[];
   streakDays: number;
   lastStudyDate: string;
+  dailyGoal?: DailyGoal;
+  dailyProgress?: {
+    date: string;
+    cardsReviewed: number;
+    questionsAnswered: number;
+  };
+  mistakeNotebook?: Record<string, MistakeEntry>;
+  theme?: 'light' | 'dark';
 }
 
 export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
