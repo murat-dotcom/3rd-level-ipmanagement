@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Question, SubjectSlug } from '@/types/question';
 import { allQuestions } from '@/data/questions';
@@ -28,54 +28,8 @@ export default function QuizSession() {
   const [flagged, setFlagged] = useState<Set<number>>(new Set());
   const [timeLeft, setTimeLeft] = useState(questionCount === 30 ? 45 * 60 : Math.round((questionCount / 30) * 45 * 60));
   const [finished, setFinished] = useState(false);
-
-  // Timer
-  useEffect(() => {
-    if (finished) return;
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          setFinished(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [finished]);
-
-  // Keyboard shortcuts
-  useEffect(() => {
-    if (finished) return;
-    const handler = (e: KeyboardEvent) => {
-      const key = e.key;
-      // Number keys 1-4 to select answer
-      if (key >= '1' && key <= '4') {
-        const ci = parseInt(key) - 1;
-        if (ci < (questions[currentIndex]?.choices.length || 0)) {
-          setAnswers((prev) => ({ ...prev, [currentIndex]: ci }));
-        }
-      }
-      // Arrow keys for navigation
-      if (key === 'ArrowRight' || key === 'n') {
-        if (currentIndex < questions.length - 1) setCurrentIndex((prev) => prev + 1);
-      }
-      if (key === 'ArrowLeft' || key === 'p') {
-        if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
-      }
-      // F to flag
-      if (key === 'f') {
-        setFlagged((prev) => {
-          const next = new Set(prev);
-          if (next.has(currentIndex)) next.delete(currentIndex);
-          else next.add(currentIndex);
-          return next;
-        });
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [finished, currentIndex, questions]);
+  const [savedScore, setSavedScore] = useState<number | null>(null);
+  const completionRef = useRef(false);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
@@ -96,8 +50,10 @@ export default function QuizSession() {
     });
   };
 
-  const finishQuiz = useCallback(() => {
-    setFinished(true);
+  const finishQuiz = useCallback((finalTimeLeft?: number) => {
+    if (completionRef.current) return;
+    completionRef.current = true;
+
     let score = 0;
     const wrongIds: string[] = [];
     questions.forEach((q, i) => {
@@ -108,13 +64,13 @@ export default function QuizSession() {
       }
     });
 
-    const totalTime = (questionCount === 30 ? 45 * 60 : Math.round((questionCount / 30) * 45 * 60)) - timeLeft;
+    const remainingTime = finalTimeLeft ?? timeLeft;
+    const totalTime = (questionCount === 30 ? 45 * 60 : Math.round((questionCount / 30) * 45 * 60)) - remainingTime;
 
     let progress = getProgress();
     progress = updateStreak(progress);
     progress = incrementDailyQuestions(progress, questions.length);
 
-    // Add mistakes to notebook
     questions.forEach((q, i) => {
       if (answers[i] !== q.correctIndex) {
         progress = addMistake(progress, q.id, answers[i] ?? -1);
@@ -131,7 +87,54 @@ export default function QuizSession() {
       subject: subjectFilter as SubjectSlug | 'all',
     });
     saveProgress(progress);
-  }, [answers, questions, timeLeft, questionCount, examType, subjectFilter]);
+    setSavedScore(score);
+    setTimeLeft(remainingTime);
+    setFinished(true);
+  }, [answers, examType, questionCount, questions, subjectFilter, timeLeft]);
+
+  useEffect(() => {
+    if (finished) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          finishQuiz(0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [finished, finishQuiz]);
+
+  useEffect(() => {
+    if (finished) return;
+    const handler = (e: KeyboardEvent) => {
+      const key = e.key;
+      if (key >= '1' && key <= '4') {
+        const ci = parseInt(key, 10) - 1;
+        if (ci < (questions[currentIndex]?.choices.length || 0)) {
+          setAnswers((prev) => ({ ...prev, [currentIndex]: ci }));
+        }
+      }
+      if (key === 'ArrowRight' || key === 'n') {
+        if (currentIndex < questions.length - 1) setCurrentIndex((prev) => prev + 1);
+      }
+      if (key === 'ArrowLeft' || key === 'p') {
+        if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
+      }
+      if (key === 'f') {
+        setFlagged((prev) => {
+          const next = new Set(prev);
+          if (next.has(currentIndex)) next.delete(currentIndex);
+          else next.add(currentIndex);
+          return next;
+        });
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [finished, currentIndex, questions]);
 
   if (questions.length === 0) {
     return (
@@ -142,14 +145,11 @@ export default function QuizSession() {
     );
   }
 
-  // Results view
   if (finished) {
-    let score = 0;
+    const score = savedScore ?? questions.reduce((total, q, i) => total + Number(answers[i] === q.correctIndex), 0);
     const wrongQuestions: { q: Question; selected: number | undefined }[] = [];
     questions.forEach((q, i) => {
-      if (answers[i] === q.correctIndex) {
-        score++;
-      } else {
+      if (answers[i] !== q.correctIndex) {
         wrongQuestions.push({ q, selected: answers[i] });
       }
     });
@@ -230,7 +230,6 @@ export default function QuizSession() {
 
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-4">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
           問 {currentIndex + 1} / {questions.length}
@@ -240,7 +239,6 @@ export default function QuizSession() {
         </span>
       </div>
 
-      {/* Progress bar */}
       <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
         <div
           className="bg-primary h-1.5 rounded-full transition-all"
@@ -248,12 +246,10 @@ export default function QuizSession() {
         />
       </div>
 
-      {/* Keyboard hint */}
       <p className="text-xs text-slate-400 hidden md:block" aria-hidden="true">
-        キーボード: 1-3で選択 / ←→で移動 / Fでフラグ
+        キーボード: 1-4で選択 / ←→で移動 / Fでフラグ
       </p>
 
-      {/* Question */}
       <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 space-y-4">
         <div className="flex justify-between">
           <span className="text-xs text-slate-500">{currentQuestion.topic}</span>
@@ -289,7 +285,6 @@ export default function QuizSession() {
         </div>
       </div>
 
-      {/* Navigation */}
       <div className="flex gap-3">
         <button
           onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
@@ -301,7 +296,7 @@ export default function QuizSession() {
         </button>
         {currentIndex === questions.length - 1 ? (
           <button
-            onClick={finishQuiz}
+            onClick={() => finishQuiz()}
             className="flex-1 py-3 bg-primary text-white rounded-xl font-medium hover:bg-blue-900"
           >
             試験を終了する
@@ -317,7 +312,6 @@ export default function QuizSession() {
         )}
       </div>
 
-      {/* Question dots */}
       <div className="flex flex-wrap gap-1 justify-center" role="navigation" aria-label="問題一覧">
         {questions.map((_, i) => (
           <button

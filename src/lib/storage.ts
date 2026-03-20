@@ -20,29 +20,65 @@ const DEFAULT_PROGRESS: UserProgress = {
   aiSettings: DEFAULT_AI_SETTINGS,
 };
 
+function createDefaultProgress(): UserProgress {
+  return {
+    quizHistory: [],
+    flashcardState: {},
+    topicsCompleted: [],
+    streakDays: 0,
+    lastStudyDate: '',
+    dailyGoal: { ...DEFAULT_PROGRESS.dailyGoal! },
+    dailyProgress: { ...DEFAULT_PROGRESS.dailyProgress! },
+    mistakeNotebook: {},
+    theme: DEFAULT_PROGRESS.theme,
+    doomscrollRead: [],
+    aiSettings: { ...DEFAULT_AI_SETTINGS },
+  };
+}
+
+function normalizeProgress(data: Partial<UserProgress> | null | undefined): UserProgress {
+  const defaults = createDefaultProgress();
+  return {
+    ...defaults,
+    ...data,
+    quizHistory: Array.isArray(data?.quizHistory) ? data.quizHistory : defaults.quizHistory,
+    flashcardState: data?.flashcardState && typeof data.flashcardState === 'object' ? data.flashcardState : defaults.flashcardState,
+    topicsCompleted: Array.isArray(data?.topicsCompleted) ? data.topicsCompleted : defaults.topicsCompleted,
+    dailyGoal: {
+      ...defaults.dailyGoal!,
+      ...(data?.dailyGoal || {}),
+    },
+    dailyProgress: {
+      ...defaults.dailyProgress!,
+      ...(data?.dailyProgress || {}),
+    },
+    mistakeNotebook: data?.mistakeNotebook && typeof data.mistakeNotebook === 'object' ? data.mistakeNotebook : defaults.mistakeNotebook,
+    doomscrollRead: Array.isArray(data?.doomscrollRead) ? data.doomscrollRead : defaults.doomscrollRead,
+    aiSettings: {
+      ...DEFAULT_AI_SETTINGS,
+      ...(data?.aiSettings || {}),
+      apiKey: typeof data?.aiSettings?.apiKey === 'string' ? data.aiSettings.apiKey : '',
+      model: typeof data?.aiSettings?.model === 'string' && data.aiSettings.model.trim() ? data.aiSettings.model : DEFAULT_AI_SETTINGS.model,
+    },
+    theme: data?.theme === 'dark' ? 'dark' : 'light',
+  };
+}
+
 export function getProgress(): UserProgress {
-  if (typeof window === 'undefined') return DEFAULT_PROGRESS;
+  if (typeof window === 'undefined') return createDefaultProgress();
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return DEFAULT_PROGRESS;
+    if (!raw) return createDefaultProgress();
     const data = JSON.parse(raw) as UserProgress;
-    if (!data.dailyGoal) data.dailyGoal = DEFAULT_PROGRESS.dailyGoal;
-    if (!data.dailyProgress) data.dailyProgress = DEFAULT_PROGRESS.dailyProgress;
-    if (!data.mistakeNotebook) data.mistakeNotebook = {};
-    if (!data.theme) data.theme = 'light';
-    if (!data.doomscrollRead) data.doomscrollRead = [];
-    if (!data.aiSettings) data.aiSettings = DEFAULT_AI_SETTINGS;
-    if (!data.aiSettings.model) data.aiSettings.model = DEFAULT_AI_SETTINGS.model;
-    if (!data.aiSettings.apiKey) data.aiSettings.apiKey = '';
-    return data;
+    return normalizeProgress(data);
   } catch {
-    return DEFAULT_PROGRESS;
+    return createDefaultProgress();
   }
 }
 
 export function saveProgress(progress: UserProgress): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeProgress(progress)));
 }
 
 export function updateStreak(progress: UserProgress): UserProgress {
@@ -178,10 +214,11 @@ export function exportProgress(): string {
 }
 
 export function importProgress(json: string): boolean {
+  if (typeof window === 'undefined') return false;
   try {
-    const data = JSON.parse(json);
+    const data = JSON.parse(json) as Partial<UserProgress>;
     if (typeof data !== 'object' || data === null) return false;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeProgress(data)));
     return true;
   } catch {
     return false;

@@ -149,7 +149,7 @@ export default function DrillSession() {
 
       {/* Keyboard hint */}
       <p className="text-xs text-slate-400 hidden md:block" aria-hidden="true">
-        キーボード: 1-3で選択 / Enterで確認・次へ
+        キーボード: 1-4で選択 / Enterで確認・次へ
       </p>
 
       {/* Question */}
