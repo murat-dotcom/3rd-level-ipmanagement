@@ -11,11 +11,12 @@ const navItems = [
   { href: '/topics', label: 'トピック', icon: '📖', mobileIcon: '📖' },
   { href: '/drill', label: '過去問', icon: '🎯', mobileIcon: '🎯' },
   { href: '/doomscroll', label: '用語集', icon: '📜', mobileIcon: '📜' },
+  { href: '/games', label: 'ゲーム', icon: '🎮', mobileIcon: '🎮' },
   { href: '/mistakes', label: '間違いノート', icon: '📓', mobileIcon: '📓' },
   { href: '/settings', label: '設定', icon: '⚙️', mobileIcon: '⚙️' },
 ];
 
-const mobileNavItems = navItems.slice(0, 6);
+const mobileNavItems = navItems.filter((item) => !['/mistakes', '/settings'].includes(item.href));
 
 export default function NavBar() {
   const pathname = usePathname();

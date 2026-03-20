@@ -73,6 +73,14 @@ export interface AISettings {
   model: string;
 }
 
+export type GameType = 'matching' | 'speed' | 'truefalse';
+
+export interface GameHighScore {
+  score: number;
+  date: string;
+  subject?: SubjectSlug | 'all';
+}
+
 export interface UserProgress {
   quizHistory: QuizResult[];
   flashcardState: Record<string, FlashcardState>;
@@ -90,6 +98,7 @@ export interface UserProgress {
   colorTheme?: ThemeName;
   doomscrollRead?: string[];
   aiSettings?: AISettings;
+  gameHighScores?: Partial<Record<GameType, GameHighScore>>;
 }
 
 export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
