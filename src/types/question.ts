@@ -68,6 +68,11 @@ export interface MistakeEntry {
   mastered: boolean;
 }
 
+export interface AISettings {
+  apiKey: string;
+  model: string;
+}
+
 export interface UserProgress {
   quizHistory: QuizResult[];
   flashcardState: Record<string, FlashcardState>;
@@ -83,6 +88,7 @@ export interface UserProgress {
   mistakeNotebook?: Record<string, MistakeEntry>;
   theme?: 'light' | 'dark';
   doomscrollRead?: string[];
+  aiSettings?: AISettings;
 }
 
 export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
@@ -108,4 +114,5 @@ export interface DoomscrollTerm {
   keyPoint: string;
   relatedTermIds: string[];
   difficulty: 1 | 2 | 3;
+  source?: 'local' | 'generated';
 }

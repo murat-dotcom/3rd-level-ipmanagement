@@ -18,14 +18,14 @@ const SUBJECT_COLORS: Record<SubjectSlug, string> = {
 };
 
 const CATEGORY_ICONS: Record<string, string> = {
-  '定義': '📖',
-  '手続': '📋',
-  '期間': '⏰',
-  '権利': '🔑',
-  '要件': '✅',
-  '制度': '🏛️',
-  '条約': '🌐',
-  '比較': '⚖️',
+  定義: '📖',
+  手続: '📋',
+  期間: '⏰',
+  権利: '🔑',
+  要件: '✅',
+  制度: '🏛️',
+  条約: '🌐',
+  比較: '⚖️',
 };
 
 const DIFFICULTY_LABELS = ['', '基本', '標準', '応用'];
@@ -76,15 +76,22 @@ function TermCard({
             <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">
               {CATEGORY_ICONS[term.category] || '📝'} {term.category}
             </span>
-            <span className={`text-xs px-2 py-0.5 rounded-full ${
-              term.difficulty === 1
-                ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400'
-                : term.difficulty === 2
-                ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-400'
-                : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'
-            }`}>
+            <span
+              className={`text-xs px-2 py-0.5 rounded-full ${
+                term.difficulty === 1
+                  ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400'
+                  : term.difficulty === 2
+                    ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-400'
+                    : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'
+              }`}
+            >
               {DIFFICULTY_LABELS[term.difficulty]}
             </span>
+            {term.source === 'generated' && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                AI生成
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -125,9 +132,7 @@ function TermCard({
       </div>
 
       <div className="px-4 pb-3">
-        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-          {term.definition}
-        </p>
+        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{term.definition}</p>
       </div>
 
       <div className="mx-4 mb-3 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200/50 dark:border-amber-800/30">
@@ -137,10 +142,7 @@ function TermCard({
 
       {term.relatedTermIds.length > 0 && (
         <div className="px-4 pb-4">
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="text-xs text-primary hover:underline font-medium"
-          >
+          <button onClick={() => setExpanded(!expanded)} className="text-xs text-primary hover:underline font-medium">
             {expanded ? '▼' : '▶'} 関連用語 ({term.relatedTermIds.length})
           </button>
           {expanded && (
@@ -175,16 +177,19 @@ export default function DoomscrollPage() {
   const [readIds, setReadIds] = useState<Set<string>>(new Set());
   const [displayCount, setDisplayCount] = useState(BATCH_SIZE);
   const [shuffled, setShuffled] = useState(false);
+  const [generatedTerms, setGeneratedTerms] = useState<DoomscrollTerm[]>([]);
   const [terms, setTerms] = useState<DoomscrollTerm[]>(allDoomscrollTerms);
   const [pinnedTermId, setPinnedTermId] = useState<string | null>(null);
   const [focusMode, setFocusMode] = useState<'balanced' | 'quick' | 'challenge'>('balanced');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationError, setGenerationError] = useState('');
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   const termMap = useMemo(() => {
     const map = new Map<string, DoomscrollTerm>();
-    allDoomscrollTerms.forEach((t) => map.set(t.id, t));
+    [...generatedTerms, ...allDoomscrollTerms].forEach((t) => map.set(t.id, t));
     return map;
-  }, []);
+  }, [generatedTerms]);
 
   useEffect(() => {
     const progress = getProgress();
@@ -192,6 +197,10 @@ export default function DoomscrollPage() {
       setReadIds(new Set(progress.doomscrollRead));
     }
   }, []);
+
+  useEffect(() => {
+    setTerms([...generatedTerms, ...allDoomscrollTerms]);
+  }, [generatedTerms]);
 
   useEffect(() => {
     if (focusMode === 'quick') {
@@ -261,18 +270,21 @@ export default function DoomscrollPage() {
     saveProgress(progress);
   }, []);
 
-  const toggleRead = useCallback((id: string) => {
-    setReadIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      persistReadIds(next);
-      return next;
-    });
-  }, [persistReadIds]);
+  const toggleRead = useCallback(
+    (id: string) => {
+      setReadIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
+        persistReadIds(next);
+        return next;
+      });
+    },
+    [persistReadIds]
+  );
 
   const handleMarkVisibleRead = useCallback(() => {
     setReadIds((prev) => {
@@ -310,7 +322,7 @@ export default function DoomscrollPage() {
       setReadMode('all');
       setSearchQuery('');
       setPinnedTermId(id);
-      setDisplayCount(allDoomscrollTerms.length);
+      setDisplayCount(terms.length);
       setTimeout(() => {
         const el2 = document.getElementById(`term-${id}`);
         if (el2) {
@@ -320,10 +332,10 @@ export default function DoomscrollPage() {
         }
       }, 100);
     }
-  }, []);
+  }, [terms.length]);
 
   const handleShuffle = () => {
-    setTerms(shuffleArray(filteredTerms.length > 0 ? filteredTerms : allDoomscrollTerms));
+    setTerms(shuffleArray(filteredTerms.length > 0 ? filteredTerms : [...generatedTerms, ...allDoomscrollTerms]));
     setShuffled(true);
     setPinnedTermId(null);
     setDisplayCount(BATCH_SIZE);
@@ -331,7 +343,7 @@ export default function DoomscrollPage() {
   };
 
   const handleReset = () => {
-    setTerms(allDoomscrollTerms);
+    setTerms([...generatedTerms, ...allDoomscrollTerms]);
     setShuffled(false);
     setPinnedTermId(null);
     setDisplayCount(BATCH_SIZE);
@@ -348,8 +360,55 @@ export default function DoomscrollPage() {
     setPinnedTermId(null);
   };
 
+  const handleGenerateTerms = useCallback(async () => {
+    setGenerationError('');
+    setIsGenerating(true);
+    try {
+      const progress = getProgress();
+      const apiKey = progress.aiSettings?.apiKey?.trim();
+      const model = progress.aiSettings?.model?.trim() || 'gpt-5-mini';
+
+      if (!apiKey) {
+        throw new Error('設定画面で OpenAI APIキーを保存してください。');
+      }
+
+      const response = await fetch('/api/generate/doomscroll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          apiKey,
+          model,
+          subject: subjectFilter === 'all' ? 'other' : subjectFilter,
+          count: 3,
+        }),
+      });
+
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(typeof payload.error === 'string' ? payload.error : '生成に失敗しました。');
+      }
+
+      const nextGeneratedTerms = (payload.terms as Array<Omit<DoomscrollTerm, 'id' | 'relatedTermIds'>>).map((term, index) => ({
+        ...term,
+        id: `generated-${Date.now()}-${index}`,
+        relatedTermIds: [],
+        source: 'generated' as const,
+      }));
+
+      setGeneratedTerms((prev) => [...nextGeneratedTerms, ...prev]);
+      setPinnedTermId(nextGeneratedTerms[0]?.id || null);
+      setDisplayCount((prev) => prev + nextGeneratedTerms.length);
+      setShuffled(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      setGenerationError(error instanceof Error ? error.message : '生成中にエラーが発生しました。');
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [subjectFilter]);
+
   const readCount = readIds.size;
-  const totalCount = allDoomscrollTerms.length;
+  const totalCount = terms.length;
   const progressPercent = totalCount > 0 ? Math.round((readCount / totalCount) * 100) : 0;
   const filteredReadCount = filteredTerms.filter((term) => readIds.has(term.id)).length;
   const unreadFilteredCount = filteredTerms.length - filteredReadCount;
@@ -363,11 +422,37 @@ export default function DoomscrollPage() {
         </p>
       </div>
 
+      <div className="mb-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-sky-50 to-violet-50 dark:from-primary/15 dark:via-slate-800 dark:to-violet-900/20 p-4">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-sm font-semibold text-primary">AIで新しい用語を追加</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+              設定に保存した APIキー / モデルを使って、現在の科目に合わせた補足用語を Web検索つきで3件生成します。
+            </p>
+          </div>
+          <button
+            onClick={handleGenerateTerms}
+            disabled={isGenerating}
+            className="px-4 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-blue-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+          >
+            {isGenerating ? '生成中...' : 'AIで3件追加'}
+          </button>
+        </div>
+        {generationError && <p className="mt-3 text-sm text-error font-medium">{generationError}</p>}
+        {generatedTerms.length > 0 && (
+          <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+            追加済み AI用語: {generatedTerms.length}件。生成カードには「AI生成」バッジを表示しています。
+          </p>
+        )}
+      </div>
+
       <div className="grid gap-4 md:grid-cols-[1.2fr,0.8fr] mb-4">
         <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
           <div className="flex justify-between items-center text-sm mb-1.5">
             <span className="text-slate-600 dark:text-slate-400">学習進捗</span>
-            <span className="font-bold text-primary">{readCount}/{totalCount} ({progressPercent}%)</span>
+            <span className="font-bold text-primary">
+              {readCount}/{totalCount} ({progressPercent}%)
+            </span>
           </div>
           <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
             <div className="bg-primary h-2.5 rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }} />
@@ -482,9 +567,7 @@ export default function DoomscrollPage() {
 
       {!hasMore && visibleTerms.length > 0 && (
         <div className="py-8 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
-            🎉 条件に合う {filteredTerms.length} 用語を表示しました！
-          </p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">🎉 条件に合う {filteredTerms.length} 用語を表示しました！</p>
         </div>
       )}
 
