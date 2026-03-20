@@ -1,4 +1,4 @@
-import { UserProgress, FlashcardState, SubjectSlug, AISettings, ThemeName } from '@/types/question';
+import { UserProgress, FlashcardState, SubjectSlug, AISettings, ThemeName, GameType, GameHighScore } from '@/types/question';
 
 const STORAGE_KEY = 'chizai-drill-progress';
 export const DEFAULT_AI_SETTINGS: AISettings = {
@@ -54,6 +54,7 @@ function normalizeProgress(data: Partial<UserProgress> | null | undefined): User
     },
     mistakeNotebook: data?.mistakeNotebook && typeof data.mistakeNotebook === 'object' ? data.mistakeNotebook : defaults.mistakeNotebook,
     doomscrollRead: Array.isArray(data?.doomscrollRead) ? data.doomscrollRead : defaults.doomscrollRead,
+    gameHighScores: data?.gameHighScores && typeof data.gameHighScores === 'object' ? data.gameHighScores : undefined,
     aiSettings: {
       ...DEFAULT_AI_SETTINGS,
       ...(data?.aiSettings || {}),
@@ -224,4 +225,21 @@ export function importProgress(json: string): boolean {
   } catch {
     return false;
   }
+}
+
+export function updateGameHighScore(progress: UserProgress, game: GameType, score: number, subject?: SubjectSlug | 'all'): UserProgress {
+  const current = progress.gameHighScores?.[game];
+  if (current && current.score >= score) return progress;
+  const today = new Date().toISOString().split('T')[0];
+  return {
+    ...progress,
+    gameHighScores: {
+      ...progress.gameHighScores,
+      [game]: { score, date: today, subject } as GameHighScore,
+    },
+  };
+}
+
+export function getGameHighScore(progress: UserProgress, game: GameType): number {
+  return progress.gameHighScores?.[game]?.score ?? 0;
 }
