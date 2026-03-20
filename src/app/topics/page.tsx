@@ -25,34 +25,34 @@ export default function TopicsIndex() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">トピック解説</h1>
-      <p className="text-sm text-slate-600 dark:text-slate-400">科目ごとに体系的に学習できます</p>
+      <p className="text-sm text-t-secondary">科目ごとに体系的に学習できます</p>
 
       {topicsBySubject.map(({ subject, label, lessons }) => (
-        <div key={subject} className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-          <div className="bg-slate-50 dark:bg-slate-700/50 px-4 py-3 border-b border-slate-200 dark:border-slate-700">
-            <h2 className="font-bold text-sm">{label}</h2>
+        <div key={subject} className="theme-card overflow-hidden">
+          <div className="bg-surface-alt px-4 py-3 border-b border-border">
+            <h2 className="font-bold text-sm text-t-primary">{label}</h2>
           </div>
-          <div className="divide-y divide-slate-100 dark:divide-slate-700">
+          <div className="divide-y divide-border-light">
             {lessons.length === 0 ? (
-              <p className="p-4 text-sm text-slate-400">準備中</p>
+              <p className="p-4 text-sm text-t-muted">準備中</p>
             ) : (
               lessons.map((lesson) => (
                 <Link
                   key={lesson.id}
                   href={`/topics/${lesson.id}`}
-                  className="flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                  className="flex items-center gap-3 p-4 hover:bg-surface-alt transition-colors"
                 >
                   <span
                     className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
                       completed.includes(lesson.id)
                         ? 'bg-success text-white'
-                        : 'bg-slate-200 dark:bg-slate-600 text-slate-500 dark:text-slate-400'
+                        : 'bg-surface-hover text-t-muted'
                     }`}
                     aria-label={completed.includes(lesson.id) ? '完了' : `レッスン${lesson.order}`}
                   >
                     {completed.includes(lesson.id) ? '✓' : lesson.order}
                   </span>
-                  <span className="text-sm font-medium">{lesson.title}</span>
+                  <span className="text-sm font-medium text-t-primary">{lesson.title}</span>
                 </Link>
               ))
             )}

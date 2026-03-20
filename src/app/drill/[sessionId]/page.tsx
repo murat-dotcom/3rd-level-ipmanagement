@@ -28,7 +28,6 @@ export default function DrillSession() {
   const [finished, setFinished] = useState(false);
   const [addedToFlashcards, setAddedToFlashcards] = useState<Set<string>>(new Set());
 
-  // Keyboard shortcuts
   useEffect(() => {
     if (finished) return;
     const handler = (e: KeyboardEvent) => {
@@ -56,7 +55,6 @@ export default function DrillSession() {
     if (isCorrect) {
       setCorrectCount((prev) => prev + 1);
     } else {
-      // Add to mistake notebook
       let progress = getProgress();
       progress = addMistake(progress, questions[currentIndex].id, selectedAnswer);
       saveProgress(progress);
@@ -95,8 +93,8 @@ export default function DrillSession() {
   if (questions.length === 0) {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto text-center space-y-4">
-        <p className="text-slate-500 dark:text-slate-400">条件に合う問題がありません</p>
-        <button onClick={() => router.push('/drill')} className="text-primary underline">戻る</button>
+        <p className="text-t-muted">条件に合う問題がありません</p>
+        <button onClick={() => router.push('/drill')} className="text-primary font-medium hover:underline">戻る</button>
       </div>
     );
   }
@@ -106,20 +104,20 @@ export default function DrillSession() {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6 text-center">
         <h1 className="text-2xl font-bold text-primary">演習完了!</h1>
-        <div className={`p-6 rounded-xl border-2 ${percentage >= 70 ? 'border-success bg-emerald-50 dark:bg-emerald-900/30' : 'border-error bg-red-50 dark:bg-red-900/30'}`}>
-          <p className="text-4xl font-bold">{correctCount} / {questions.length}</p>
+        <div className={`p-6 rounded-card border-2 ${percentage >= 70 ? 'border-success bg-success/5' : 'border-error bg-error/5'}`}>
+          <p className="text-4xl font-bold text-t-primary">{correctCount} / {questions.length}</p>
           <p className={`text-lg font-bold mt-1 ${percentage >= 70 ? 'text-success' : 'text-error'}`}>
             {percentage}%
           </p>
         </div>
         <div className="flex gap-3">
-          <button onClick={() => router.push('/drill')} className="flex-1 py-3 bg-primary text-white rounded-xl font-medium">
+          <button onClick={() => router.push('/drill')} className="flex-1 py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-hover transition-colors">
             別の演習を始める
           </button>
-          <button onClick={() => router.push('/mistakes')} className="flex-1 py-3 bg-error text-white rounded-xl font-medium">
+          <button onClick={() => router.push('/mistakes')} className="flex-1 py-3 bg-error text-white rounded-xl font-medium hover:opacity-90 transition-colors">
             間違いノート
           </button>
-          <button onClick={() => router.push('/')} className="flex-1 py-3 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-medium">
+          <button onClick={() => router.push('/')} className="flex-1 py-3 bg-surface-alt text-t-secondary rounded-xl font-medium hover:bg-surface-hover transition-colors">
             ホームへ
           </button>
         </div>
@@ -132,9 +130,8 @@ export default function DrillSession() {
 
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-4">
-      {/* Header */}
       <div className="flex justify-between items-center">
-        <span className="text-sm text-slate-600 dark:text-slate-400">
+        <span className="text-sm text-t-secondary">
           {SUBJECT_LABELS[subject]} — {currentIndex + 1}/{questions.length}
         </span>
         <span className="text-sm font-bold text-primary">
@@ -142,26 +139,23 @@ export default function DrillSession() {
         </span>
       </div>
 
-      {/* Progress */}
-      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+      <div className="w-full bg-surface-alt rounded-full h-1.5">
         <div className="bg-primary h-1.5 rounded-full transition-all" style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }} />
       </div>
 
-      {/* Keyboard hint */}
-      <p className="text-xs text-slate-400 hidden md:block" aria-hidden="true">
+      <p className="text-xs text-t-muted hidden md:block" aria-hidden="true">
         キーボード: 1-4で選択 / Enterで確認・次へ
       </p>
 
-      {/* Question */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 space-y-4">
+      <div className="theme-card p-5 space-y-4">
         <div className="flex justify-between">
-          <span className="text-xs text-slate-500">{currentQuestion.topic}</span>
-          <span className="text-xs text-slate-400">
+          <span className="text-xs text-t-muted">{currentQuestion.topic}</span>
+          <span className="text-xs text-t-muted">
             {['', '基本', '標準', '応用'][currentQuestion.difficulty]}
           </span>
         </div>
 
-        <p className="text-base font-medium leading-relaxed">{currentQuestion.question}</p>
+        <p className="text-base font-medium leading-relaxed text-t-primary">{currentQuestion.question}</p>
 
         <div className="space-y-2" role="radiogroup" aria-label="解答選択">
           {currentQuestion.choices.map((choice, ci) => (
@@ -169,21 +163,21 @@ export default function DrillSession() {
               key={ci}
               onClick={() => !showResult && setSelectedAnswer(ci)}
               disabled={showResult}
-              className={`w-full text-left p-3 rounded-lg border transition-colors text-sm ${
+              className={`w-full text-left p-3 rounded-xl border transition-all text-sm ${
                 showResult
                   ? ci === currentQuestion.correctIndex
-                    ? 'border-success bg-emerald-50 dark:bg-emerald-900/30 text-success font-medium'
+                    ? 'border-success bg-success/10 text-success font-medium'
                     : ci === selectedAnswer
-                    ? 'border-error bg-red-50 dark:bg-red-900/30 text-error'
-                    : 'border-slate-200 dark:border-slate-600 text-slate-400'
+                    ? 'border-error bg-error/10 text-error'
+                    : 'border-border text-t-muted'
                   : selectedAnswer === ci
-                  ? 'border-primary bg-blue-50 dark:bg-blue-900/30 text-primary font-medium'
-                  : 'border-slate-200 dark:border-slate-600 hover:border-primary hover:bg-slate-50 dark:hover:bg-slate-700'
+                  ? 'border-primary bg-primary/10 text-primary font-medium'
+                  : 'border-border hover:border-primary/50 hover:bg-surface-alt text-t-primary'
               }`}
               role="radio"
               aria-checked={selectedAnswer === ci}
             >
-              <span className="inline-block w-6 text-slate-400 font-mono">{ci + 1}.</span> {choice}
+              <span className="inline-block w-6 text-t-muted font-mono">{ci + 1}.</span> {choice}
               {showResult && ci === currentQuestion.correctIndex && ' ✓'}
               {showResult && ci === selectedAnswer && ci !== currentQuestion.correctIndex && ' ✗'}
             </button>
@@ -192,15 +186,15 @@ export default function DrillSession() {
 
         {showResult && (
           <div className="space-y-3">
-            <div className={`p-3 rounded-lg text-sm ${isCorrect ? 'bg-emerald-50 dark:bg-emerald-900/30 text-success' : 'bg-red-50 dark:bg-red-900/30 text-error'}`}>
+            <div className={`p-3 rounded-xl text-sm font-medium ${isCorrect ? 'bg-success/10 text-success' : 'bg-error/10 text-error'}`}>
               {isCorrect ? '正解!' : '不正解'}
             </div>
-            <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-lg text-sm text-slate-700 dark:text-slate-300">
-              <p className="font-medium mb-1">解説</p>
+            <div className="bg-primary/5 p-3 rounded-xl text-sm text-t-secondary">
+              <p className="font-medium mb-1 text-t-primary">解説</p>
               <p>{currentQuestion.explanation}</p>
             </div>
             {currentQuestion.relatedArticle && (
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-t-muted">
                 <span className="font-medium">関連条文:</span> {currentQuestion.relatedArticle}
               </p>
             )}
@@ -209,10 +203,10 @@ export default function DrillSession() {
               <button
                 onClick={() => addToFlashcards(currentQuestion)}
                 disabled={addedToFlashcards.has(currentQuestion.id)}
-                className={`text-sm px-3 py-1.5 rounded-lg ${
+                className={`text-sm px-3 py-1.5 rounded-xl transition-all ${
                   addedToFlashcards.has(currentQuestion.id)
-                    ? 'bg-slate-200 dark:bg-slate-700 text-slate-500'
-                    : 'bg-accent text-white hover:bg-amber-600'
+                    ? 'bg-surface-alt text-t-muted'
+                    : 'bg-accent text-white hover:bg-accent-hover'
                 }`}
               >
                 {addedToFlashcards.has(currentQuestion.id) ? '暗記カードに追加済' : '暗記カードに追加'}
@@ -222,19 +216,18 @@ export default function DrillSession() {
         )}
       </div>
 
-      {/* Action */}
       {!showResult ? (
         <button
           onClick={checkAnswer}
           disabled={selectedAnswer === null}
-          className="w-full py-3 bg-primary text-white rounded-xl font-medium disabled:opacity-40"
+          className="w-full py-3 bg-primary text-white rounded-xl font-medium disabled:opacity-40 hover:bg-primary-hover transition-colors"
         >
           回答を確認する
         </button>
       ) : (
         <button
           onClick={nextQuestion}
-          className="w-full py-3 bg-primary text-white rounded-xl font-medium"
+          className="w-full py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-hover transition-colors"
         >
           {currentIndex + 1 >= questions.length ? '結果を見る' : '次の問題へ'}
         </button>

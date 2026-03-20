@@ -29,35 +29,33 @@ export default function FlashcardsIndex() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">暗記カード</h1>
-      <p className="text-sm text-slate-600 dark:text-slate-400">SM-2アルゴリズムによるスペースドリピティション学習</p>
+      <p className="text-sm text-t-secondary">SM-2アルゴリズムによるスペースドリピティション学習</p>
 
-      {/* Today's cards */}
       <Link
         href="/flashcards/all"
-        className="block bg-accent text-white rounded-xl p-5 text-center hover:bg-amber-600 transition-colors"
+        className="block bg-accent text-white rounded-card p-5 text-center hover:bg-accent-hover transition-all shadow-sm hover:shadow-md"
       >
         <p className="text-2xl font-bold">{totalDue}枚</p>
-        <p className="text-sm mt-1">今日のカードを復習する</p>
+        <p className="text-sm mt-1 opacity-90">今日のカードを復習する</p>
       </Link>
 
-      {/* Per-subject */}
       <div className="space-y-3">
-        <h2 className="text-lg font-bold">科目別デッキ</h2>
+        <h2 className="text-lg font-bold text-t-primary">科目別デッキ</h2>
         {ALL_SUBJECTS.map((subject) => {
           const stats = counts?.[subject];
           return (
             <Link
               key={subject}
               href={`/flashcards/${subject}`}
-              className="block bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors"
+              className="block theme-card theme-card-hover p-4"
             >
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-medium">{SUBJECT_LABELS[subject]}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{stats?.total || 0}枚</p>
+                  <p className="font-medium text-t-primary">{SUBJECT_LABELS[subject]}</p>
+                  <p className="text-xs text-t-muted">{stats?.total || 0}枚</p>
                 </div>
                 {(stats?.due || 0) > 0 && (
-                  <span className="bg-accent text-white text-xs px-2 py-1 rounded-full font-bold">
+                  <span className="bg-accent text-white text-xs px-2.5 py-1 rounded-full font-bold">
                     {stats?.due}枚復習
                   </span>
                 )}

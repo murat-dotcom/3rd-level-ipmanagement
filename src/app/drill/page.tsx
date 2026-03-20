@@ -40,18 +40,17 @@ function DrillSetupInner() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">過去問演習</h1>
-      <p className="text-sm text-slate-600 dark:text-slate-400">科目・トピック別に問題を解きます（即時フィードバック）</p>
+      <p className="text-sm text-t-secondary">科目・トピック別に問題を解きます（即時フィードバック）</p>
 
-      {/* Subject */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-        <h2 className="font-bold">科目</h2>
+      <div className="theme-card p-5 space-y-3">
+        <h2 className="font-bold text-t-primary">科目</h2>
         <div className="grid grid-cols-2 gap-2">
           {ALL_SUBJECTS.map((s) => (
             <button
               key={s}
               onClick={() => { setSubject(s); setSelectedTopic('all'); }}
-              className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                subject === s ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+              className={`py-2 px-3 rounded-xl text-sm font-medium transition-all ${
+                subject === s ? 'bg-primary text-white shadow-sm' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
               }`}
             >
               {SUBJECT_LABELS[s]}
@@ -60,15 +59,14 @@ function DrillSetupInner() {
         </div>
       </div>
 
-      {/* Topic */}
       {topics.length > 0 && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-          <h2 className="font-bold">トピック</h2>
+        <div className="theme-card p-5 space-y-3">
+          <h2 className="font-bold text-t-primary">トピック</h2>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setSelectedTopic('all')}
-              className={`py-1.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                selectedTopic === 'all' ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+              className={`py-1.5 px-3 rounded-xl text-sm font-medium transition-all ${
+                selectedTopic === 'all' ? 'bg-primary text-white shadow-sm' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
               }`}
             >
               全トピック
@@ -77,8 +75,8 @@ function DrillSetupInner() {
               <button
                 key={topic}
                 onClick={() => setSelectedTopic(topic)}
-                className={`py-1.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                  selectedTopic === topic ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+                className={`py-1.5 px-3 rounded-xl text-sm font-medium transition-all ${
+                  selectedTopic === topic ? 'bg-primary text-white shadow-sm' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
                 }`}
               >
                 {topic}
@@ -88,9 +86,8 @@ function DrillSetupInner() {
         </div>
       )}
 
-      {/* Difficulty */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-        <h2 className="font-bold">難易度</h2>
+      <div className="theme-card p-5 space-y-3">
+        <h2 className="font-bold text-t-primary">難易度</h2>
         <div className="flex gap-2">
           {[
             { value: 0, label: '全て' },
@@ -101,8 +98,8 @@ function DrillSetupInner() {
             <button
               key={d.value}
               onClick={() => setDifficulty(d.value as 0 | 1 | 2 | 3)}
-              className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${
-                difficulty === d.value ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+              className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
+                difficulty === d.value ? 'bg-primary text-white shadow-sm' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
               }`}
             >
               {d.label}
@@ -111,11 +108,10 @@ function DrillSetupInner() {
         </div>
       </div>
 
-      {/* Start */}
       <button
         onClick={startDrill}
         disabled={availableCount === 0}
-        className="w-full py-4 bg-primary text-white rounded-xl text-lg font-bold hover:bg-blue-900 transition-colors disabled:opacity-40"
+        className="w-full py-4 bg-primary text-white rounded-xl text-lg font-bold hover:bg-primary-hover transition-all shadow-sm hover:shadow-md disabled:opacity-40"
       >
         演習を開始する（{availableCount}問）
       </button>
@@ -125,7 +121,7 @@ function DrillSetupInner() {
 
 export default function DrillSetup() {
   return (
-    <Suspense fallback={<div className="p-6 text-center text-slate-500">読み込み中...</div>}>
+    <Suspense fallback={<div className="p-6 text-center text-t-muted">読み込み中...</div>}>
       <DrillSetupInner />
     </Suspense>
   );

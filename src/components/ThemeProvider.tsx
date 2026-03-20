@@ -2,39 +2,81 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getProgress, saveProgress } from '@/lib/storage';
+import { ThemeName } from '@/types/question';
 
-type Theme = 'light' | 'dark';
+type Mode = 'light' | 'dark';
 
-const ThemeContext = createContext<{
-  theme: Theme;
+interface ThemeContextValue {
+  mode: Mode;
+  colorTheme: ThemeName;
+  toggleMode: () => void;
+  setColorTheme: (theme: ThemeName) => void;
+  // Backwards compat
+  theme: Mode;
   toggleTheme: () => void;
-}>({ theme: 'light', toggleTheme: () => {} });
+}
+
+const ThemeContext = createContext<ThemeContextValue>({
+  mode: 'light',
+  colorTheme: 'ocean',
+  toggleMode: () => {},
+  setColorTheme: () => {},
+  theme: 'light',
+  toggleTheme: () => {},
+});
 
 export function useTheme() {
   return useContext(ThemeContext);
 }
 
+function applyTheme(mode: Mode, colorTheme: ThemeName) {
+  const html = document.documentElement;
+  html.setAttribute('data-mode', mode);
+  html.setAttribute('data-theme', colorTheme);
+  html.classList.toggle('dark', mode === 'dark');
+}
+
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [mode, setMode] = useState<Mode>('light');
+  const [colorTheme, setColorThemeState] = useState<ThemeName>('ocean');
 
   useEffect(() => {
     const progress = getProgress();
-    const saved = progress.theme || 'light';
-    setTheme(saved);
-    document.documentElement.classList.toggle('dark', saved === 'dark');
+    const savedMode = progress.theme || 'light';
+    const savedTheme = progress.colorTheme || 'ocean';
+    setMode(savedMode);
+    setColorThemeState(savedTheme);
+    applyTheme(savedMode, savedTheme);
   }, []);
 
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.classList.toggle('dark', next === 'dark');
+  const toggleMode = () => {
+    const next: Mode = mode === 'light' ? 'dark' : 'light';
+    setMode(next);
+    applyTheme(next, colorTheme);
     const progress = getProgress();
     progress.theme = next;
     saveProgress(progress);
   };
 
+  const setColorTheme = (theme: ThemeName) => {
+    setColorThemeState(theme);
+    applyTheme(mode, theme);
+    const progress = getProgress();
+    progress.colorTheme = theme;
+    saveProgress(progress);
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{
+        mode,
+        colorTheme,
+        toggleMode,
+        setColorTheme,
+        theme: mode,
+        toggleTheme: toggleMode,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#1E40AF',
+  themeColor: '#3B82F6',
 };
 
 export default function RootLayout({
@@ -20,14 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
+    <html lang="ja" data-theme="ocean" data-mode="light">
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="知財ドリル" />
       </head>
-      <body className="bg-bg text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+      <body className="bg-bg text-t-primary antialiased">
         <ThemeProvider>
           <ServiceWorkerRegistration />
           <NavBar />

@@ -34,28 +34,28 @@ export default function QuizSetup() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">模擬試験</h1>
-      <p className="text-sm text-slate-600 dark:text-slate-400">試験形式に合わせた模擬試験を行います</p>
+      <p className="text-sm text-t-secondary">試験形式に合わせた模擬試験を行います</p>
 
       {/* Mode Selection */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-        <h2 className="font-bold">モード選択</h2>
+      <div className="theme-card p-5 space-y-3">
+        <h2 className="font-bold text-t-primary">モード選択</h2>
         <div className="flex gap-3">
           <button
             onClick={() => setMode('standard')}
-            className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+            className={`flex-1 py-3 rounded-xl font-medium transition-all ${
               mode === 'standard'
-                ? 'bg-primary text-white'
-                : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                ? 'bg-primary text-white shadow-sm'
+                : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
             }`}
           >
             通常モード
           </button>
           <button
             onClick={() => setMode('mock')}
-            className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+            className={`flex-1 py-3 rounded-xl font-medium transition-all ${
               mode === 'mock'
-                ? 'bg-accent text-white'
-                : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                ? 'bg-accent text-white shadow-sm'
+                : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
             }`}
           >
             本番模擬試験
@@ -69,17 +69,17 @@ export default function QuizSetup() {
       </div>
 
       {/* Exam Type */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-        <h2 className="font-bold">試験タイプ</h2>
+      <div className="theme-card p-5 space-y-3">
+        <h2 className="font-bold text-t-primary">試験タイプ</h2>
         <div className="flex gap-3" role="radiogroup" aria-label="試験タイプ">
           {(['gakka', 'jitsugu'] as const).map((type) => (
             <button
               key={type}
               onClick={() => setExamType(type)}
-              className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+              className={`flex-1 py-3 rounded-xl font-medium transition-all ${
                 examType === type
-                  ? 'bg-primary text-white'
-                  : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
               }`}
               role="radio"
               aria-checked={examType === type}
@@ -93,15 +93,15 @@ export default function QuizSetup() {
       {mode === 'standard' && (
         <>
           {/* Subject Filter */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-            <h2 className="font-bold">科目選択</h2>
+          <div className="theme-card p-5 space-y-3">
+            <h2 className="font-bold text-t-primary">科目選択</h2>
             <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="科目選択">
               <button
                 onClick={() => setSubjectFilter('all')}
-                className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                className={`py-2 px-3 rounded-xl text-sm font-medium transition-all ${
                   subjectFilter === 'all'
-                    ? 'bg-primary text-white'
-                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
                 }`}
                 role="radio"
                 aria-checked={subjectFilter === 'all'}
@@ -112,10 +112,10 @@ export default function QuizSetup() {
                 <button
                   key={subject}
                   onClick={() => setSubjectFilter(subject)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`py-2 px-3 rounded-xl text-sm font-medium transition-all ${
                     subjectFilter === subject
-                      ? 'bg-primary text-white'
-                      : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
                   }`}
                   role="radio"
                   aria-checked={subjectFilter === subject}
@@ -127,17 +127,17 @@ export default function QuizSetup() {
           </div>
 
           {/* Question Count */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-            <h2 className="font-bold">問題数</h2>
+          <div className="theme-card p-5 space-y-3">
+            <h2 className="font-bold text-t-primary">問題数</h2>
             <div className="flex gap-3" role="radiogroup" aria-label="問題数">
               {[10, 20, 30].map((count) => (
                 <button
                   key={count}
                   onClick={() => setQuestionCount(count)}
-                  className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+                  className={`flex-1 py-3 rounded-xl font-medium transition-all ${
                     questionCount === count
-                      ? 'bg-primary text-white'
-                      : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
                   }`}
                   role="radio"
                   aria-checked={questionCount === count}
@@ -153,15 +153,15 @@ export default function QuizSetup() {
       {/* Start Button */}
       <button
         onClick={mode === 'mock' ? startMockExam : startQuiz}
-        className={`w-full py-4 text-white rounded-xl text-lg font-bold transition-colors ${
-          mode === 'mock' ? 'bg-accent hover:bg-amber-600' : 'bg-primary hover:bg-blue-900'
+        className={`w-full py-4 text-white rounded-xl text-lg font-bold transition-all shadow-sm hover:shadow-md ${
+          mode === 'mock' ? 'bg-accent hover:bg-accent-hover' : 'bg-primary hover:bg-primary-hover'
         }`}
       >
         {mode === 'mock' ? '本番模擬試験を開始する' : '試験を開始する'}
       </button>
 
       {/* Info */}
-      <div className="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-4 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+      <div className="theme-card bg-primary/5 border-primary/20 p-4 text-sm text-t-secondary space-y-1">
         <p>・学科試験: 3肢択一 / 45分（30問の場合）</p>
         <p>・実技試験: 記述・択一併用 / 45分（30問の場合）</p>
         <p>・合格基準: 70%以上</p>

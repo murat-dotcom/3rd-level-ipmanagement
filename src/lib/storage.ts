@@ -1,4 +1,4 @@
-import { UserProgress, FlashcardState, SubjectSlug, AISettings } from '@/types/question';
+import { UserProgress, FlashcardState, SubjectSlug, AISettings, ThemeName } from '@/types/question';
 
 const STORAGE_KEY = 'chizai-drill-progress';
 export const DEFAULT_AI_SETTINGS: AISettings = {
@@ -61,6 +61,7 @@ function normalizeProgress(data: Partial<UserProgress> | null | undefined): User
       model: typeof data?.aiSettings?.model === 'string' && data.aiSettings.model.trim() ? data.aiSettings.model : DEFAULT_AI_SETTINGS.model,
     },
     theme: data?.theme === 'dark' ? 'dark' : 'light',
+    colorTheme: (['ocean', 'sakura', 'forest', 'sunset', 'midnight'].includes(data?.colorTheme as string) ? data!.colorTheme : 'ocean') as ThemeName,
   };
 }
 
