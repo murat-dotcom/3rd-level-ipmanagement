@@ -9,7 +9,7 @@ interface ProgressChartProps {
 export default function ProgressChart({ quizHistory }: ProgressChartProps) {
   if (quizHistory.length < 2) {
     return (
-      <div className="text-sm text-slate-500 dark:text-slate-400 text-center py-8">
+      <div className="text-sm text-t-muted text-center py-8">
         グラフを表示するには2回以上試験を受けてください
       </div>
     );
@@ -32,7 +32,6 @@ export default function ProgressChart({ quizHistory }: ProgressChartProps) {
 
   const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
 
-  // 70% pass line
   const passY = padding.top + innerHeight - (70 / maxScore) * innerHeight;
 
   return (
@@ -45,7 +44,7 @@ export default function ProgressChart({ quizHistory }: ProgressChartProps) {
             return (
               <g key={v}>
                 <line x1={padding.left} y1={y} x2={chartWidth - padding.right} y2={y} strokeWidth={0.5} />
-                <text x={padding.left - 5} y={y + 3} textAnchor="end" fontSize={8} className="fill-slate-400">
+                <text x={padding.left - 5} y={y + 3} textAnchor="end" fontSize={8} fill="rgb(var(--c-text-muted))">
                   {v}%
                 </text>
               </g>
@@ -59,22 +58,22 @@ export default function ProgressChart({ quizHistory }: ProgressChartProps) {
           y1={passY}
           x2={chartWidth - padding.right}
           y2={passY}
-          stroke="#F59E0B"
+          stroke="rgb(var(--c-accent))"
           strokeWidth={1}
           strokeDasharray="4 2"
         />
-        <text x={chartWidth - padding.right + 2} y={passY + 3} fontSize={7} className="fill-amber-500">
+        <text x={chartWidth - padding.right + 2} y={passY + 3} fontSize={7} fill="rgb(var(--c-accent))">
           合格
         </text>
 
         {/* Line */}
-        <path d={pathD} fill="none" stroke="#1E40AF" strokeWidth={2} />
+        <path d={pathD} fill="none" stroke="rgb(var(--c-primary))" strokeWidth={2} />
 
         {/* Points */}
         {points.map((p, i) => (
           <g key={i}>
-            <circle cx={p.x} cy={p.y} r={3} fill={p.pct >= 70 ? '#10B981' : '#EF4444'} />
-            <text x={p.x} y={chartHeight - 5} textAnchor="middle" fontSize={6} className="fill-slate-400">
+            <circle cx={p.x} cy={p.y} r={3} fill={p.pct >= 70 ? 'rgb(var(--c-success))' : 'rgb(var(--c-error))'} />
+            <text x={p.x} y={chartHeight - 5} textAnchor="middle" fontSize={6} fill="rgb(var(--c-text-muted))">
               {p.date.slice(5)}
             </text>
           </g>

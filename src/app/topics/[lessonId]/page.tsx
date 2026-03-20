@@ -49,8 +49,8 @@ export default function LessonView() {
   if (!lesson) {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto text-center">
-        <p className="text-slate-500 dark:text-slate-400">レッスンが見つかりません</p>
-        <button onClick={() => router.push('/topics')} className="text-primary underline mt-2">
+        <p className="text-t-muted">レッスンが見つかりません</p>
+        <button onClick={() => router.push('/topics')} className="text-primary font-medium hover:underline mt-2">
           戻る
         </button>
       </div>
@@ -65,27 +65,27 @@ export default function LessonView() {
     return (
       <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
         <h1 className="text-xl font-bold text-primary">理解度チェック</h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400">{lesson.title}</p>
+        <p className="text-sm text-t-muted">{lesson.title}</p>
 
         {quizQuestions.map((q, qi) => (
-          <div key={q.id} className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
-            <p className="font-medium text-sm">{qi + 1}. {q.question}</p>
+          <div key={q.id} className="theme-card p-4 space-y-3">
+            <p className="font-medium text-sm text-t-primary">{qi + 1}. {q.question}</p>
             <div className="space-y-1">
               {q.choices.map((choice, ci) => (
                 <button
                   key={ci}
                   onClick={() => !quizSubmitted && setQuizAnswers((prev) => ({ ...prev, [qi]: ci }))}
                   disabled={quizSubmitted}
-                  className={`w-full text-left p-2 rounded text-sm transition-colors ${
+                  className={`w-full text-left p-2 rounded-lg text-sm transition-all ${
                     quizSubmitted
                       ? ci === q.correctIndex
-                        ? 'bg-emerald-50 dark:bg-emerald-900/30 text-success border border-success'
+                        ? 'bg-success/10 text-success border border-success'
                         : ci === quizAnswers[qi]
-                        ? 'bg-red-50 dark:bg-red-900/30 text-error border border-error'
-                        : 'bg-slate-50 dark:bg-slate-700 text-slate-500'
+                        ? 'bg-error/10 text-error border border-error'
+                        : 'bg-surface-alt text-t-muted'
                       : quizAnswers[qi] === ci
-                      ? 'bg-blue-50 dark:bg-blue-900/30 border border-primary text-primary'
-                      : 'bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-transparent'
+                      ? 'bg-primary/10 border border-primary text-primary'
+                      : 'bg-surface-alt hover:bg-surface-hover border border-transparent text-t-secondary'
                   }`}
                 >
                   {ci + 1}. {choice}
@@ -94,9 +94,9 @@ export default function LessonView() {
             </div>
             {quizSubmitted && (
               <div className="space-y-1">
-                <p className="text-xs text-slate-600 dark:text-slate-400 bg-blue-50 dark:bg-blue-900/30 p-2 rounded">{q.explanation}</p>
+                <p className="text-xs text-t-secondary bg-primary/5 p-2 rounded-lg">{q.explanation}</p>
                 {q.relatedArticle && (
-                  <p className="text-xs text-slate-500">関連条文: {q.relatedArticle}</p>
+                  <p className="text-xs text-t-muted">関連条文: {q.relatedArticle}</p>
                 )}
               </div>
             )}
@@ -106,18 +106,18 @@ export default function LessonView() {
         {!quizSubmitted ? (
           <button
             onClick={() => setQuizSubmitted(true)}
-            className="w-full py-3 bg-primary text-white rounded-xl font-medium"
+            className="w-full py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-hover transition-colors"
           >
             回答を確認する
           </button>
         ) : (
           <div className="space-y-3">
-            <div className={`text-center p-4 rounded-xl ${score >= Math.ceil(quizQuestions.length * 0.7) ? 'bg-emerald-50 dark:bg-emerald-900/30' : 'bg-red-50 dark:bg-red-900/30'}`}>
-              <p className="text-2xl font-bold">{score} / {quizQuestions.length}</p>
+            <div className={`text-center p-4 rounded-card ${score >= Math.ceil(quizQuestions.length * 0.7) ? 'bg-success/10' : 'bg-error/10'}`}>
+              <p className="text-2xl font-bold text-t-primary">{score} / {quizQuestions.length}</p>
             </div>
             <button
               onClick={() => router.push('/topics')}
-              className="w-full py-3 bg-primary text-white rounded-xl font-medium"
+              className="w-full py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-hover transition-colors"
             >
               トピック一覧へ戻る
             </button>
@@ -129,30 +129,30 @@ export default function LessonView() {
 
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
-      <button onClick={() => router.push('/topics')} className="text-sm text-primary">
+      <button onClick={() => router.push('/topics')} className="text-sm text-primary font-medium hover:underline">
         ← トピック一覧
       </button>
 
       <h1 className="text-xl font-bold text-primary">{lesson.title}</h1>
 
       {lesson.sections.map((section, i) => (
-        <div key={i} className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 space-y-3">
-          <h2 className="font-bold text-base">{section.heading}</h2>
-          <div className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-line">
+        <div key={i} className="theme-card p-5 space-y-3">
+          <h2 className="font-bold text-base text-t-primary">{section.heading}</h2>
+          <div className="text-sm leading-relaxed text-t-secondary whitespace-pre-line">
             {section.content}
           </div>
-          <div className="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
+          <div className="bg-accent/10 border border-accent/20 rounded-xl p-3">
             <p className="text-xs font-bold text-accent mb-1">ポイント</p>
-            <p className="text-sm text-slate-700 dark:text-slate-300">{section.keyTakeaway}</p>
+            <p className="text-sm text-t-secondary">{section.keyTakeaway}</p>
           </div>
         </div>
       ))}
 
       {lesson.mnemonics && lesson.mnemonics.length > 0 && (
-        <div className="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-4 border border-purple-200 dark:border-purple-800">
-          <h3 className="font-bold text-sm text-purple-700 dark:text-purple-300 mb-2">覚え方のコツ</h3>
+        <div className="theme-card bg-primary/5 border-primary/20 p-4">
+          <h3 className="font-bold text-sm text-primary mb-2">覚え方のコツ</h3>
           {lesson.mnemonics.map((m, i) => (
-            <p key={i} className="text-sm text-purple-600 dark:text-purple-400">・{m}</p>
+            <p key={i} className="text-sm text-t-secondary">・{m}</p>
           ))}
         </div>
       )}
@@ -161,14 +161,14 @@ export default function LessonView() {
         {!completed && (
           <button
             onClick={markCompleted}
-            className="flex-1 py-3 bg-success text-white rounded-xl font-medium"
+            className="flex-1 py-3 bg-success text-white rounded-xl font-medium hover:opacity-90 transition-colors"
           >
             学習完了にする
           </button>
         )}
         <button
           onClick={startMiniQuiz}
-          className="flex-1 py-3 bg-primary text-white rounded-xl font-medium"
+          className="flex-1 py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary-hover transition-colors"
         >
           理解度チェック
         </button>

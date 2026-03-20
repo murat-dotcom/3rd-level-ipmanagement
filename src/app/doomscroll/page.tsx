@@ -15,7 +15,7 @@ const SUBJECT_COLORS: Record<SubjectSlug, string> = {
   trademark: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300',
   design: 'bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300',
   treaties: 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300',
-  other: 'bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300',
+  other: 'bg-surface-alt text-t-secondary',
 };
 
 const CATEGORY_ICONS: Record<string, string> = {
@@ -62,10 +62,8 @@ function TermCard({
   return (
     <div
       id={`term-${term.id}`}
-      className={`bg-white dark:bg-slate-800 rounded-xl border transition-all duration-300 shadow-sm ${
-        isRead
-          ? 'border-success/40 bg-emerald-50/50 dark:bg-emerald-900/10'
-          : 'border-slate-200 dark:border-slate-700'
+      className={`theme-card transition-all duration-300 ${
+        isRead ? 'border-success/40 bg-success/5' : ''
       }`}
     >
       <div className="p-4 pb-2">
@@ -74,7 +72,7 @@ function TermCard({
             <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${SUBJECT_COLORS[term.subject]}`}>
               {SUBJECT_LABELS[term.subject]}
             </span>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-surface-alt text-t-secondary">
               {CATEGORY_ICONS[term.category] || '📝'} {term.category}
             </span>
             <span
@@ -97,10 +95,10 @@ function TermCard({
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => onPin(term.id)}
-              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                 isPinned
                   ? 'bg-primary text-white'
-                  : 'bg-slate-100 dark:bg-slate-700 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600'
+                  : 'bg-surface-alt text-t-muted hover:bg-surface-hover'
               }`}
               aria-label={isPinned ? 'ピン留めを解除' : 'この用語をピン留め'}
               title={isPinned ? 'ピン留めを解除' : 'この用語をピン留め'}
@@ -109,10 +107,10 @@ function TermCard({
             </button>
             <button
               onClick={() => onToggleRead(term.id)}
-              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                 isRead
                   ? 'bg-success text-white'
-                  : 'bg-slate-100 dark:bg-slate-700 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600'
+                  : 'bg-surface-alt text-t-muted hover:bg-surface-hover'
               }`}
               aria-label={isRead ? '既読を解除' : '既読にする'}
               title={isRead ? '既読を解除' : '既読にする'}
@@ -122,10 +120,10 @@ function TermCard({
           </div>
         </div>
 
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+        <h3 className="text-xl font-bold text-t-primary">
           {term.term}
           {term.reading && (
-            <span className="text-sm font-normal text-slate-400 dark:text-slate-500 ml-2">
+            <span className="text-sm font-normal text-t-muted ml-2">
               ({term.reading})
             </span>
           )}
@@ -133,12 +131,12 @@ function TermCard({
       </div>
 
       <div className="px-4 pb-3">
-        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{term.definition}</p>
+        <p className="text-sm text-t-secondary leading-relaxed">{term.definition}</p>
       </div>
 
-      <div className="mx-4 mb-3 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200/50 dark:border-amber-800/30">
-        <p className="text-xs font-bold text-amber-700 dark:text-amber-400 mb-1">💡 ポイント</p>
-        <p className="text-sm text-amber-900 dark:text-amber-200">{term.keyPoint}</p>
+      <div className="mx-4 mb-3 p-3 bg-accent/10 rounded-xl border border-accent/20">
+        <p className="text-xs font-bold text-accent mb-1">💡 ポイント</p>
+        <p className="text-sm text-t-secondary">{term.keyPoint}</p>
       </div>
 
       {term.relatedTermIds.length > 0 && (
@@ -155,7 +153,7 @@ function TermCard({
                   <button
                     key={relId}
                     onClick={() => onRelatedClick(relId)}
-                    className="text-xs px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
+                    className="text-xs px-3 py-1.5 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition-all font-medium"
                   >
                     {relTerm.term}
                   </button>
@@ -244,7 +242,6 @@ export default function DoomscrollPage() {
     });
   }, [terms, subjectFilter, categoryFilter, difficultyFilter, readMode, readIds, debouncedSearch]);
 
-  // Show pinned term even if it falls outside current filters
   const pinnedTerm = pinnedTermId ? (filteredTerms.find((term) => term.id === pinnedTermId) || termMap.get(pinnedTermId) || null) : null;
   const unpinnedTerms = pinnedTerm ? filteredTerms.filter((term) => term.id !== pinnedTerm.id) : filteredTerms;
   const visibleTerms = useMemo(() => {
@@ -333,7 +330,6 @@ export default function DoomscrollPage() {
     if (el) {
       scrollAndHighlight(`term-${id}`);
     } else {
-      // Pin the related term so it shows at top regardless of filters
       setPinnedTermId(id);
       requestAnimationFrame(() => scrollAndHighlight(`term-${id}`));
     }
@@ -422,70 +418,72 @@ export default function DoomscrollPage() {
     <div className="p-4 md:p-8 max-w-4xl mx-auto pb-24">
       <div className="mb-4">
         <h1 className="text-2xl font-bold text-primary">📜 用語ドゥームスクロール</h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+        <p className="text-sm text-t-muted mt-1">
           検索・絞り込み・未読ジャンプで、だらだらスクロールをちゃんと学習時間に変えよう。
         </p>
       </div>
 
-      <div className="mb-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-sky-50 to-violet-50 dark:from-primary/15 dark:via-slate-800 dark:to-violet-900/20 p-4">
+      {/* AI generation card */}
+      <div className="mb-4 theme-card theme-gradient p-4">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm font-semibold text-primary">AIで新しい用語を追加</p>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+            <p className="text-sm text-t-secondary mt-1 leading-relaxed">
               設定に保存した APIキー / モデルを使って、現在の科目に合わせた補足用語を Web検索つきで3件生成します。
             </p>
           </div>
           <button
             onClick={handleGenerateTerms}
             disabled={isGenerating}
-            className="px-4 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-blue-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-primary-hover disabled:opacity-60 disabled:cursor-not-allowed transition-all"
           >
             {isGenerating ? '生成中...' : 'AIで3件追加'}
           </button>
         </div>
         {generationError && <p className="mt-3 text-sm text-error font-medium">{generationError}</p>}
         {generatedTerms.length > 0 && (
-          <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+          <p className="mt-3 text-xs text-t-muted">
             追加済み AI用語: {generatedTerms.length}件。生成カードには「AI生成」バッジを表示しています。
           </p>
         )}
       </div>
 
+      {/* Progress + Focus mode */}
       <div className="grid gap-4 md:grid-cols-[1.2fr,0.8fr] mb-4">
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+        <div className="theme-card p-4">
           <div className="flex justify-between items-center text-sm mb-1.5">
-            <span className="text-slate-600 dark:text-slate-400">学習進捗</span>
+            <span className="text-t-secondary">学習進捗</span>
             <span className="font-bold text-primary">
               {readCount}/{totalCount} ({progressPercent}%)
             </span>
           </div>
-          <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+          <div className="w-full bg-surface-alt rounded-full h-2.5">
             <div className="bg-primary h-2.5 rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }} />
           </div>
           <div className="grid grid-cols-3 gap-3 mt-4 text-sm">
-            <div className="rounded-lg bg-slate-50 dark:bg-slate-900/40 p-3">
-              <p className="text-slate-500 dark:text-slate-400">表示中</p>
+            <div className="rounded-xl bg-surface-alt p-3">
+              <p className="text-t-muted">表示中</p>
               <p className="text-xl font-bold text-primary mt-1">{filteredTerms.length}</p>
             </div>
-            <div className="rounded-lg bg-slate-50 dark:bg-slate-900/40 p-3">
-              <p className="text-slate-500 dark:text-slate-400">未読</p>
-              <p className="text-xl font-bold text-amber-600 mt-1">{unreadFilteredCount}</p>
+            <div className="rounded-xl bg-surface-alt p-3">
+              <p className="text-t-muted">未読</p>
+              <p className="text-xl font-bold text-accent mt-1">{unreadFilteredCount}</p>
             </div>
-            <div className="rounded-lg bg-slate-50 dark:bg-slate-900/40 p-3">
-              <p className="text-slate-500 dark:text-slate-400">読了</p>
-              <p className="text-xl font-bold text-emerald-600 mt-1">{filteredReadCount}</p>
+            <div className="rounded-xl bg-surface-alt p-3">
+              <p className="text-t-muted">読了</p>
+              <p className="text-xl font-bold text-success mt-1">{filteredReadCount}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+        <div className="theme-card p-4">
           <p className="text-sm font-semibold text-primary">フォーカスモード</p>
           <div className="grid grid-cols-3 gap-2 mt-3 text-xs">
-            <button onClick={() => setFocusMode('balanced')} className={`rounded-lg px-3 py-2 font-medium ${focusMode === 'balanced' ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}`}>標準</button>
-            <button onClick={() => setFocusMode('quick')} className={`rounded-lg px-3 py-2 font-medium ${focusMode === 'quick' ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}`}>時短</button>
-            <button onClick={() => setFocusMode('challenge')} className={`rounded-lg px-3 py-2 font-medium ${focusMode === 'challenge' ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}`}>応用</button>
+            <button onClick={() => setFocusMode('balanced')} className={`rounded-xl px-3 py-2 font-medium transition-all ${focusMode === 'balanced' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'}`}>標準</button>
+            <button onClick={() => setFocusMode('quick')} className={`rounded-xl px-3 py-2 font-medium transition-all ${focusMode === 'quick' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'}`}>時短</button>
+            <button onClick={() => setFocusMode('challenge')} className={`rounded-xl px-3 py-2 font-medium transition-all ${focusMode === 'challenge' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'}`}>応用</button>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+          <p className="text-xs text-t-muted mt-3 leading-relaxed">
             {focusMode === 'quick' && '未読×基本だけを優先表示。5分学習向けです。'}
             {focusMode === 'challenge' && '応用レベルを中心に流して、本番対応力を上げます。'}
             {focusMode === 'balanced' && '科目横断でバランスよく確認できます。'}
@@ -493,27 +491,28 @@ export default function DoomscrollPage() {
         </div>
       </div>
 
-      <div className="sticky top-0 z-40 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-2xl border border-slate-200/80 dark:border-slate-700/80 p-3 md:p-4 mb-4 space-y-3">
+      {/* Filter bar */}
+      <div className="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm rounded-2xl border border-border/80 p-3 md:p-4 mb-4 space-y-3">
         <div className="grid gap-2 grid-cols-2 md:grid-cols-[1.2fr,0.8fr,0.8fr,0.8fr]">
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="用語・定義・ポイントを検索..."
-            className="col-span-2 md:col-span-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
+            className="col-span-2 md:col-span-1 w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 text-t-primary"
           />
-          <select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value as SubjectSlug | 'all')} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
+          <select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value as SubjectSlug | 'all')} className="rounded-xl border border-border bg-surface px-3 py-2.5 text-sm outline-none focus:border-primary text-t-primary">
             <option value="all">全科目</option>
             {ALL_SUBJECTS.map((subject) => (
               <option key={subject} value={subject}>{SUBJECT_LABELS[subject]}</option>
             ))}
           </select>
-          <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value as TermCategory | 'all')} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
+          <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value as TermCategory | 'all')} className="rounded-xl border border-border bg-surface px-3 py-2.5 text-sm outline-none focus:border-primary text-t-primary">
             <option value="all">全カテゴリ</option>
             {CATEGORY_ORDER.map((category) => (
               <option key={category} value={category}>{CATEGORY_ICONS[category] || ''} {category}</option>
             ))}
           </select>
-          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="hidden md:block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
+          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="hidden md:block rounded-xl border border-border bg-surface px-3 py-2.5 text-sm outline-none focus:border-primary text-t-primary">
             <option value="all">全難易度</option>
             <option value="1">基本</option>
             <option value="2">標準</option>
@@ -522,51 +521,53 @@ export default function DoomscrollPage() {
         </div>
 
         <div className="flex flex-wrap gap-1.5 md:gap-2 items-center">
-          <span className="text-xs text-slate-500 dark:text-slate-400 font-medium mr-1">{filteredTerms.length}件</span>
+          <span className="text-xs text-t-muted font-medium mr-1">{filteredTerms.length}件</span>
           {(['all', 'unread', 'read'] as const).map((mode) => (
-            <button key={mode} onClick={() => setReadMode(mode)} className={`text-xs px-3 py-1.5 rounded-full font-medium ${readMode === mode ? 'bg-primary text-white' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700'}`}>
+            <button key={mode} onClick={() => setReadMode(mode)} className={`text-xs px-3 py-1.5 rounded-full font-medium transition-all ${readMode === mode ? 'bg-primary text-white' : 'bg-surface text-t-secondary border border-border'}`}>
               {mode === 'all' ? 'すべて' : mode === 'unread' ? '未読だけ' : '既読だけ'}
             </button>
           ))}
-          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="md:hidden text-xs px-3 py-1.5 rounded-full font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="md:hidden text-xs px-3 py-1.5 rounded-full font-medium bg-surface text-t-secondary border border-border">
             <option value="all">全難易度</option>
             <option value="1">基本</option>
             <option value="2">標準</option>
             <option value="3">応用</option>
           </select>
-          <button onClick={handleJumpToUnread} className="text-xs px-3 py-1.5 rounded-full font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">次の未読へ</button>
-          <button onClick={handleMarkVisibleRead} className="text-xs px-3 py-1.5 rounded-full font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">表示中を既読({visibleTerms.filter((t) => !readIds.has(t.id)).length})</button>
-          <button onClick={shuffled ? handleReset : handleShuffle} className="text-xs px-3 py-1.5 rounded-full font-medium bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300">
+          <button onClick={handleJumpToUnread} className="text-xs px-3 py-1.5 rounded-full font-medium bg-accent/10 text-accent">次の未読へ</button>
+          <button onClick={handleMarkVisibleRead} className="text-xs px-3 py-1.5 rounded-full font-medium bg-success/10 text-success">表示中を既読({visibleTerms.filter((t) => !readIds.has(t.id)).length})</button>
+          <button onClick={shuffled ? handleReset : handleShuffle} className="text-xs px-3 py-1.5 rounded-full font-medium bg-primary/10 text-primary">
             {shuffled ? '元の順序に戻す' : 'シャッフル'}
           </button>
           {(subjectFilter !== 'all' || categoryFilter !== 'all' || difficultyFilter !== 'all' || searchQuery || readMode !== 'all') && (
-            <button onClick={clearFilters} className="text-xs px-3 py-1.5 rounded-full font-medium bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300">条件をクリア</button>
+            <button onClick={clearFilters} className="text-xs px-3 py-1.5 rounded-full font-medium bg-error/10 text-error">条件をクリア</button>
           )}
         </div>
       </div>
 
+      {/* Pinned term */}
       {pinnedTerm && (
-        <div className="mb-4 rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-4">
+        <div className="mb-4 theme-card bg-primary/5 border-primary/20 p-4">
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-xs font-semibold text-primary">
                 ピン留め中
                 {!filteredTerms.find((t) => t.id === pinnedTerm.id) && (
-                  <span className="ml-2 text-amber-600 dark:text-amber-400 font-normal">(フィルター外の用語)</span>
+                  <span className="ml-2 text-accent font-normal">(フィルター外の用語)</span>
                 )}
               </p>
-              <p className="font-bold mt-1">
+              <p className="font-bold mt-1 text-t-primary">
                 {pinnedTerm.term}
                 <span className={`ml-2 text-xs font-normal px-2 py-0.5 rounded-full ${SUBJECT_COLORS[pinnedTerm.subject]}`}>
                   {SUBJECT_LABELS[pinnedTerm.subject]}
                 </span>
               </p>
             </div>
-            <button onClick={() => setPinnedTermId(null)} className="text-xs text-primary underline shrink-0">解除</button>
+            <button onClick={() => setPinnedTermId(null)} className="text-xs text-primary font-medium hover:underline shrink-0">解除</button>
           </div>
         </div>
       )}
 
+      {/* Term cards */}
       <div className="space-y-4 mt-2">
         {visibleTerms.map((term) => (
           <TermCard
@@ -584,20 +585,20 @@ export default function DoomscrollPage() {
 
       {hasMore && (
         <div ref={sentinelRef} className="py-6 text-center">
-          <p className="text-xs text-slate-400">下にスクロールして続きを表示（{visibleTerms.length}/{filteredTerms.length}）</p>
+          <p className="text-xs text-t-muted">下にスクロールして続きを表示（{visibleTerms.length}/{filteredTerms.length}）</p>
         </div>
       )}
 
       {!hasMore && visibleTerms.length > 0 && (
         <div className="py-8 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-400">{filteredTerms.length} 用語を表示しました</p>
+          <p className="text-sm text-t-muted">{filteredTerms.length} 用語を表示しました</p>
         </div>
       )}
 
       {visibleTerms.length === 0 && (
         <div className="py-16 text-center">
-          <p className="text-lg text-slate-400">該当する用語がありません</p>
-          <button onClick={clearFilters} className="mt-3 text-sm text-primary underline">絞り込みをリセットする</button>
+          <p className="text-lg text-t-muted">該当する用語がありません</p>
+          <button onClick={clearFilters} className="mt-3 text-sm text-primary font-medium hover:underline">絞り込みをリセットする</button>
         </div>
       )}
     </div>

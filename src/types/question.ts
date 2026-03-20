@@ -87,6 +87,7 @@ export interface UserProgress {
   };
   mistakeNotebook?: Record<string, MistakeEntry>;
   theme?: 'light' | 'dark';
+  colorTheme?: ThemeName;
   doomscrollRead?: string[];
   aiSettings?: AISettings;
 }
@@ -101,6 +102,18 @@ export const SUBJECT_LABELS: Record<SubjectSlug, string> = {
 };
 
 export const ALL_SUBJECTS: SubjectSlug[] = ['patent', 'copyright', 'trademark', 'design', 'treaties', 'other'];
+
+export type ThemeName = 'ocean' | 'sakura' | 'forest' | 'sunset' | 'midnight';
+
+export const THEME_LABELS: Record<ThemeName, string> = {
+  ocean: 'オーシャン',
+  sakura: 'サクラ',
+  forest: 'フォレスト',
+  sunset: 'サンセット',
+  midnight: 'ミッドナイト',
+};
+
+export const ALL_THEMES: ThemeName[] = ['ocean', 'sakura', 'forest', 'sunset', 'midnight'];
 
 export type TermCategory = '定義' | '手続' | '期間' | '権利' | '要件' | '制度' | '条約' | '比較';
 

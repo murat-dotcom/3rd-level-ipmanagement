@@ -52,47 +52,45 @@ export default function MistakeNotebook() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">間違いノート</h1>
-      <p className="text-sm text-slate-600 dark:text-slate-400">
+      <p className="text-sm text-t-secondary">
         間違えた問題を復習して苦手を克服しましょう
       </p>
 
-      {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
         <button
           onClick={() => setFilter('all')}
-          className={`p-3 rounded-xl text-center text-sm font-medium border transition-colors ${
-            filter === 'all' ? 'bg-primary text-white border-primary' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+          className={`p-3 rounded-card text-center text-sm font-medium border-2 transition-all ${
+            filter === 'all' ? 'bg-primary text-white border-primary' : 'theme-card'
           }`}
         >
           <p className="text-xl font-bold">{mistakes.length}</p>
-          <p>全て</p>
+          <p className={filter === 'all' ? '' : 'text-t-secondary'}>全て</p>
         </button>
         <button
           onClick={() => setFilter('active')}
-          className={`p-3 rounded-xl text-center text-sm font-medium border transition-colors ${
-            filter === 'active' ? 'bg-error text-white border-error' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+          className={`p-3 rounded-card text-center text-sm font-medium border-2 transition-all ${
+            filter === 'active' ? 'bg-error text-white border-error' : 'theme-card'
           }`}
         >
           <p className="text-xl font-bold">{mistakes.filter((m) => !m.mastered).length}</p>
-          <p>未克服</p>
+          <p className={filter === 'active' ? '' : 'text-t-secondary'}>未克服</p>
         </button>
         <button
           onClick={() => setFilter('mastered')}
-          className={`p-3 rounded-xl text-center text-sm font-medium border transition-colors ${
-            filter === 'mastered' ? 'bg-success text-white border-success' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+          className={`p-3 rounded-card text-center text-sm font-medium border-2 transition-all ${
+            filter === 'mastered' ? 'bg-success text-white border-success' : 'theme-card'
           }`}
         >
           <p className="text-xl font-bold">{mistakes.filter((m) => m.mastered).length}</p>
-          <p>克服済</p>
+          <p className={filter === 'mastered' ? '' : 'text-t-secondary'}>克服済</p>
         </button>
       </div>
 
-      {/* Subject filter */}
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => setSubjectFilter('all')}
-          className={`py-1 px-3 rounded-lg text-xs font-medium ${
-            subjectFilter === 'all' ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+          className={`py-1 px-3 rounded-xl text-xs font-medium transition-all ${
+            subjectFilter === 'all' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
           }`}
         >
           全科目
@@ -101,8 +99,8 @@ export default function MistakeNotebook() {
           <button
             key={subject}
             onClick={() => setSubjectFilter(subject as SubjectSlug)}
-            className={`py-1 px-3 rounded-lg text-xs font-medium ${
-              subjectFilter === subject ? 'bg-primary text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+            className={`py-1 px-3 rounded-xl text-xs font-medium transition-all ${
+              subjectFilter === subject ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'
             }`}
           >
             {SUBJECT_LABELS[subject as SubjectSlug]} ({count})
@@ -110,9 +108,8 @@ export default function MistakeNotebook() {
         ))}
       </div>
 
-      {/* Mistakes list */}
       {filtered.length === 0 ? (
-        <div className="text-center py-8 text-slate-500">
+        <div className="text-center py-8 text-t-muted">
           {filter === 'active' ? '未克服の問題はありません！' : '該当する問題がありません'}
         </div>
       ) : (
@@ -120,8 +117,8 @@ export default function MistakeNotebook() {
           {filtered.map((m) => (
             <div
               key={m.questionId}
-              className={`bg-white dark:bg-slate-800 rounded-xl border transition-colors ${
-                m.mastered ? 'border-success/30 opacity-70' : 'border-slate-200 dark:border-slate-700'
+              className={`theme-card transition-all ${
+                m.mastered ? 'opacity-70 border-success/30' : ''
               }`}
             >
               <button
@@ -129,30 +126,30 @@ export default function MistakeNotebook() {
                 className="w-full text-left p-4"
               >
                 <div className="flex justify-between items-start gap-2">
-                  <p className="text-sm font-medium flex-1">{m.question.question}</p>
+                  <p className="text-sm font-medium flex-1 text-t-primary">{m.question.question}</p>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-xs text-slate-500">{m.reviewCount}回</span>
-                    {m.mastered && <span className="text-xs bg-success text-white px-1.5 py-0.5 rounded">克服</span>}
+                    <span className="text-xs text-t-muted">{m.reviewCount}回</span>
+                    {m.mastered && <span className="text-xs bg-success text-white px-1.5 py-0.5 rounded-lg">克服</span>}
                   </div>
                 </div>
                 <div className="flex gap-2 mt-1">
-                  <span className="text-xs text-slate-400">{SUBJECT_LABELS[m.question.subject]}</span>
-                  <span className="text-xs text-slate-400">{m.question.topic}</span>
+                  <span className="text-xs text-t-muted">{SUBJECT_LABELS[m.question.subject]}</span>
+                  <span className="text-xs text-t-muted">{m.question.topic}</span>
                 </div>
               </button>
 
               {expandedId === m.questionId && (
-                <div className="px-4 pb-4 space-y-3 border-t border-slate-100 dark:border-slate-700 pt-3">
+                <div className="px-4 pb-4 space-y-3 border-t border-border pt-3">
                   <div className="space-y-1">
                     {m.question.choices.map((choice, ci) => (
                       <div
                         key={ci}
-                        className={`p-2 rounded text-sm ${
+                        className={`p-2 rounded-lg text-sm ${
                           ci === m.question.correctIndex
-                            ? 'bg-emerald-50 dark:bg-emerald-900/30 text-success font-medium border border-success'
+                            ? 'bg-success/10 text-success font-medium border border-success'
                             : ci === m.selectedAnswer
-                            ? 'bg-red-50 dark:bg-red-900/30 text-error border border-error'
-                            : 'bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                            ? 'bg-error/10 text-error border border-error'
+                            : 'bg-surface-alt text-t-muted'
                         }`}
                       >
                         {ci + 1}. {choice}
@@ -161,18 +158,18 @@ export default function MistakeNotebook() {
                       </div>
                     ))}
                   </div>
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded text-sm">
-                    <p className="font-medium mb-1">解説</p>
-                    <p className="text-slate-700 dark:text-slate-300">{m.question.explanation}</p>
+                  <div className="bg-primary/5 p-3 rounded-lg text-sm">
+                    <p className="font-medium mb-1 text-t-primary">解説</p>
+                    <p className="text-t-secondary">{m.question.explanation}</p>
                   </div>
                   {m.question.relatedArticle && (
-                    <p className="text-xs text-slate-500">関連条文: {m.question.relatedArticle}</p>
+                    <p className="text-xs text-t-muted">関連条文: {m.question.relatedArticle}</p>
                   )}
                   <p className="text-xs text-primary font-medium">ポイント: {m.question.keyPoint}</p>
                   {!m.mastered && (
                     <button
                       onClick={() => handleMastered(m.questionId)}
-                      className="w-full py-2 bg-success text-white rounded-lg text-sm font-medium"
+                      className="w-full py-2 bg-success text-white rounded-xl text-sm font-medium hover:opacity-90 transition-colors"
                     >
                       克服済みにする
                     </button>
