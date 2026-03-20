@@ -6,6 +6,7 @@ import { DoomscrollTerm, SubjectSlug, SUBJECT_LABELS, ALL_SUBJECTS, TermCategory
 import { getProgress, saveProgress } from '@/lib/storage';
 
 const BATCH_SIZE = 12;
+const SEARCH_DEBOUNCE_MS = 250;
 const CATEGORY_ORDER: TermCategory[] = ['定義', '手続', '期間', '権利', '要件', '制度', '条約', '比較'];
 
 const SUBJECT_COLORS: Record<SubjectSlug, string> = {
@@ -93,10 +94,10 @@ function TermCard({
               </span>
             )}
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => onPin(term.id)}
-              className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
                 isPinned
                   ? 'bg-primary text-white'
                   : 'bg-slate-100 dark:bg-slate-700 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600'
@@ -108,7 +109,7 @@ function TermCard({
             </button>
             <button
               onClick={() => onToggleRead(term.id)}
-              className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
                 isRead
                   ? 'bg-success text-white'
                   : 'bg-slate-100 dark:bg-slate-700 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600'
@@ -183,13 +184,24 @@ export default function DoomscrollPage() {
   const [focusMode, setFocusMode] = useState<'balanced' | 'quick' | 'challenge'>('balanced');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationError, setGenerationError] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const sentinelRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const termMap = useMemo(() => {
     const map = new Map<string, DoomscrollTerm>();
-    [...generatedTerms, ...allDoomscrollTerms].forEach((t) => map.set(t.id, t));
+    allDoomscrollTerms.forEach((t) => map.set(t.id, t));
+    generatedTerms.forEach((t) => map.set(t.id, t));
     return map;
   }, [generatedTerms]);
+
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedSearch(searchQuery);
+    }, SEARCH_DEBOUNCE_MS);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [searchQuery]);
 
   useEffect(() => {
     const progress = getProgress();
@@ -217,7 +229,7 @@ export default function DoomscrollPage() {
   }, [focusMode]);
 
   const filteredTerms = useMemo(() => {
-    const normalizedQuery = searchQuery.trim().toLowerCase();
+    const normalizedQuery = debouncedSearch.trim().toLowerCase();
 
     return terms.filter((t) => {
       if (subjectFilter !== 'all' && t.subject !== subjectFilter) return false;
@@ -227,15 +239,13 @@ export default function DoomscrollPage() {
       if (readMode === 'read' && !readIds.has(t.id)) return false;
       if (!normalizedQuery) return true;
 
-      const haystack = [t.term, t.reading, t.definition, t.keyPoint, SUBJECT_LABELS[t.subject], t.category]
-        .filter(Boolean)
-        .join(' ')
-        .toLowerCase();
+      const haystack = `${t.term} ${t.reading || ''} ${t.definition} ${t.keyPoint}`.toLowerCase();
       return haystack.includes(normalizedQuery);
     });
-  }, [terms, subjectFilter, categoryFilter, difficultyFilter, readMode, readIds, searchQuery]);
+  }, [terms, subjectFilter, categoryFilter, difficultyFilter, readMode, readIds, debouncedSearch]);
 
-  const pinnedTerm = pinnedTermId ? filteredTerms.find((term) => term.id === pinnedTermId) || null : null;
+  // Show pinned term even if it falls outside current filters
+  const pinnedTerm = pinnedTermId ? (filteredTerms.find((term) => term.id === pinnedTermId) || termMap.get(pinnedTermId) || null) : null;
   const unpinnedTerms = pinnedTerm ? filteredTerms.filter((term) => term.id !== pinnedTerm.id) : filteredTerms;
   const visibleTerms = useMemo(() => {
     const sliced = unpinnedTerms.slice(0, displayCount);
@@ -262,7 +272,7 @@ export default function DoomscrollPage() {
 
   useEffect(() => {
     setDisplayCount(BATCH_SIZE);
-  }, [subjectFilter, categoryFilter, difficultyFilter, searchQuery, readMode]);
+  }, [subjectFilter, categoryFilter, difficultyFilter, debouncedSearch, readMode]);
 
   const persistReadIds = useCallback((next: Set<string>) => {
     const progress = getProgress();
@@ -310,29 +320,24 @@ export default function DoomscrollPage() {
   }, [filteredTerms, readIds]);
 
   const handleRelatedClick = useCallback((id: string) => {
+    const scrollAndHighlight = (elId: string) => {
+      const el = document.getElementById(elId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('ring-2', 'ring-primary');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-primary'), 2000);
+      }
+    };
+
     const el = document.getElementById(`term-${id}`);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el.classList.add('ring-2', 'ring-primary');
-      setTimeout(() => el.classList.remove('ring-2', 'ring-primary'), 2000);
+      scrollAndHighlight(`term-${id}`);
     } else {
-      setSubjectFilter('all');
-      setCategoryFilter('all');
-      setDifficultyFilter('all');
-      setReadMode('all');
-      setSearchQuery('');
+      // Pin the related term so it shows at top regardless of filters
       setPinnedTermId(id);
-      setDisplayCount(terms.length);
-      setTimeout(() => {
-        const el2 = document.getElementById(`term-${id}`);
-        if (el2) {
-          el2.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          el2.classList.add('ring-2', 'ring-primary');
-          setTimeout(() => el2.classList.remove('ring-2', 'ring-primary'), 2000);
-        }
-      }, 100);
+      requestAnimationFrame(() => scrollAndHighlight(`term-${id}`));
     }
-  }, [terms.length]);
+  }, []);
 
   const handleShuffle = () => {
     setTerms(shuffleArray(filteredTerms.length > 0 ? filteredTerms : [...generatedTerms, ...allDoomscrollTerms]));
@@ -366,7 +371,7 @@ export default function DoomscrollPage() {
     try {
       const progress = getProgress();
       const apiKey = progress.aiSettings?.apiKey?.trim();
-      const model = progress.aiSettings?.model?.trim() || 'gpt-5-mini';
+      const model = progress.aiSettings?.model?.trim() || 'gpt-4o-mini';
 
       if (!apiKey) {
         throw new Error('設定画面で OpenAI APIキーを保存してください。');
@@ -488,13 +493,13 @@ export default function DoomscrollPage() {
         </div>
       </div>
 
-      <div className="sticky top-0 z-40 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-2xl border border-slate-200/80 dark:border-slate-700/80 p-4 mb-4 space-y-4">
-        <div className="grid gap-3 md:grid-cols-[1.2fr,0.8fr,0.8fr,0.8fr]">
+      <div className="sticky top-0 z-40 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-2xl border border-slate-200/80 dark:border-slate-700/80 p-3 md:p-4 mb-4 space-y-3">
+        <div className="grid gap-2 grid-cols-2 md:grid-cols-[1.2fr,0.8fr,0.8fr,0.8fr]">
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="用語・定義・ポイントを検索"
-            className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm outline-none focus:border-primary"
+            placeholder="用語・定義・ポイントを検索..."
+            className="col-span-2 md:col-span-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
           />
           <select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value as SubjectSlug | 'all')} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
             <option value="all">全科目</option>
@@ -505,10 +510,10 @@ export default function DoomscrollPage() {
           <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value as TermCategory | 'all')} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
             <option value="all">全カテゴリ</option>
             {CATEGORY_ORDER.map((category) => (
-              <option key={category} value={category}>{category}</option>
+              <option key={category} value={category}>{CATEGORY_ICONS[category] || ''} {category}</option>
             ))}
           </select>
-          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
+          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="hidden md:block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm outline-none focus:border-primary">
             <option value="all">全難易度</option>
             <option value="1">基本</option>
             <option value="2">標準</option>
@@ -516,18 +521,27 @@ export default function DoomscrollPage() {
           </select>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 md:gap-2 items-center">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-medium mr-1">{filteredTerms.length}件</span>
           {(['all', 'unread', 'read'] as const).map((mode) => (
             <button key={mode} onClick={() => setReadMode(mode)} className={`text-xs px-3 py-1.5 rounded-full font-medium ${readMode === mode ? 'bg-primary text-white' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700'}`}>
               {mode === 'all' ? 'すべて' : mode === 'unread' ? '未読だけ' : '既読だけ'}
             </button>
           ))}
+          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="md:hidden text-xs px-3 py-1.5 rounded-full font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <option value="all">全難易度</option>
+            <option value="1">基本</option>
+            <option value="2">標準</option>
+            <option value="3">応用</option>
+          </select>
           <button onClick={handleJumpToUnread} className="text-xs px-3 py-1.5 rounded-full font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">次の未読へ</button>
-          <button onClick={handleMarkVisibleRead} className="text-xs px-3 py-1.5 rounded-full font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">表示中を既読</button>
+          <button onClick={handleMarkVisibleRead} className="text-xs px-3 py-1.5 rounded-full font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">表示中を既読({visibleTerms.filter((t) => !readIds.has(t.id)).length})</button>
           <button onClick={shuffled ? handleReset : handleShuffle} className="text-xs px-3 py-1.5 rounded-full font-medium bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300">
-            {shuffled ? '元の順序に戻す' : '表示中をシャッフル'}
+            {shuffled ? '元の順序に戻す' : 'シャッフル'}
           </button>
-          <button onClick={clearFilters} className="text-xs px-3 py-1.5 rounded-full font-medium bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200">条件をクリア</button>
+          {(subjectFilter !== 'all' || categoryFilter !== 'all' || difficultyFilter !== 'all' || searchQuery || readMode !== 'all') && (
+            <button onClick={clearFilters} className="text-xs px-3 py-1.5 rounded-full font-medium bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300">条件をクリア</button>
+          )}
         </div>
       </div>
 
@@ -535,10 +549,20 @@ export default function DoomscrollPage() {
         <div className="mb-4 rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-4">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold text-primary">ピン留め中</p>
-              <p className="font-bold mt-1">{pinnedTerm.term}</p>
+              <p className="text-xs font-semibold text-primary">
+                ピン留め中
+                {!filteredTerms.find((t) => t.id === pinnedTerm.id) && (
+                  <span className="ml-2 text-amber-600 dark:text-amber-400 font-normal">(フィルター外の用語)</span>
+                )}
+              </p>
+              <p className="font-bold mt-1">
+                {pinnedTerm.term}
+                <span className={`ml-2 text-xs font-normal px-2 py-0.5 rounded-full ${SUBJECT_COLORS[pinnedTerm.subject]}`}>
+                  {SUBJECT_LABELS[pinnedTerm.subject]}
+                </span>
+              </p>
             </div>
-            <button onClick={() => setPinnedTermId(null)} className="text-xs text-primary underline">解除</button>
+            <button onClick={() => setPinnedTermId(null)} className="text-xs text-primary underline shrink-0">解除</button>
           </div>
         </div>
       )}
@@ -559,15 +583,14 @@ export default function DoomscrollPage() {
       </div>
 
       {hasMore && (
-        <div ref={sentinelRef} className="py-8 text-center">
-          <div className="inline-block w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-          <p className="text-xs text-slate-400 mt-2">読み込み中...</p>
+        <div ref={sentinelRef} className="py-6 text-center">
+          <p className="text-xs text-slate-400">下にスクロールして続きを表示（{visibleTerms.length}/{filteredTerms.length}）</p>
         </div>
       )}
 
       {!hasMore && visibleTerms.length > 0 && (
         <div className="py-8 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-400">🎉 条件に合う {filteredTerms.length} 用語を表示しました！</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">{filteredTerms.length} 用語を表示しました</p>
         </div>
       )}
 
