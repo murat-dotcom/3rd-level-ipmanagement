@@ -274,4 +274,18 @@ export const treatiesFlashcards: Flashcard[] = [
     back: 'プログラム＝ソース・オブジェクト問わずベルヌ条約の文学的著作物として保護（第10条1項）\nデータベース＝その内容の選択・配列が知的創作を構成するものは編集著作物として保護（第10条2項）\nいずれも著作権による保護。',
     tags: ['TRIPS', 'プログラム', 'データベース'],
   },
+  {
+    id: 'fc-treaties-040',
+    subject: 'treaties',
+    front: 'PCT国際出願の手続フローを整理せよ',
+    back: '①国際出願→②ISR作成（必須）→③国際公開（優先日から18月）→④IPER（任意）→⑤国内移行（優先日から30月以内）→⑥各国で実体審査\nPCTは特許を付与しない。ISR/IPERは参考資料で各国を拘束しない。',
+    tags: ['PCT', '手続フロー'],
+  },
+  {
+    id: 'fc-treaties-041',
+    subject: 'treaties',
+    front: 'WIPO vs WTOの違いは？',
+    back: 'WIPO＝国連専門機関。パリ・ベルヌ・PCT・マドプロ等を管理。紛争解決機関なし。\nWTO＝TRIPS協定を管理。紛争解決機関（DSB）あり。制裁措置可能。\n区別のポイント：TRIPSはWIPOではなくWTOの協定。',
+    tags: ['WIPO', 'WTO', '紛争解決'],
+  },
 ];
