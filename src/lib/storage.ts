@@ -1,6 +1,10 @@
-import { UserProgress, FlashcardState, DailyGoal, MistakeEntry, SubjectSlug } from '@/types/question';
+import { UserProgress, FlashcardState, SubjectSlug, AISettings } from '@/types/question';
 
 const STORAGE_KEY = 'chizai-drill-progress';
+export const DEFAULT_AI_SETTINGS: AISettings = {
+  apiKey: '',
+  model: 'gpt-5-mini',
+};
 
 const DEFAULT_PROGRESS: UserProgress = {
   quizHistory: [],
@@ -13,6 +17,7 @@ const DEFAULT_PROGRESS: UserProgress = {
   mistakeNotebook: {},
   theme: 'light',
   doomscrollRead: [],
+  aiSettings: DEFAULT_AI_SETTINGS,
 };
 
 export function getProgress(): UserProgress {
@@ -21,12 +26,14 @@ export function getProgress(): UserProgress {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_PROGRESS;
     const data = JSON.parse(raw) as UserProgress;
-    // Ensure new fields exist
     if (!data.dailyGoal) data.dailyGoal = DEFAULT_PROGRESS.dailyGoal;
     if (!data.dailyProgress) data.dailyProgress = DEFAULT_PROGRESS.dailyProgress;
     if (!data.mistakeNotebook) data.mistakeNotebook = {};
     if (!data.theme) data.theme = 'light';
     if (!data.doomscrollRead) data.doomscrollRead = [];
+    if (!data.aiSettings) data.aiSettings = DEFAULT_AI_SETTINGS;
+    if (!data.aiSettings.model) data.aiSettings.model = DEFAULT_AI_SETTINGS.model;
+    if (!data.aiSettings.apiKey) data.aiSettings.apiKey = '';
     return data;
   } catch {
     return DEFAULT_PROGRESS;
@@ -144,18 +151,6 @@ export function getWeakSubjects(progress: UserProgress): { subject: SubjectSlug;
     });
   });
 
-  // Analyze from mistake notebook for subject-level accuracy
-  const mistakesBySubject: Record<string, number> = {};
-  if (progress.mistakeNotebook) {
-    Object.values(progress.mistakeNotebook).forEach((entry) => {
-      if (!entry.mastered) {
-        const subject = entry.questionId.split('-')[0] as SubjectSlug;
-        mistakesBySubject[subject] = (mistakesBySubject[subject] || 0) + 1;
-      }
-    });
-  }
-
-  // Calculate from quiz history with subject tracking
   progress.quizHistory.forEach((result) => {
     const sub = result.subject || 'all';
     if (sub !== 'all') {

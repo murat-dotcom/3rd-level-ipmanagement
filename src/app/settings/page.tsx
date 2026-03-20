@@ -1,14 +1,15 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { getProgress, saveProgress, exportProgress, importProgress } from '@/lib/storage';
+import { getProgress, saveProgress, exportProgress, importProgress, DEFAULT_AI_SETTINGS } from '@/lib/storage';
 import { useTheme } from '@/components/ThemeProvider';
-import { DailyGoal } from '@/types/question';
+import { DailyGoal, AISettings } from '@/types/question';
 
 export default function SettingsPage() {
   const { theme, toggleTheme } = useTheme();
   const [goal, setGoal] = useState<DailyGoal>({ cardsPerDay: 20, questionsPerDay: 10 });
-  const [exportData, setExportData] = useState('');
+  const [aiSettings, setAISettings] = useState<AISettings>(DEFAULT_AI_SETTINGS);
+  const [apiKeySaved, setApiKeySaved] = useState(false);
   const [importStatus, setImportStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [showQR, setShowQR] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -18,6 +19,7 @@ export default function SettingsPage() {
     if (progress.dailyGoal) {
       setGoal(progress.dailyGoal);
     }
+    setAISettings(progress.aiSettings || DEFAULT_AI_SETTINGS);
   }, []);
 
   const saveGoal = (newGoal: DailyGoal) => {
@@ -27,9 +29,16 @@ export default function SettingsPage() {
     saveProgress(progress);
   };
 
+  const saveAISettings = () => {
+    const progress = getProgress();
+    progress.aiSettings = aiSettings;
+    saveProgress(progress);
+    setApiKeySaved(true);
+    setTimeout(() => setApiKeySaved(false), 2500);
+  };
+
   const handleExport = () => {
     const data = exportProgress();
-    setExportData(data);
     const blob = new Blob([data], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -75,7 +84,50 @@ export default function SettingsPage() {
     <div className="p-4 md:p-8 max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-primary">設定</h1>
 
-      {/* Theme */}
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-4">
+        <div>
+          <h2 className="font-bold">AIコンテンツ生成</h2>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+            APIキーとモデルを保存すると、ドゥームスクロールなどの画面で最新情報を含む学習コンテンツを生成できます。キーはこの端末のローカルストレージに保存されます。
+          </p>
+        </div>
+
+        <div>
+          <label className="text-sm text-slate-600 dark:text-slate-400 block mb-1">OpenAI APIキー</label>
+          <input
+            type="password"
+            value={aiSettings.apiKey}
+            onChange={(e) => setAISettings((prev) => ({ ...prev, apiKey: e.target.value }))}
+            placeholder="sk-..."
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-sm"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm text-slate-600 dark:text-slate-400 block mb-1">モデル名</label>
+          <input
+            type="text"
+            value={aiSettings.model}
+            onChange={(e) => setAISettings((prev) => ({ ...prev, model: e.target.value }))}
+            placeholder="gpt-5-mini"
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-sm"
+          />
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+            例: gpt-5-mini。Responses API と web search tool を使えるモデルを指定してください。
+          </p>
+        </div>
+
+        <div className="flex gap-3 items-center">
+          <button
+            onClick={saveAISettings}
+            className="px-4 py-2.5 bg-primary text-white rounded-lg font-medium hover:bg-blue-900 transition-colors"
+          >
+            AI設定を保存
+          </button>
+          {apiKeySaved && <p className="text-sm text-success font-medium">AI設定を保存しました。</p>}
+        </div>
+      </div>
+
       <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-3">
         <h2 className="font-bold">テーマ</h2>
         <div className="flex gap-3">
@@ -98,7 +150,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Daily Goals */}
       <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-4">
         <h2 className="font-bold">日々の目標</h2>
         <div>
@@ -143,7 +194,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Data Export/Import */}
       <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-4">
         <h2 className="font-bold">データ管理</h2>
 
@@ -179,7 +229,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Multi-device Sync */}
       <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-4">
         <h2 className="font-bold">デバイス間同期</h2>
         <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -216,7 +265,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Reset */}
       <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-error/30 space-y-3">
         <h2 className="font-bold text-error">データリセット</h2>
         <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -234,6 +282,7 @@ export default function SettingsPage() {
           全データを削除する
         </button>
       </div>
+
     </div>
   );
 }
