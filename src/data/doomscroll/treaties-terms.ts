@@ -484,7 +484,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
     reading: 'どーはせんげん',
     definition: '2001年にWTO閣僚会議で採択。TRIPS協定は公衆衛生の保護を妨げないことを確認。',
     subject: 'treaties',
-    category: '基本概念',
+    category: '定義',
     keyPoint: '医薬品アクセスと特許保護の緊張関係を解消。第31条の2（輸出目的の強制実施権）につながる。',
     relatedTermIds: ['ds-treaties-006', 'ds-treaties-041'],
     difficulty: 3,

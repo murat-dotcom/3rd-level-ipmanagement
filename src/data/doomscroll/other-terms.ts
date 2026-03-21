@@ -513,7 +513,7 @@ export const otherTerms: DoomscrollTerm[] = [
     reading: 'こういきせいほう',
     definition: '不正競争防止法は権利を付与する法律ではなく、不正な行為を規制する法律。そのため審判制度がない。',
     subject: 'other',
-    category: '基本概念',
+    category: '定義',
     keyPoint: '特許法等は権利付与法で審判あり。不競法は行為規制法で審判なし。登録も不要。',
     relatedTermIds: ['ds-other-001'],
     difficulty: 2,
