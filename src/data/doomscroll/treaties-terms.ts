@@ -584,7 +584,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
     reading: 'さいけいこくたいぐう',
     definition: 'ある加盟国に与えた有利な待遇を他のすべての加盟国にも与える義務。TRIPS協定第4条。',
     subject: 'treaties',
-    category: '原則',
+    category: '制度',
     keyPoint: 'TRIPS協定のみに規定。パリ条約・ベルヌ条約にはない。内国民待遇（パリ・ベルヌ・TRIPSに共通）と区別。',
     relatedTermIds: ['ds-treaties-002'],
     difficulty: 2,
