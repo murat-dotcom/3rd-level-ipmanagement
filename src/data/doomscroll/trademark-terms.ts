@@ -4,6 +4,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-001',
     term: '商標権',
+    english: 'Trademark Right',
     reading: 'しょうひょうけん',
     definition: '登録商標を指定商品・指定役務について独占的に使用できる権利。',
     subject: 'trademark',
@@ -15,6 +16,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-002',
     term: '商標',
+    english: 'Trademark',
     reading: 'しょうひょう',
     definition: '人の知覚によって認識できるもののうち、文字・図形・記号・立体的形状・色彩・音等で業として使用するもの。',
     subject: 'trademark',
@@ -26,6 +28,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-003',
     term: '指定商品・指定役務',
+    english: 'Designated Goods / Designated Services',
     reading: 'していしょうひん・していえきむ',
     definition: '商標登録出願の際に指定する、商標を使用する商品または役務（サービス）。',
     subject: 'trademark',
@@ -37,6 +40,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-004',
     term: '不使用取消審判',
+    english: 'Non-Use Cancellation Trial',
     reading: 'ふしようとりけししんぱん',
     definition: '継続して3年以上使用されていない登録商標の取消を求める審判（第50条）。',
     subject: 'trademark',
@@ -48,6 +52,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-005',
     term: '商標の類似',
+    english: 'Similarity of Trademarks',
     reading: 'しょうひょうのるいじ',
     definition: '外観・称呼・観念の3要素を総合的に判断して類似か否かを判断。',
     subject: 'trademark',
@@ -59,6 +64,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-006',
     term: '先願主義（商標法）',
+    english: 'First-to-File Principle (Trademark Law)',
     reading: 'せんがんしゅぎ',
     definition: '同一・類似の商標について複数の出願があった場合、最先の出願人に登録を認める原則。',
     subject: 'trademark',
@@ -70,6 +76,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-007',
     term: '防護標章登録',
+    english: 'Defensive Mark Registration',
     reading: 'ぼうごひょうしょうとうろく',
     definition: '著名な登録商標と同一の標章を非類似の商品・役務について登録し、保護範囲を拡大する制度。',
     subject: 'trademark',
@@ -81,6 +88,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-008',
     term: '団体商標',
+    english: 'Collective Trademark',
     reading: 'だんたいしょうひょう',
     definition: '事業者の団体がその構成員に使用させるための商標。',
     subject: 'trademark',
@@ -92,6 +100,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-009',
     term: '地域団体商標',
+    english: 'Regional Collective Trademark',
     reading: 'ちいきだんたいしょうひょう',
     definition: '地域名＋商品・役務名からなる商標を団体が登録できる制度。',
     subject: 'trademark',
@@ -103,6 +112,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-010',
     term: '商標の使用',
+    english: 'Use of Trademark',
     reading: 'しょうひょうのしよう',
     definition: '商品や包装に標章を付す行為、役務の提供に際し標章を使用する行為等（第2条3項）。',
     subject: 'trademark',
@@ -114,6 +124,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-011',
     term: '指定商品',
+    english: 'Designated Goods',
     reading: 'していしょうひん',
     definition: '商標登録出願において指定する、商標を使用する対象の商品。',
     subject: 'trademark',
@@ -125,6 +136,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-012',
     term: '指定役務',
+    english: 'Designated Services',
     reading: 'していえきむ',
     definition: '商標登録出願において指定するサービス（役務）。',
     subject: 'trademark',
@@ -136,6 +148,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-013',
     term: '不使用取消審判',
+    english: 'Non-Use Cancellation Trial',
     reading: 'ふしようとりけししんぱん',
     definition: '継続して3年以上使用されていない登録商標の取消を求める審判（第50条）。',
     subject: 'trademark',
@@ -147,6 +160,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-014',
     term: '商標権の移転',
+    english: 'Transfer of Trademark Right',
     reading: 'しょうひょうけんのいてん',
     definition: '商標権の譲渡による移転。指定商品・役務ごとの分割移転が可能。',
     subject: 'trademark',
@@ -158,6 +172,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-015',
     term: '専用使用権',
+    english: 'Exclusive Right to Use',
     reading: 'せんようしようけん',
     definition: '設定行為で定めた範囲内で登録商標を独占的に使用できる権利。登録が効力発生要件。',
     subject: 'trademark',
@@ -169,6 +184,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-016',
     term: '通常使用権',
+    english: 'Non-Exclusive Right to Use',
     reading: 'つうじょうしようけん',
     definition: '設定行為で定めた範囲内で登録商標を使用できる非独占的な権利。登録不要。',
     subject: 'trademark',
@@ -180,6 +196,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-017',
     term: '地域団体商標',
+    english: 'Regional Collective Trademark',
     reading: 'ちいきだんたいしょうひょう',
     definition: '地域名と商品・役務名を組み合わせた商標を事業協同組合等が登録できる制度（第7条の2）。',
     subject: 'trademark',
@@ -191,6 +208,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-018',
     term: '防護標章',
+    english: 'Defensive Mark',
     reading: 'ぼうごひょうしょう',
     definition: '著名商標と同一の標章を非類似の商品・役務にまで拡大保護する制度（第64条）。',
     subject: 'trademark',
@@ -202,6 +220,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-019',
     term: 'マドリッド協定議定書',
+    english: 'Madrid Protocol',
     reading: 'まどりっどきょうていぎていしょ',
     definition: '商標の国際登録に関する条約。一つの出願で複数国での商標保護が可能。',
     subject: 'trademark',
@@ -213,6 +232,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-020',
     term: 'セントラルアタック',
+    english: 'Central Attack',
     reading: 'せんとらるあたっく',
     definition: 'マドリッド協定議定書で基礎出願・登録が消滅した場合、国際登録も取り消される制度。',
     subject: 'trademark',
@@ -224,6 +244,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-021',
     term: '商標的使用',
+    english: 'Trademark Use',
     reading: 'しょうひょうてきしよう',
     definition: '自他商品等識別機能を発揮する態様での商標の使用。商標権侵害の判断基準となる。',
     subject: 'trademark',
@@ -235,6 +256,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-022',
     term: '並行輸入',
+    english: 'Parallel Import',
     reading: 'へいこうゆにゅう',
     definition: '真正品を海外から正規ルート以外で輸入する行為。一定条件で商標権侵害とならない。',
     subject: 'trademark',
@@ -246,6 +268,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-023',
     term: '更新登録',
+    english: 'Renewal Registration',
     reading: 'こうしんとうろく',
     definition: '商標権の存続期間を10年ごとに更新する手続。満了前6月から満了日まで申請可能。',
     subject: 'trademark',
@@ -257,6 +280,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-024',
     term: '団体商標',
+    english: 'Collective Trademark',
     reading: 'だんたいしょうひょう',
     definition: '事業者の団体がその構成員に使用させるための商標（第7条）。',
     subject: 'trademark',
@@ -268,6 +292,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-025',
     term: '区分',
+    english: 'Classification',
     reading: 'くぶん',
     definition: '商品・役務の国際分類。第1類〜第34類が商品、第35類〜第45類が役務。',
     subject: 'trademark',
@@ -279,6 +304,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-026',
     term: '地理的表示（GI）保護制度',
+    english: 'Geographical Indication (GI) Protection System',
     reading: 'ちりてきひょうじほごせいど',
     definition: '産地と結びついた品質等の特性を有する農林水産物等の名称を保護する制度。',
     subject: 'trademark',
@@ -290,6 +316,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-027',
     term: '防護標章登録',
+    english: 'Defensive Mark Registration',
     reading: 'ぼうごひょうしょうとうろく',
     definition: '著名な登録商標について非類似の商品・役務にまで保護を拡大する制度。',
     subject: 'trademark',
@@ -301,6 +328,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-028',
     term: '普通名称化',
+    english: 'Genericization',
     reading: 'ふつうめいしょうか',
     definition: '商標が商品の一般名称として使われるようになり識別力を失うこと。',
     subject: 'trademark',
@@ -312,6 +340,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-029',
     term: 'サイバースクワッティング',
+    english: 'Cybersquatting',
     reading: 'さいばーすくわってぃんぐ',
     definition: '他人の著名商標等と同一・類似のドメイン名を先に取得し転売を図る行為。',
     subject: 'trademark',
@@ -323,6 +352,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-030',
     term: 'JP-DRP',
+    english: 'JP Domain Name Dispute Resolution Policy',
     reading: 'じぇいぴーでぃーあーるぴー',
     definition: 'JPドメイン名紛争処理方針。.jpドメイン名に関する裁判外紛争解決手続。',
     subject: 'trademark',
@@ -334,6 +364,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-031',
     term: '登録異議申立て',
+    english: 'Opposition to Registration',
     reading: 'とうろくいぎもうしたて',
     definition: '商標登録に対し、何人も商標掲載公報の発行日から2月以内に行える不服申立て制度（第43条の2）。書面審理で行われる。',
     subject: 'trademark',
@@ -345,6 +376,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-032',
     term: '商標登録無効審判',
+    english: 'Trademark Registration Invalidation Trial',
     reading: 'しょうひょうとうろくむこうしんぱん',
     definition: '利害関係人が商標登録の無効を求める審判制度（第46条）。原則として登録後いつでも請求可能。口頭審理も可能。',
     subject: 'trademark',
@@ -356,6 +388,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-033',
     term: '早期審査',
+    english: 'Accelerated Examination',
     reading: 'そうきしんさ',
     definition: '出願商標を既に使用中又は使用準備中の場合等に、通常より早く審査を受けられる制度。事情説明書の提出が必要。',
     subject: 'trademark',
@@ -367,6 +400,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-034',
     term: '商標的使用',
+    english: 'Trademark Use',
     reading: 'しょうひょうてきしよう',
     definition: '商標として（出所表示機能を発揮する態様で）使用すること。商標的使用に当たらない場合は商標権侵害とならない場合がある（判例法理）。',
     subject: 'trademark',
@@ -378,6 +412,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-035',
     term: '商標法第26条',
+    english: 'Trademark Act Article 26',
     reading: 'しょうひょうほうだいにじゅうろくじょう',
     definition: '商標権の効力が及ばない範囲を定める規定。自己の氏名・普通名称・慣用商標等の普通の方法での使用には効力が及ばない。',
     subject: 'trademark',
@@ -389,6 +424,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-036',
     term: '商標の類否判断',
+    english: 'Trademark Similarity Judgment',
     reading: 'しょうひょうのるいひはんだん',
     definition: '商標の類似は外観・称呼・観念の3要素を総合的に判断する。取引の実情も考慮される。',
     subject: 'trademark',
@@ -400,6 +436,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-037',
     term: '商標権の存続期間',
+    english: 'Duration of Trademark Right',
     reading: 'しょうひょうけんのそんぞくきかん',
     definition: '設定登録日から10年。ただし更新登録により何度でも延長可能。半永久的に権利を維持できる唯一の産業財産権。',
     subject: 'trademark',
@@ -411,6 +448,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-038',
     term: '並行輸入の3要件',
+    english: 'Three Requirements for Parallel Import',
     reading: 'へいこうゆにゅうのさんようけん',
     definition: '商標権者の許諾なく真正商品を並行輸入する場合の適法性を判断する3要件（フレッドペリー事件）。',
     subject: 'trademark',
@@ -422,6 +460,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-039',
     term: '商標的使用',
+    english: 'Trademark Use',
     reading: 'しょうひょうてきしよう',
     definition: '自他商品等識別機能を発揮する態様での使用。商標権侵害は商標的使用がある場合にのみ成立する。',
     subject: 'trademark',
@@ -433,6 +472,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-040',
     term: '団体商標',
+    english: 'Collective Trademark',
     reading: 'だんたいしょうひょう',
     definition: '事業者を構成員とする団体（社団法人等）がその構成員に使用させるための商標（第7条）。',
     subject: 'trademark',
@@ -444,6 +484,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-041',
     term: '損害額の推定（商標法第38条）',
+    english: 'Presumption of Damages (Trademark Act Article 38)',
     reading: 'そんがいがくのすいてい',
     definition: '商標権侵害の損害賠償額を3段階で算定する規定。第1項（逸失利益型）、第2項（侵害者利益型）、第3項（ライセンス料型）。',
     subject: 'trademark',
@@ -455,6 +496,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-042',
     term: '過失の推定（商標法）',
+    english: 'Presumption of Negligence (Trademark Law)',
     reading: 'かしつのすいてい',
     definition: '商標権侵害者は過失があったものと推定される（商標法第39条で特許法第103条を準用）。',
     subject: 'trademark',
@@ -466,6 +508,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-043',
     term: '不正使用取消審判（第51条）',
+    english: 'Misuse Cancellation Trial (Article 51)',
     reading: 'ふせいしようとりけししんぱん',
     definition: '商標権者自身が故意に登録商標に類似する商標を使用し品質誤認・出所混同を生じさせた場合の取消審判。',
     subject: 'trademark',
@@ -477,6 +520,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-044',
     term: '使用権者の不正使用取消審判（第53条）',
+    english: 'Licensee Misuse Cancellation Trial (Article 53)',
     reading: 'しようけんしゃのふせいしよう',
     definition: '使用権者が登録商標に類似する商標を使用し品質誤認・出所混同を生じさせた場合の取消審判。',
     subject: 'trademark',
@@ -488,6 +532,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-045',
     term: '商標権の共有',
+    english: 'Co-Ownership of Trademark Right',
     reading: 'しょうひょうけんのきょうゆう',
     definition: '商標権が複数人に共有される状態。商標法第35条で特許法第73条を準用。自己使用は同意不要、持分譲渡・使用権許諾は同意必要。',
     subject: 'trademark',
@@ -499,6 +544,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-046',
     term: '分納制度',
+    english: 'Split Payment System',
     reading: 'ぶんのうせいど',
     definition: '商標権の登録料を前期5年分と後期5年分に分けて納付できる制度（第41条の2）。商標法特有。',
     subject: 'trademark',
@@ -510,6 +556,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-047',
     term: '両罰規定（商標法第82条）',
+    english: 'Dual Penalty Provision (Trademark Act Article 82)',
     reading: 'りょうばつきてい',
     definition: '法人の業務に関して商標権侵害が行われた場合、行為者の処罰に加えて法人にも3億円以下の罰金を科す規定。',
     subject: 'trademark',
@@ -521,6 +568,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-048',
     term: '移転に伴う取消審判（第52条の2）',
+    english: 'Transfer-Related Cancellation Trial (Article 52-2)',
     reading: 'いてんにともなうとりけししんぱん',
     definition: '商標権の分割移転後に一方の権利者が不正目的で商標を使用し、品質誤認・出所混同を生じさせた場合の取消審判。',
     subject: 'trademark',
@@ -533,6 +581,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-049',
     term: '更新登録',
+    english: 'Renewal Registration',
     reading: 'こうしんとうろく',
     definition: '商標権の存続期間を10年間延長する手続。回数制限なく半永久的に存続可能。',
     subject: 'trademark',
@@ -544,6 +593,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-050',
     term: '分納制度',
+    english: 'Split Payment System',
     reading: 'ぶんのうせいど',
     definition: '商標権の登録料を前半5年分と後半5年分に分割して納付できる制度。',
     subject: 'trademark',
@@ -555,6 +605,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-051',
     term: '混同防止表示請求（第24条の4）',
+    english: 'Confusion Prevention Display Request (Article 24-4)',
     reading: 'こんどうぼうしひょうじせいきゅう',
     definition: '商標権の移転により類似商標が異なる権利者に帰属した場合に混同防止の表示を請求できる制度。',
     subject: 'trademark',
@@ -566,6 +617,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-052',
     term: '除斥期間（第47条）',
+    english: 'Exclusion Period (Article 47)',
     reading: 'じょせききかん',
     definition: '無効審判の請求期限。設定登録日から5年を経過すると原則として無効審判を請求できなくなる。',
     subject: 'trademark',
@@ -577,6 +629,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-053',
     term: 'セントラルアタック',
+    english: 'Central Attack',
     reading: 'せんとらるあたっく',
     definition: 'マドプロ国際登録の基礎出願・基礎登録が消滅した場合、国際登録が取り消される制度。',
     subject: 'trademark',
@@ -588,6 +641,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-054',
     term: 'トランスフォーメーション',
+    english: 'Transformation',
     reading: 'とらんすふぉーめーしょん',
     definition: 'セントラルアタックで取り消された国際登録を各指定国の国内出願に変換する救済手段。',
     subject: 'trademark',
@@ -599,6 +653,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-055',
     term: '色彩のみからなる商標',
+    english: 'Color-Only Trademark',
     reading: 'しきさいのみからなるしょうひょう',
     definition: '単色又は色の組合せのみで構成される商標。2014年改正で登録可能に。',
     subject: 'trademark',
@@ -610,6 +665,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-056',
     term: '音商標',
+    english: 'Sound Trademark',
     reading: 'おとしょうひょう',
     definition: 'メロディや効果音などの音で構成される商標。2014年改正で登録可能に。',
     subject: 'trademark',
@@ -621,6 +677,7 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-057',
     term: '分割移転',
+    english: 'Divisional Transfer',
     reading: 'ぶんかついてん',
     definition: '商標権を指定商品又は指定役務ごとに分割して移転すること。商標法特有の制度。',
     subject: 'trademark',
@@ -632,12 +689,218 @@ export const trademarkTerms: DoomscrollTerm[] = [
   {
     id: 'ds-trademark-058',
     term: '不正使用取消審判（第51条）',
+    english: 'Misuse Cancellation Trial (Article 51)',
     reading: 'ふせいしようとりけししんぱん',
     definition: '商標権者が故意に商品の品質・役務の質の誤認を生じさせる使用をした場合の取消審判。',
     subject: 'trademark',
     category: '手続',
     keyPoint: '何人も請求可能。取消確定後5年間再登録不可（50条の不使用取消は再登録禁止なし）。53条（使用権者の不正使用）も5年禁止。',
     relatedTermIds: ['ds-trademark-014', 'ds-trademark-043'],
+    difficulty: 2,
+  },
+  // ===== New trademark terms =====
+  {
+    id: 'ds-trademark-059',
+    term: '立体商標',
+    english: 'Three-Dimensional Trademark',
+    reading: 'りったいしょうひょう',
+    definition: '立体的形状からなる商標。商品や包装の形状、店舗の外観等が対象となる。',
+    subject: 'trademark',
+    category: '制度',
+    keyPoint: '識別力の有無が争点。商品等の形状そのものは原則として識別力なし。3条2項の適用で登録可能な場合あり。',
+    relatedTermIds: ['ds-trademark-002', 'ds-trademark-055'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-060',
+    term: '位置商標',
+    english: 'Position Trademark',
+    reading: 'いちしょうひょう',
+    definition: '図形等の標章を商品等の特定の位置に付すことで構成される商標。2014年改正で導入。',
+    subject: 'trademark',
+    category: '制度',
+    keyPoint: '標章自体と付す位置の組合せで特定。出願には商標の詳細な説明が必要。位置を特定する点線等で表示。',
+    relatedTermIds: ['ds-trademark-002', 'ds-trademark-055'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-061',
+    term: 'ホログラム商標',
+    english: 'Hologram Trademark',
+    reading: 'ほろぐらむしょうひょう',
+    definition: 'ホログラフィーその他の方法により変化する文字・図形等からなる商標。2014年改正で導入。',
+    subject: 'trademark',
+    category: '制度',
+    keyPoint: '見る角度により変化する点が特徴。出願にはホログラムの説明と複数の態様を示す図面が必要。',
+    relatedTermIds: ['ds-trademark-002', 'ds-trademark-056'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-062',
+    term: '動き商標',
+    english: 'Motion Trademark',
+    reading: 'うごきしょうひょう',
+    definition: '文字や図形等が時間の経過に伴って変化する商標。2014年改正で導入。',
+    subject: 'trademark',
+    category: '制度',
+    keyPoint: '出願には時系列に沿った複数の図と動きの説明が必要。テレビCMのロゴアニメーション等が典型例。',
+    relatedTermIds: ['ds-trademark-002', 'ds-trademark-061'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-063',
+    term: '結合商標',
+    english: 'Combined Trademark',
+    reading: 'けつごうしょうひょう',
+    definition: '文字・図形・記号等の異なる構成要素を組み合わせて構成される商標。',
+    subject: 'trademark',
+    category: '定義',
+    keyPoint: '類否判断では要部観察（識別力の強い部分を抽出）と全体観察を併用。分離観察の可否が争点となる。',
+    relatedTermIds: ['ds-trademark-036', 'ds-trademark-005'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-064',
+    term: '商標の識別力',
+    english: 'Distinctiveness of Trademark',
+    reading: 'しょうひょうのしきべつりょく',
+    definition: '商標が自己の商品・役務と他人の商品・役務を区別する機能。登録要件の中核（第3条）。',
+    subject: 'trademark',
+    category: '要件',
+    keyPoint: '3条1項各号で識別力がないものを列挙（普通名称・慣用商標・記述的商標等）。3条2項で使用による識別力取得を認める。',
+    relatedTermIds: ['ds-trademark-002', 'ds-trademark-028'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-trademark-065',
+    term: '記述的商標',
+    english: 'Descriptive Trademark',
+    reading: 'きじゅつてきしょうひょう',
+    definition: '商品の品質・原材料・産地等、又は役務の質・提供場所等を普通に表示する商標（第3条1項3号）。',
+    subject: 'trademark',
+    category: '定義',
+    keyPoint: '原則として識別力なく登録不可。使用による識別力取得（3条2項）で登録可能な場合あり。',
+    relatedTermIds: ['ds-trademark-064', 'ds-trademark-066'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-066',
+    term: '暗示的商標',
+    english: 'Suggestive Trademark',
+    reading: 'あんじてきしょうひょう',
+    definition: '商品・役務の特徴を間接的・暗示的に示す商標。記述的商標と造語商標の中間に位置する。',
+    subject: 'trademark',
+    category: '定義',
+    keyPoint: '記述的商標と異なり識別力が認められやすい。ただし保護の範囲は造語商標より狭い傾向。',
+    relatedTermIds: ['ds-trademark-065', 'ds-trademark-064'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-067',
+    term: '拒絶理由通知',
+    english: 'Notification of Reasons for Refusal',
+    reading: 'きょぜつりゆうつうち',
+    definition: '審査官が商標登録出願について拒絶理由を発見した場合に出願人に通知する書面（第15条の2）。',
+    subject: 'trademark',
+    category: '手続',
+    keyPoint: '出願人は指定期間内に意見書・手続補正書を提出可能。拒絶理由が解消しない場合は拒絶査定。',
+    relatedTermIds: ['ds-trademark-068', 'ds-trademark-069'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-trademark-068',
+    term: '意見書',
+    english: 'Written Opinion',
+    reading: 'いけんしょ',
+    definition: '拒絶理由通知に対して出願人が審査官に提出する反論書面。',
+    subject: 'trademark',
+    category: '手続',
+    keyPoint: '拒絶理由に対する法的・事実的反論を記載。取引の実情等を示す証拠を添付することも可能。',
+    relatedTermIds: ['ds-trademark-067', 'ds-trademark-069'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-trademark-069',
+    term: '手続補正書',
+    english: 'Amendment',
+    reading: 'てつづきほせいしょ',
+    definition: '出願内容（指定商品・役務等）を補正するために提出する書面。要旨変更は認められない。',
+    subject: 'trademark',
+    category: '手続',
+    keyPoint: '指定商品・役務の削除は可能だが追加は不可（要旨変更）。商標自体の変更も原則不可。',
+    relatedTermIds: ['ds-trademark-067', 'ds-trademark-068'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-trademark-070',
+    term: '商標権の消滅',
+    english: 'Extinction of Trademark Right',
+    reading: 'しょうひょうけんのしょうめつ',
+    definition: '存続期間満了・更新不申請・登録料不納・取消審判確定・無効審判確定等により商標権が消滅すること。',
+    subject: 'trademark',
+    category: '権利',
+    keyPoint: '放棄による消滅も可能（専用使用権者・質権者の承諾要）。消滅後1年間は他人の類似商標登録が制限される場合あり。',
+    relatedTermIds: ['ds-trademark-001', 'ds-trademark-037'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-071',
+    term: '使用許諾',
+    english: 'License',
+    reading: 'しようきょだく',
+    definition: '商標権者が他人に登録商標の使用を許諾すること。専用使用権と通常使用権の2種類がある。',
+    subject: 'trademark',
+    category: '権利',
+    keyPoint: '許諾者は品質管理義務を負う。使用権者の不正使用は第53条の取消審判の対象。',
+    relatedTermIds: ['ds-trademark-015', 'ds-trademark-016'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-trademark-072',
+    term: 'ライセンシー',
+    english: 'Licensee',
+    reading: 'らいせんしー',
+    definition: '商標権者から使用許諾を受けて登録商標を使用する者。専用使用権者又は通常使用権者。',
+    subject: 'trademark',
+    category: '定義',
+    keyPoint: 'ライセンシーの不正使用は53条取消審判の対象。品質基準の遵守義務。ライセンサー（許諾者）との関係に注意。',
+    relatedTermIds: ['ds-trademark-071', 'ds-trademark-044'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-trademark-073',
+    term: '希釈化（ダイリューション）',
+    english: 'Dilution',
+    reading: 'きしゃくか',
+    definition: '著名商標の顧客吸引力や識別力が、非類似の商品・役務での使用により薄められること。',
+    subject: 'trademark',
+    category: '定義',
+    keyPoint: '混同がなくても成立。不正競争防止法第2条1項2号で保護。防護標章制度による商標法上の保護も可能。',
+    relatedTermIds: ['ds-trademark-007', 'ds-trademark-028'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-trademark-074',
+    term: '商標権侵害訴訟',
+    english: 'Trademark Infringement Lawsuit',
+    reading: 'しょうひょうけんしんがいそしょう',
+    definition: '商標権を侵害された権利者が裁判所に差止請求・損害賠償請求等を行う民事訴訟。',
+    subject: 'trademark',
+    category: '手続',
+    keyPoint: '差止請求は過失不要。損害賠償は過失推定（39条→特許法103条準用）。東京地裁・大阪地裁に専属管轄。',
+    relatedTermIds: ['ds-trademark-041', 'ds-trademark-042'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-trademark-075',
+    term: '商標ブローカー',
+    english: 'Trademark Broker',
+    reading: 'しょうひょうぶろーかー',
+    definition: '自ら使用する意思なく他人が使用しそうな商標を先取り的に出願・登録し、譲渡や使用料を求める者。',
+    subject: 'trademark',
+    category: '定義',
+    keyPoint: '不使用取消審判（50条）や3条1項柱書（使用意思要件）で対処。近年は出願時の使用意思審査が厳格化。',
+    relatedTermIds: ['ds-trademark-004', 'ds-trademark-029'],
     difficulty: 2,
   },
 ];

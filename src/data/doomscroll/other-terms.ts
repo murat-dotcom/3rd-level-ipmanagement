@@ -4,6 +4,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-001',
     term: '不正競争防止法',
+    english: 'Unfair Competition Prevention Act',
     reading: 'ふせいきょうそうぼうしほう',
     definition: '事業者間の公正な競争を確保するため、不正競争行為を規制する法律。',
     subject: 'other',
@@ -15,6 +16,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-002',
     term: '営業秘密',
+    english: 'Trade Secret',
     reading: 'えいぎょうひみつ',
     definition: '秘密として管理されている有用な技術上・営業上の情報で公然と知られていないもの。',
     subject: 'other',
@@ -26,6 +28,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-003',
     term: '周知表示混同惹起行為',
+    english: 'Act of Causing Confusion with Well-Known Indication',
     reading: 'しゅうちひょうじこんどうじゃっきこうい',
     definition: '他人の周知な商品等表示と同一・類似の表示を使用し、混同を生じさせる行為。',
     subject: 'other',
@@ -37,6 +40,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-004',
     term: '秘密管理性',
+    english: 'Secrecy Management',
     reading: 'ひみつかんりせい',
     definition: '営業秘密として認められるために必要な、情報の秘密としての管理状態。',
     subject: 'other',
@@ -48,6 +52,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-005',
     term: '著名表示冒用行為',
+    english: 'Act of Misappropriation of Famous Indication',
     reading: 'ちょめいひょうじぼうようこうい',
     definition: '他人の著名な商品等表示と同一・類似の表示を使用する行為（混同の有無を問わない）。',
     subject: 'other',
@@ -59,6 +64,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-006',
     term: '知的財産権',
+    english: 'Intellectual Property Rights',
     reading: 'ちてきざいさんけん',
     definition: '知的な創作活動によって生み出された成果を保護する権利の総称。',
     subject: 'other',
@@ -70,6 +76,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-007',
     term: '産業財産権',
+    english: 'Industrial Property Rights',
     reading: 'さんぎょうざいさんけん',
     definition: '特許権・実用新案権・意匠権・商標権の4つの権利の総称。特許庁が管轄。',
     subject: 'other',
@@ -81,6 +88,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-008',
     term: '独占禁止法と知的財産権',
+    english: 'Antimonopoly Act and Intellectual Property Rights',
     reading: 'どくせんきんしほう',
     definition: '知的財産権の行使は原則として独占禁止法の適用除外だが、権利の濫用は規制対象。',
     subject: 'other',
@@ -92,6 +100,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-009',
     term: '種苗法',
+    english: 'Plant Variety Protection and Seed Act',
     reading: 'しゅびょうほう',
     definition: '植物の新品種を保護する法律。育成者権を付与。',
     subject: 'other',
@@ -103,6 +112,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-010',
     term: '限定提供データ',
+    english: 'Limited Access Data',
     reading: 'げんていていきょうデータ',
     definition: '業として特定の者に提供するデータで、電磁的に管理されている技術上・営業上の情報。',
     subject: 'other',
@@ -114,6 +124,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-011',
     term: '独占禁止法',
+    english: 'Antimonopoly Act',
     reading: 'どくせんきんしほう',
     definition: '自由な競争を促進するための法律。知的財産権の正当な行使は適用除外（第21条）。',
     subject: 'other',
@@ -125,6 +136,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-012',
     term: 'FRAND宣言',
+    english: 'FRAND Declaration',
     reading: 'えふらんどせんげん',
     definition: '公平・合理的・非差別的条件（Fair, Reasonable And Non-Discriminatory）でのライセンス宣言。',
     subject: 'other',
@@ -136,6 +148,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-013',
     term: 'パテントプール',
+    english: 'Patent Pool',
     reading: 'ぱてんとぷーる',
     definition: '複数の特許権者が保有する特許をプールに提供し、一括してライセンスする仕組み。',
     subject: 'other',
@@ -147,6 +160,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-014',
     term: 'ライセンス契約',
+    english: 'License Agreement',
     reading: 'らいせんすけいやく',
     definition: '知的財産権の実施・使用を許諾する契約。専用実施権・通常実施権等の設定。',
     subject: 'other',
@@ -158,6 +172,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-015',
     term: '秘密保持契約',
+    english: 'Non-Disclosure Agreement (NDA)',
     reading: 'ひみつほじけいやく',
     definition: 'NDA（Non-Disclosure Agreement）。技術情報・営業情報等の秘密保持を約する契約。',
     subject: 'other',
@@ -169,6 +184,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-016',
     term: '共同研究開発',
+    english: 'Joint Research and Development',
     reading: 'きょうどうけんきゅうかいはつ',
     definition: '複数の企業・大学等が共同で行う研究開発。知財の帰属に関する取決めが重要。',
     subject: 'other',
@@ -180,6 +196,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-017',
     term: '先行技術調査',
+    english: 'Prior Art Search',
     reading: 'せんこうぎじゅつちょうさ',
     definition: '出願前に類似する技術や意匠・商標がないか確認するための調査。',
     subject: 'other',
@@ -191,6 +208,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-018',
     term: '知的財産基本法',
+    english: 'Intellectual Property Basic Act',
     reading: 'ちてきざいさんきほんほう',
     definition: '知的財産の創造・保護・活用に関する施策の基本方針を定めた法律（2002年制定）。',
     subject: 'other',
@@ -202,6 +220,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-019',
     term: '半導体集積回路配置法',
+    english: 'Semiconductor Integrated Circuit Layout Act',
     reading: 'はんどうたいしゅうせきかいろはいちほう',
     definition: '半導体チップの回路配置を保護する法律。回路配置利用権は登録日から10年間保護。',
     subject: 'other',
@@ -213,6 +232,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-020',
     term: '回路配置利用権',
+    english: 'Circuit Layout Utilization Right',
     reading: 'かいろはいちりようけん',
     definition: '半導体の回路配置を独占的に利用できる権利。設定登録日から10年間存続。',
     subject: 'other',
@@ -224,6 +244,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-021',
     term: 'クロスライセンス',
+    english: 'Cross License',
     reading: 'くろすらいせんす',
     definition: '互いの知的財産権を相互に実施許諾し合う契約。',
     subject: 'other',
@@ -235,6 +256,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-022',
     term: '技術標準',
+    english: 'Technical Standard',
     reading: 'ぎじゅつひょうじゅん',
     definition: '産業界で統一される技術規格。標準に必須な特許（標準必須特許）のライセンスが問題となる。',
     subject: 'other',
@@ -246,6 +268,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-023',
     term: '知的財産戦略',
+    english: 'Intellectual Property Strategy',
     reading: 'ちてきざいさんせんりゃく',
     definition: '出願・権利化・活用・防衛の各観点から知的財産を総合的に管理する戦略。',
     subject: 'other',
@@ -257,6 +280,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-024',
     term: 'グラントバック',
+    english: 'Grant Back',
     reading: 'ぐらんとばっく',
     definition: 'ライセンシーが行った改良発明の権利をライセンサーに帰属させる又は許諾させる条項。',
     subject: 'other',
@@ -268,6 +292,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-025',
     term: 'コンプライアンス',
+    english: 'Compliance',
     reading: 'こんぷらいあんす',
     definition: '法令遵守。知的財産分野では他社権利の侵害回避や営業秘密の適切な管理が重要。',
     subject: 'other',
@@ -279,6 +304,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-026',
     term: 'インカムアプローチ',
+    english: 'Income Approach',
     reading: 'いんかむあぷろーち',
     definition: '知的財産が将来生み出す収益を現在価値に割り引いて評価する方法。',
     subject: 'other',
@@ -290,6 +316,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-027',
     term: 'TLO',
+    english: 'Technology Licensing Organization',
     reading: 'てぃーえるおー',
     definition: '技術移転機関。大学の研究成果を企業に技術移転する機関。',
     subject: 'other',
@@ -301,6 +328,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-028',
     term: 'オープン＆クローズ戦略',
+    english: 'Open and Close Strategy',
     reading: 'おーぷんあんどくろーずせんりゃく',
     definition: '技術の公開部分と秘匿部分を戦略的に使い分ける知財戦略。',
     subject: 'other',
@@ -312,6 +340,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-029',
     term: '職務発明',
+    english: 'Employee Invention',
     reading: 'しょくむはつめい',
     definition: '従業者が職務上行った発明。2015年改正で使用者への原始帰属が可能に。',
     subject: 'other',
@@ -323,6 +352,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-030',
     term: '知財デューデリジェンス',
+    english: 'IP Due Diligence',
     reading: 'ちざいでゅーでりじぇんす',
     definition: 'M&A等における知的財産の適正評価調査。権利の有効性・帰属・リスクを調査。',
     subject: 'other',
@@ -334,6 +364,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-031',
     term: '図利加害目的',
+    english: 'Intent for Wrongful Gain or Harm',
     reading: 'とりかがいもくてき',
     definition: '不正の利益を得る目的又は保有者に損害を加える目的。営業秘密侵害の刑事罰の主観的要件。',
     subject: 'other',
@@ -345,6 +376,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-032',
     term: '損害額の推定規定',
+    english: 'Presumption of Damages Provision',
     reading: 'そんがいがくのすいていきてい',
     definition: '不正競争防止法第5条に定める損害額の3段階推定。①譲渡数量×単位利益②侵害者利益③ライセンス料相当額。',
     subject: 'other',
@@ -356,6 +388,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-033',
     term: '信用回復措置請求',
+    english: 'Claim for Measures to Restore Credit',
     reading: 'しんようかいふくそちせいきゅう',
     definition: '不正競争行為により営業上の信用を害された者が、信用回復のために必要な措置（謝罪広告等）を請求できる制度（第14条）。',
     subject: 'other',
@@ -367,6 +400,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-034',
     term: '育成者権',
+    english: 'Breeder\'s Right',
     reading: 'いくせいしゃけん',
     definition: '種苗法に基づき、植物の新品種を育成した者に付与される権利。種苗・収穫物・加工品を業として利用する権利を専有。',
     subject: 'other',
@@ -378,6 +412,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-035',
     term: '回路配置利用権',
+    english: 'Circuit Layout Utilization Right',
     reading: 'かいろはいちりようけん',
     definition: '半導体集積回路の回路配置に関する法律に基づく権利。SOFEC（ソフトウェア情報センター）への設定登録により発生。存続期間は10年。',
     subject: 'other',
@@ -389,6 +424,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-036',
     term: '商品形態模倣行為',
+    english: 'Act of Imitating Product Configuration',
     reading: 'しょうひんけいたいもほうこうい',
     definition: '他人の商品の形態を模倣した商品を譲渡等する行為（不正競争防止法第2条第1項第3号）。',
     subject: 'other',
@@ -400,6 +436,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-037',
     term: '弁理士の専権業務',
+    english: 'Exclusive Duties of Patent Attorneys',
     reading: 'べんりしのせんけんぎょうむ',
     definition: '特許庁に対する手続の代理は弁理士の専権業務（弁理士法第75条）。弁理士でない者がこれを業として行うことは違法。',
     subject: 'other',
@@ -411,6 +448,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-038',
     term: '技術的制限手段',
+    english: 'Technological Protection Measures',
     reading: 'ぎじゅつてきせいげんしゅだん',
     definition: 'コンテンツの視聴や利用を技術的に制限する手段。その回避装置やプログラムの提供は不正競争行為に該当。',
     subject: 'other',
@@ -422,6 +460,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-039',
     term: '標準必須特許（SEP）',
+    english: 'Standard Essential Patent (SEP)',
     reading: 'ひょうじゅんひっすとっきょ',
     definition: '通信規格等の技術標準の実施に不可避的に必要となる特許。FRAND条件でのライセンスが求められる。',
     subject: 'other',
@@ -433,6 +472,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-040',
     term: '不正競争防止法の救済手段',
+    english: 'Remedies under the Unfair Competition Prevention Act',
     reading: 'ふせいきょうそうぼうしほうのきゅうさいしゅだん',
     definition: '不正競争行為に対する民事救済として差止請求権（第3条）と損害賠償請求権（第4条）がある。損害額の推定規定（第5条）も特許法等と同構造。',
     subject: 'other',
@@ -444,6 +484,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-041',
     term: '自家増殖の制限',
+    english: 'Restriction on Farm-Saved Seeds',
     reading: 'じかぞうしょくのせいげん',
     definition: '2022年改正種苗法により、登録品種の農業者による自家増殖には育成者権者の許諾が必要となった。',
     subject: 'other',
@@ -455,6 +496,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-042',
     term: '周知表示と著名表示の違い',
+    english: 'Difference between Well-Known and Famous Indications',
     reading: 'しゅうちひょうじとちょめいひょうじのちがい',
     definition: '周知表示混同惹起行為（1号）は周知性＋混同のおそれが必要。著名表示冒用行為（2号）は著名性のみで混同不要。',
     subject: 'other',
@@ -466,6 +508,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-043',
     term: '適用除外（不競法第19条）',
+    english: 'Exceptions (Article 19, Unfair Competition Prevention Act)',
     reading: 'てきようじょがい',
     definition: '善意無重過失の転得者、自己の氏名の不正目的なき使用、商品形態模倣の3年経過等、差止請求等が認められない場合を規定。',
     subject: 'other',
@@ -477,6 +520,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-044',
     term: '営業秘密侵害の6類型',
+    english: 'Six Types of Trade Secret Infringement',
     reading: 'えいぎょうひみつしんがいのろくるいけい',
     definition: '不正取得型（4号）、転得型（5号）、事後悪意型（6号）、正当取得者の不正使用型（7号・図利加害目的）、転得型（8号）、事後悪意型（9・10号）の体系。',
     subject: 'other',
@@ -488,6 +532,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-045',
     term: '原産地等誤認惹起行為',
+    english: 'Act of Causing Misidentification of Origin',
     reading: 'げんさんちとうごにんじゃっきこうい',
     definition: '商品の原産地・品質・内容等について誤認させるような表示をする行為（第2条第1項第20号）。誤認のおそれで足りる。',
     subject: 'other',
@@ -499,6 +544,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-046',
     term: '信用毀損行為',
+    english: 'Act of Damaging Business Reputation',
     reading: 'しんようきそんこうい',
     definition: '競争関係にある他人の営業上の信用を害する虚偽の事実を告知・流布する行為（第2条第1項第21号）。',
     subject: 'other',
@@ -510,6 +556,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-047',
     term: '行為規制法',
+    english: 'Conduct Regulation Law',
     reading: 'こういきせいほう',
     definition: '不正競争防止法は権利を付与する法律ではなく、不正な行為を規制する法律。そのため審判制度がない。',
     subject: 'other',
@@ -521,6 +568,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-048',
     term: '代理人等の不正商標使用',
+    english: 'Unauthorized Trademark Use by Agents',
     reading: 'だいりにんとうのふせいしょうひょうしよう',
     definition: 'パリ条約同盟国等の商標権者の代理人等が正当な理由なくその商標を使用する行為（第2条第1項第22号）。',
     subject: 'other',
@@ -533,6 +581,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-049',
     term: 'グラントバック',
+    english: 'Grant Back',
     reading: 'ぐらんとばっく',
     definition: 'ライセンシーが開発した改良技術をライセンサーに帰属させるライセンス条項。',
     subject: 'other',
@@ -544,6 +593,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-050',
     term: '独占禁止法第21条',
+    english: 'Article 21 of the Antimonopoly Act',
     reading: 'どくせんきんしほうだいにじゅういちじょう',
     definition: '知的財産権の正当な行使と認められる行為には独占禁止法を適用しない旨の規定。',
     subject: 'other',
@@ -555,6 +605,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-051',
     term: '競業避止義務',
+    english: 'Non-Compete Obligation',
     reading: 'きょうぎょうかいしぎむ',
     definition: '従業員が使用者と競合する事業を行わない義務。退職後は特約がなければ発生しない。',
     subject: 'other',
@@ -566,6 +617,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-052',
     term: '自家増殖',
+    english: 'Farm-Saved Seeds',
     reading: 'じかぞうしょく',
     definition: '農業者が収穫物から種苗を採って翌年以降に自らの農業に使用すること。',
     subject: 'other',
@@ -577,6 +629,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-053',
     term: 'UPOV条約',
+    english: 'UPOV Convention',
     reading: 'ゆーぽふじょうやく',
     definition: '植物の新品種の保護に関する国際条約。種苗法はこの条約に準拠している。',
     subject: 'other',
@@ -588,6 +641,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-054',
     term: 'SOFEC',
+    english: 'Software Information Center (SOFEC)',
     reading: 'そふぇっく',
     definition: '一般財団法人ソフトウェア情報センター。半導体集積回路の回路配置利用権の登録機関。',
     subject: 'other',
@@ -599,6 +653,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-055',
     term: '回路配置利用権',
+    english: 'Circuit Layout Utilization Right',
     reading: 'かいろはいちりようけん',
     definition: '半導体集積回路の回路配置（レイアウトパターン）を保護する権利。設定登録により発生。',
     subject: 'other',
@@ -610,6 +665,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-056',
     term: '知的財産戦略本部',
+    english: 'Intellectual Property Strategy Headquarters',
     reading: 'ちてきざいさんせんりゃくほんぶ',
     definition: '知的財産基本法に基づき内閣に設置される機関。本部長は内閣総理大臣。',
     subject: 'other',
@@ -621,6 +677,7 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-057',
     term: '過失の推定',
+    english: 'Presumption of Negligence',
     reading: 'かしつのすいてい',
     definition: '知的財産権侵害において、侵害者に過失があったものと推定する規定。',
     subject: 'other',
@@ -632,12 +689,206 @@ export const otherTerms: DoomscrollTerm[] = [
   {
     id: 'ds-other-058',
     term: '著作者人格権の一身専属性',
+    english: 'Non-Transferability of Moral Rights',
     reading: 'ちょさくしゃじんかくけんのいっしんせんぞくせい',
     definition: '著作者人格権は著作者の一身に専属し、譲渡も相続もできない性質（著作権法第59条）。',
     subject: 'other',
     category: '権利',
     keyPoint: '公表権・氏名表示権・同一性保持権が対象。財産権としての著作権は譲渡・相続可能。死後も侵害行為は禁止（60条）。',
     relatedTermIds: [],
+    difficulty: 2,
+  },
+  // ===== 追加用語：知財周辺の重要概念 =====
+  {
+    id: 'ds-other-059',
+    term: '知的財産高等裁判所',
+    english: 'Intellectual Property High Court',
+    reading: 'ちてきざいさんこうとうさいばんしょ',
+    definition: '知的財産に関する事件を専門的に取り扱う裁判所。東京高等裁判所の特別の支部として2005年に設立。',
+    subject: 'other',
+    category: '制度',
+    keyPoint: '特許権・実用新案権の侵害訴訟の控訴審を専属管轄。審決取消訴訟も管轄。技術系裁判官・調査官が配置。',
+    relatedTermIds: ['ds-other-006', 'ds-other-018'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-other-060',
+    term: '弁理士',
+    english: 'Patent Attorney',
+    reading: 'べんりし',
+    definition: '特許庁に対する手続の代理を業とする国家資格者。弁理士法に基づく。',
+    subject: 'other',
+    category: '制度',
+    keyPoint: '特許庁への出願代理は弁理士の専権業務。弁護士も代理可能。特定侵害訴訟の補佐人・代理人にもなれる。',
+    relatedTermIds: ['ds-other-037', 'ds-other-006'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-other-061',
+    term: '知財ポートフォリオ',
+    english: 'IP Portfolio',
+    reading: 'ちざいぽーとふぉりお',
+    definition: '企業が保有する知的財産権の集合体。戦略的な管理・活用が企業価値向上に重要。',
+    subject: 'other',
+    category: '制度',
+    keyPoint: '質と量の両面で管理。不要な権利の整理（棚卸し）やライセンス戦略と連携。知財DDの対象。',
+    relatedTermIds: ['ds-other-023', 'ds-other-030'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-062',
+    term: 'ロイヤルティ',
+    english: 'Royalty',
+    reading: 'ろいやるてぃ',
+    definition: '知的財産権の実施・使用許諾に対する対価。定額方式・ランニング方式等がある。',
+    subject: 'other',
+    category: '定義',
+    keyPoint: '定額型（イニシャル）とランニング型（売上比率等）の組合せが一般的。FRAND条件の合理性判断でも重要。',
+    relatedTermIds: ['ds-other-014', 'ds-other-012'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-other-063',
+    term: '実施料',
+    english: 'License Fee',
+    reading: 'じっしりょう',
+    definition: '特許権等の知的財産権の実施許諾を受ける対価として支払う金銭。ロイヤルティとほぼ同義。',
+    subject: 'other',
+    category: '定義',
+    keyPoint: '損害賠償算定の第3類型（特許法102条3項等）で「実施料相当額」が用いられる。',
+    relatedTermIds: ['ds-other-062', 'ds-other-032'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-other-064',
+    term: '差止請求権',
+    english: 'Right to Seek Injunction',
+    reading: 'さしとめせいきゅうけん',
+    definition: '知的財産権の侵害行為の停止または予防を請求できる権利。各知財法に規定。',
+    subject: 'other',
+    category: '権利',
+    keyPoint: '故意・過失不要（無過失責任）。侵害の停止のほか、侵害のおそれがある場合の予防請求も可能。',
+    relatedTermIds: ['ds-other-040', 'ds-other-001'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-other-065',
+    term: '損害賠償請求権',
+    english: 'Right to Claim Damages',
+    reading: 'そんがいばいしょうせいきゅうけん',
+    definition: '知的財産権の侵害により受けた損害の賠償を請求できる権利。民法709条の不法行為に基づく。',
+    subject: 'other',
+    category: '権利',
+    keyPoint: '故意・過失が必要。特許法等では過失の推定規定あり。損害額の推定規定（102条等）で立証負担を軽減。',
+    relatedTermIds: ['ds-other-064', 'ds-other-032'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-066',
+    term: '不当利得返還請求',
+    english: 'Claim for Unjust Enrichment',
+    reading: 'ふとうりとくへんかんせいきゅう',
+    definition: '法律上の原因なく利得を得た者に対し、その返還を請求すること（民法703条・704条）。知財侵害で損害賠償と併用されることがある。',
+    subject: 'other',
+    category: '権利',
+    keyPoint: '時効は権利行使できることを知ったときから5年。損害賠償請求権の時効消滅後の救済手段としても機能。',
+    relatedTermIds: ['ds-other-065', 'ds-other-040'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-other-067',
+    term: '侵害警告書',
+    english: 'Infringement Warning Letter',
+    reading: 'しんがいけいこくしょ',
+    definition: '知的財産権の侵害者に対して権利者が送付する書面。侵害行為の停止や交渉を求める。',
+    subject: 'other',
+    category: '手続',
+    keyPoint: '訴訟前の交渉手段。内容証明郵便で送付するのが一般的。虚偽の警告は信用毀損行為に該当し得る。',
+    relatedTermIds: ['ds-other-064', 'ds-other-046'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-068',
+    term: '鑑定書',
+    english: 'Expert Opinion',
+    reading: 'かんていしょ',
+    definition: '知的財産権の有効性・侵害の有無等について専門家が作成する意見書。',
+    subject: 'other',
+    category: '手続',
+    keyPoint: '弁理士や弁護士が作成。侵害訴訟における証拠や、ライセンス交渉の根拠として活用。特許庁の判定制度とは別。',
+    relatedTermIds: ['ds-other-060', 'ds-other-067'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-069',
+    term: '無効資料調査',
+    english: 'Invalidity Search',
+    reading: 'むこうしりょうちょうさ',
+    definition: '他者の知的財産権の無効理由を発見するための先行技術・先行意匠等の調査。',
+    subject: 'other',
+    category: '手続',
+    keyPoint: '侵害警告を受けた場合の防御手段。無効審判の請求や特許無効の抗弁（特許法104条の3）に活用。',
+    relatedTermIds: ['ds-other-017', 'ds-other-067'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-070',
+    term: '公正取引委員会',
+    english: 'Fair Trade Commission',
+    reading: 'こうせいとりひきいいんかい',
+    definition: '独占禁止法の運用を担当する行政機関。知的財産権の不当な行使に対する規制も行う。',
+    subject: 'other',
+    category: '制度',
+    keyPoint: '内閣府の外局。知的財産の利用に関するガイドラインを公表。排除措置命令・課徴金納付命令の権限あり。',
+    relatedTermIds: ['ds-other-011', 'ds-other-050'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-other-071',
+    term: 'パテントトロール',
+    english: 'Patent Troll',
+    reading: 'ぱてんととろーる',
+    definition: '自ら製品を製造・販売せず、取得した特許権を用いて他社にライセンス料や賠償金を要求する事業体。',
+    subject: 'other',
+    category: '定義',
+    keyPoint: 'NPE（非実施主体）の一類型。米国で社会問題化。日本でも対策が議論されている。差止請求権の濫用が問題。',
+    relatedTermIds: ['ds-other-074', 'ds-other-064'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-072',
+    term: '知財信託',
+    english: 'IP Trust',
+    reading: 'ちざいしんたく',
+    definition: '知的財産権を信託財産として信託し、受託者が管理・運用・処分を行う仕組み。',
+    subject: 'other',
+    category: '制度',
+    keyPoint: '知財の流動化・証券化や管理の効率化に活用。信託法と知財関連法の双方の知識が必要。',
+    relatedTermIds: ['ds-other-023', 'ds-other-061'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-other-073',
+    term: 'ブランド戦略',
+    english: 'Brand Strategy',
+    reading: 'ぶらんどせんりゃく',
+    definition: '商標権や意匠権等を活用してブランド価値を構築・維持・向上させる戦略。',
+    subject: 'other',
+    category: '制度',
+    keyPoint: '商標・意匠・不正競争防止法による多面的保護。ブランドガイドラインの策定や模倣品対策を含む。',
+    relatedTermIds: ['ds-other-023', 'ds-other-005'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-other-074',
+    term: 'NPE（非実施主体）',
+    english: 'Non-Practicing Entity (NPE)',
+    reading: 'えぬぴーいー',
+    definition: '特許権を保有するが自ら実施（製品の製造・販売等）を行わない主体の総称。',
+    subject: 'other',
+    category: '定義',
+    keyPoint: '大学・研究機関もNPEに含まれる。パテントトロールはNPEの中でも攻撃的にライセンス料を求める主体を指す。',
+    relatedTermIds: ['ds-other-071', 'ds-other-014'],
     difficulty: 2,
   },
 ];

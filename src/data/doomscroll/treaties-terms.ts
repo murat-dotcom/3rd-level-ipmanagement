@@ -4,6 +4,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-001',
     term: 'パリ条約',
+    english: 'Paris Convention',
     definition: '工業所有権（産業財産権）の国際的保護に関する最も基本的な条約。1883年成立。',
     subject: 'treaties',
     category: '条約',
@@ -14,6 +15,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-002',
     term: '優先権（パリ条約）',
+    english: 'Priority Right (Paris Convention)',
     reading: 'ゆうせんけん',
     definition: '第一国への出願を基礎として、一定期間内に他の同盟国に出願した場合、第一国の出願日に出願したとみなす制度。',
     subject: 'treaties',
@@ -25,6 +27,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-003',
     term: 'PCT（特許協力条約）',
+    english: 'Patent Cooperation Treaty (PCT)',
     definition: '一つの国際出願で複数国への特許出願の効果を得られる条約。',
     subject: 'treaties',
     category: '条約',
@@ -35,6 +38,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-004',
     term: 'マドリッド協定議定書',
+    english: 'Madrid Protocol',
     definition: '商標の国際登録に関する条約。一つの出願で複数国での商標保護を得られる。',
     subject: 'treaties',
     category: '条約',
@@ -45,6 +49,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-005',
     term: 'ベルヌ条約',
+    english: 'Berne Convention',
     definition: '文学的及び美術的著作物の保護に関する条約。著作権の国際的保護の基本条約。',
     subject: 'treaties',
     category: '条約',
@@ -55,6 +60,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-006',
     term: 'TRIPS協定',
+    english: 'TRIPS Agreement',
     definition: '知的所有権の貿易関連の側面に関する協定。WTO加盟国に知的財産の最低保護基準を義務付け。',
     subject: 'treaties',
     category: '条約',
@@ -65,6 +71,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-007',
     term: '内国民待遇',
+    english: 'National Treatment',
     reading: 'ないこくみんたいぐう',
     definition: '他の同盟国の国民に対して、自国民と同等の保護を与える原則。',
     subject: 'treaties',
@@ -76,6 +83,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-008',
     term: 'ハーグ協定',
+    english: 'Hague Agreement',
     definition: '意匠の国際登録に関する条約。一つの出願で複数国での意匠保護を得られる。',
     subject: 'treaties',
     category: '条約',
@@ -86,6 +94,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-009',
     term: '特許独立の原則',
+    english: 'Principle of Independence of Patents',
     reading: 'とっきょどくりつのげんそく',
     definition: '各同盟国で付与された特許は互いに独立であるという原則（パリ条約第4条の2）。',
     subject: 'treaties',
@@ -97,6 +106,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-010',
     term: 'WIPO',
+    english: 'World Intellectual Property Organization',
     definition: '世界知的所有権機関。知的財産の国際的保護を促進する国連の専門機関。',
     subject: 'treaties',
     category: '制度',
@@ -107,6 +117,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-011',
     term: 'セントラルアタック',
+    english: 'Central Attack',
     reading: 'せんとらるあたっく',
     definition: 'マドリッド協定議定書で基礎出願・登録が消滅した場合、国際登録も取り消される制度（5年以内）。',
     subject: 'treaties',
@@ -118,6 +129,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-012',
     term: '本国官庁',
+    english: 'Office of Origin',
     reading: 'ほんこくかんちょう',
     definition: 'マドリッド協定議定書において国際登録出願の窓口となる自国の特許庁。',
     subject: 'treaties',
@@ -129,6 +141,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-013',
     term: '国際事務局',
+    english: 'International Bureau',
     reading: 'こくさいじむきょく',
     definition: 'WIPOの国際事務局。PCT・マドプロ・ハーグ等の国際登録・出願を管理する機関。',
     subject: 'treaties',
@@ -140,6 +153,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-014',
     term: '国際調査機関',
+    english: 'International Searching Authority (ISA)',
     reading: 'こくさいちょうさきかん',
     definition: 'PCT国際出願について先行技術調査を行う機関（ISA: International Searching Authority）。',
     subject: 'treaties',
@@ -151,6 +165,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-015',
     term: '国際予備審査',
+    english: 'International Preliminary Examination',
     reading: 'こくさいよびしんさ',
     definition: 'PCT出願人の請求に基づき行われる特許性に関する任意の予備審査。',
     subject: 'treaties',
@@ -162,6 +177,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-016',
     term: '指定国',
+    english: 'Designated State',
     reading: 'していこく',
     definition: 'PCT・マドプロ・ハーグで保護を求める対象国。出願時に指定する。',
     subject: 'treaties',
@@ -173,6 +189,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-017',
     term: '国際公開',
+    english: 'International Publication',
     reading: 'こくさいこうかい',
     definition: 'PCT国際出願の内容が優先日から18か月後にWIPO国際事務局により公開される制度。',
     subject: 'treaties',
@@ -184,6 +201,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-018',
     term: '最恵国待遇',
+    english: 'Most-Favoured-Nation Treatment',
     reading: 'さいけいこくたいぐう',
     definition: 'ある加盟国に与える有利な待遇を他の全加盟国にも与える義務。TRIPS協定第4条。',
     subject: 'treaties',
@@ -195,6 +213,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-019',
     term: 'ミニマム・スタンダード',
+    english: 'Minimum Standards',
     reading: 'みにまむすたんだーど',
     definition: 'TRIPS協定が定める知的財産権の最低保護基準。各国はこれ以上の保護を自由に定められる。',
     subject: 'treaties',
@@ -206,6 +225,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-020',
     term: 'WIPO著作権条約',
+    english: 'WIPO Copyright Treaty (WCT)',
     reading: 'わいぽちょさくけんじょうやく',
     definition: 'デジタル環境での著作権保護を強化するための条約。1996年採択。',
     subject: 'treaties',
@@ -217,6 +237,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-021',
     term: '特許法条約',
+    english: 'Patent Law Treaty (PLT)',
     reading: 'とっきょほうじょうやく',
     definition: '特許出願手続の統一・簡素化を目的とする条約（PLT: Patent Law Treaty）。',
     subject: 'treaties',
@@ -228,6 +249,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-022',
     term: 'シンガポール条約',
+    english: 'Singapore Treaty (STLT)',
     reading: 'しんがぽーるじょうやく',
     definition: '商標登録手続の国際的調和を図る条約（商標法に関するシンガポール条約）。',
     subject: 'treaties',
@@ -239,6 +261,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-023',
     term: 'エンフォースメント',
+    english: 'Enforcement',
     reading: 'えんふぉーすめんと',
     definition: '知的財産権の権利行使・執行。TRIPS協定で各国に整備が義務付けられた。',
     subject: 'treaties',
@@ -250,6 +273,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-024',
     term: '事後指定',
+    english: 'Subsequent Designation',
     reading: 'じごしてい',
     definition: 'マドプロ・ハーグの国際登録後に、保護を求める国を追加で指定する手続。',
     subject: 'treaties',
@@ -261,6 +285,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-025',
     term: '優先日',
+    english: 'Priority Date',
     reading: 'ゆうせんび',
     definition: '最初の出願日。PCTの各種期限計算の基準となる日。',
     subject: 'treaties',
@@ -272,6 +297,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-026',
     term: 'ベルヌ条約',
+    english: 'Berne Convention',
     reading: 'べるぬじょうやく',
     definition: '著作権の国際的保護に関する最も基本的な条約（1886年）。',
     subject: 'treaties',
@@ -283,6 +309,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-027',
     term: 'WIPO著作権条約（WCT）',
+    english: 'WIPO Copyright Treaty (WCT)',
     reading: 'だぶりゅーあいぴーおーちょさくけんじょうやく',
     definition: 'デジタル時代に対応したベルヌ条約の補完条約（1996年）。',
     subject: 'treaties',
@@ -294,6 +321,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-028',
     term: 'PLT（特許法条約）',
+    english: 'Patent Law Treaty (PLT)',
     reading: 'ぴーえるてぃー',
     definition: '各国の特許手続の調和・簡素化を目的とする条約（2000年）。',
     subject: 'treaties',
@@ -305,6 +333,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-029',
     term: 'ニース協定',
+    english: 'Nice Agreement',
     reading: 'にーすきょうてい',
     definition: '商標登録のための商品・役務の国際分類を定める協定（1957年）。',
     subject: 'treaties',
@@ -316,6 +345,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-030',
     term: '水際措置',
+    english: 'Border Measures',
     reading: 'みずぎわそち',
     definition: '税関における知的財産侵害品の差止め措置。TRIPS協定で整備が義務付け。',
     subject: 'treaties',
@@ -327,6 +357,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-031',
     term: 'パリ条約第6条の2',
+    english: 'Paris Convention Article 6bis (Well-Known Marks)',
     reading: 'ぱりじょうやくだいろくじょうのに',
     definition: '周知商標の国際保護を定める規定。加盟国で周知な商標は、相手国で未登録でも同一・類似商品について保護される。',
     subject: 'treaties',
@@ -338,6 +369,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-032',
     term: 'ミニマム・スタンダード',
+    english: 'Minimum Standards',
     reading: 'みにまむすたんだーど',
     definition: 'TRIPS協定が各分野の知的財産について定める最低保護基準。加盟国はこれ以上の保護を提供する義務を負う。',
     subject: 'treaties',
@@ -349,6 +381,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-033',
     term: 'TRIPS第10条',
+    english: 'TRIPS Article 10 (Computer Programs and Databases)',
     reading: 'とりっぷすだいじゅうじょう',
     definition: 'コンピュータ・プログラムをベルヌ条約の文学的著作物として保護し（第1項）、データベースの編集著作物としての保護を定める（第2項）。',
     subject: 'treaties',
@@ -360,6 +393,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-034',
     term: '国際調査報告',
+    english: 'International Search Report (ISR)',
     reading: 'こくさいちょうさほうこく',
     definition: 'PCT国際出願で国際調査機関（ISA）が作成する先行技術の調査報告。見解書とともに出願人に通知される。必須手続。',
     subject: 'treaties',
@@ -371,6 +405,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-035',
     term: 'セントラルアタック',
+    english: 'Central Attack',
     reading: 'せんとらるあたっく',
     definition: 'マドプロにおいて、国際登録日から5年以内に基礎出願/登録が拒絶・取消・無効になった場合、国際登録も全指定国で取り消される制度。',
     subject: 'treaties',
@@ -382,6 +417,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-036',
     term: '最恵国待遇',
+    english: 'Most-Favoured-Nation Treatment',
     reading: 'さいけいこくたいぐう',
     definition: 'TRIPS協定独自の原則。加盟国が他の加盟国に与えた有利な待遇は、すべての加盟国に無条件に与えなければならない。',
     subject: 'treaties',
@@ -393,6 +429,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-037',
     term: 'パリ条約第6条の2',
+    english: 'Paris Convention Article 6bis (Well-Known Marks)',
     reading: 'ぱりじょうやくだいろくじょうのに',
     definition: '周知商標の保護に関する規定。加盟国で周知な商標と同一・類似の商標の登録を拒絶又は無効にできる。',
     subject: 'treaties',
@@ -404,6 +441,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-038',
     term: 'WIPO（世界知的所有権機関）',
+    english: 'World Intellectual Property Organization (WIPO)',
     reading: 'わいぽ',
     definition: '知的財産に関する国連の専門機関。PCT・マドプロ・ハーグの国際事務局を運営。本部はジュネーブ。',
     subject: 'treaties',
@@ -415,6 +453,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-039',
     term: 'ニース協定',
+    english: 'Nice Agreement',
     reading: 'にーすきょうてい',
     definition: '商標登録のための商品・役務の国際分類に関する協定。第1類〜第45類の区分を定める。',
     subject: 'treaties',
@@ -426,6 +465,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-040',
     term: '国際予備審査',
+    english: 'International Preliminary Examination',
     reading: 'こくさいよびしんさ',
     definition: 'PCT出願において任意で受けられる審査。国際予備審査機関（IPEA）が特許性について見解を示す。',
     subject: 'treaties',
@@ -437,6 +477,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-041',
     term: '強制実施権（TRIPS第31条）',
+    english: 'Compulsory License (TRIPS Article 31)',
     reading: 'きょうせいじっしけん',
     definition: '特許権者の同意なく政府等が実施を許諾する制度。非排他的・国内向け・適当な報酬が条件。',
     subject: 'treaties',
@@ -448,6 +489,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-042',
     term: '地理的表示（GI）',
+    english: 'Geographical Indication (GI)',
     reading: 'ちりてきひょうじ',
     definition: '商品の品質等が地理的原産地に帰せられる表示。TRIPS第22条～第24条で保護。',
     subject: 'treaties',
@@ -459,6 +501,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-043',
     term: 'PCT第19条補正',
+    english: 'PCT Article 19 Amendment',
     reading: 'ぴーしーてぃーだい19じょうほせい',
     definition: 'ISR受領後に請求の範囲のみを1回補正可能。国際事務局に提出。',
     subject: 'treaties',
@@ -470,6 +513,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-044',
     term: 'パリ条約第5条の2',
+    english: 'Paris Convention Article 5bis (Grace Period for Fees)',
     reading: 'だい5じょうの2',
     definition: '工業所有権維持の料金（年金等）の納付について最低6か月の猶予期間を定める規定。',
     subject: 'treaties',
@@ -481,6 +525,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-045',
     term: 'ドーハ宣言',
+    english: 'Doha Declaration',
     reading: 'どーはせんげん',
     definition: '2001年にWTO閣僚会議で採択。TRIPS協定は公衆衛生の保護を妨げないことを確認。',
     subject: 'treaties',
@@ -492,6 +537,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-046',
     term: 'パリ条約第5条A（強制実施許諾）',
+    english: 'Paris Convention Article 5A (Compulsory Licenses)',
     reading: 'だい5じょうえー',
     definition: '特許の不実施を理由とする強制実施許諾。付与から4年/出願から3年の遅い方の後に請求可能。',
     subject: 'treaties',
@@ -504,6 +550,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-047',
     term: 'ニース協定',
+    english: 'Nice Agreement',
     reading: 'にーすきょうてい',
     definition: '商標の商品・役務の国際分類（45区分：商品34類＋役務11類）を定める条約。',
     subject: 'treaties',
@@ -515,6 +562,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-048',
     term: 'ロカルノ協定',
+    english: 'Locarno Agreement',
     reading: 'ろかるのきょうてい',
     definition: '意匠の国際分類を定める条約。ハーグ協定による意匠の国際登録でも使用される。',
     subject: 'treaties',
@@ -526,6 +574,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-049',
     term: 'ストラスブール協定',
+    english: 'Strasbourg Agreement (IPC)',
     reading: 'すとらすぶーるきょうてい',
     definition: '国際特許分類（IPC）を定める条約。特許文献の技術分類に使用される。',
     subject: 'treaties',
@@ -537,6 +586,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-050',
     term: '特許法条約（PLT）',
+    english: 'Patent Law Treaty (PLT)',
     reading: 'とっきょほうじょうやく',
     definition: '特許出願手続の国際調和と簡素化を目的とする条約。日本は2016年加入。',
     subject: 'treaties',
@@ -548,6 +598,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-051',
     term: 'シンガポール条約（STLT）',
+    english: 'Singapore Treaty on the Law of Trademarks (STLT)',
     reading: 'しんがぽーるじょうやく',
     definition: '商標登録出願手続の国際調和を目的とする条約。TLT（商標法条約）を改正・拡充。',
     subject: 'treaties',
@@ -559,6 +610,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-052',
     term: 'UPOV条約',
+    english: 'UPOV Convention (Plant Variety Protection)',
     reading: 'ゆーぽふじょうやく',
     definition: '植物の新品種の育成者の権利保護に関する国際条約。国内法は種苗法。',
     subject: 'treaties',
@@ -570,6 +622,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-053',
     term: '名古屋議定書',
+    english: 'Nagoya Protocol',
     reading: 'なごやぎていしょ',
     definition: '遺伝資源へのアクセスと利益配分（ABS）に関する議定書。生物多様性条約に基づく。',
     subject: 'treaties',
@@ -581,6 +634,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-054',
     term: '最恵国待遇',
+    english: 'Most-Favoured-Nation Treatment',
     reading: 'さいけいこくたいぐう',
     definition: 'ある加盟国に与えた有利な待遇を他のすべての加盟国にも与える義務。TRIPS協定第4条。',
     subject: 'treaties',
@@ -592,6 +646,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-055',
     term: 'WCT（WIPO著作権条約）',
+    english: 'WIPO Copyright Treaty (WCT)',
     reading: 'だぶりゅーしーてぃー',
     definition: 'デジタル環境における著作権保護を強化するWIPO管理の条約。1996年採択。',
     subject: 'treaties',
@@ -603,6 +658,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-056',
     term: 'WPPT（WIPO実演・レコード条約）',
+    english: 'WIPO Performances and Phonograms Treaty (WPPT)',
     reading: 'だぶりゅーぴーぴーてぃー',
     definition: '実演家とレコード製作者の権利をデジタル環境で保護するWIPO管理の条約。1996年採択。',
     subject: 'treaties',
@@ -614,6 +670,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-057',
     term: 'ウィーン協定',
+    english: 'Vienna Agreement (Figurative Elements of Marks)',
     reading: 'うぃーんきょうてい',
     definition: '商標の図形要素の国際分類を定める条約。日本は未加入。',
     subject: 'treaties',
@@ -625,6 +682,7 @@ export const treatiesTerms: DoomscrollTerm[] = [
   {
     id: 'ds-treaties-058',
     term: '優先権の回復（PLT・PCT）',
+    english: 'Restoration of Priority Right (PLT/PCT)',
     reading: 'ゆうせんけんのかいふく',
     definition: '優先期間を徒過した場合に、一定の条件下で優先権を回復できる救済制度。',
     subject: 'treaties',

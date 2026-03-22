@@ -4,6 +4,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-001',
     term: '意匠権',
+    english: 'Design Right',
     reading: 'いしょうけん',
     definition: '登録意匠を独占的に実施できる権利。物品のデザインを保護する。',
     subject: 'design',
@@ -15,6 +16,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-002',
     term: '意匠',
+    english: 'Design',
     reading: 'いしょう',
     definition: '物品の形状・模様・色彩またはこれらの結合、建築物の形状等、画像であって美感を起こさせるもの。',
     subject: 'design',
@@ -26,6 +28,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-003',
     term: '関連意匠制度',
+    english: 'Related Design System',
     reading: 'かんれんいしょうせいど',
     definition: 'デザインのバリエーションを本意匠と関連付けて登録・保護する制度。',
     subject: 'design',
@@ -37,6 +40,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-004',
     term: '部分意匠',
+    english: 'Partial Design',
     reading: 'ぶぶんいしょう',
     definition: '物品の部分のデザインについて意匠登録を受けることができる制度。',
     subject: 'design',
@@ -48,6 +52,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-005',
     term: '秘密意匠制度',
+    english: 'Secret Design System',
     reading: 'ひみついしょうせいど',
     definition: '設定登録日から最大3年間、意匠の内容を秘密にできる制度（第14条）。',
     subject: 'design',
@@ -59,6 +64,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-006',
     term: '新規性（意匠法）',
+    english: 'Novelty (Design Law)',
     reading: 'しんきせい',
     definition: '出願前に公知・刊行物記載・インターネット公開された意匠でないこと。',
     subject: 'design',
@@ -70,6 +76,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-007',
     term: '創作非容易性',
+    english: 'Non-Easiness of Creation',
     reading: 'そうさくひよういせい',
     definition: '当業者が容易に創作できたものでないこと。意匠法における進歩性に相当する要件。',
     subject: 'design',
@@ -81,6 +88,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-008',
     term: '組物の意匠',
+    english: 'Design of a Set of Articles',
     reading: 'くみもののいしょう',
     definition: '同時に使用される2以上の物品で、全体として統一感があるデザインを一出願で登録できる制度。',
     subject: 'design',
@@ -92,6 +100,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-009',
     term: '意匠の類似',
+    english: 'Similarity of Designs',
     reading: 'いしょうのるいじ',
     definition: '需要者の視覚を通じた美感に基づいて判断される意匠の類否。',
     subject: 'design',
@@ -103,6 +112,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-010',
     term: '画像意匠',
+    english: 'Image Design',
     reading: 'がぞういしょう',
     definition: '操作画像・表示画像のデザインを物品から独立して保護する制度（2020年改正）。',
     subject: 'design',
@@ -114,6 +124,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-011',
     term: '画像意匠',
+    english: 'Image Design',
     reading: 'がぞういしょう',
     definition: '2020年改正により物品に記録されていない画像も意匠として保護対象となった。',
     subject: 'design',
@@ -125,6 +136,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-012',
     term: '建築物の意匠',
+    english: 'Design of Buildings',
     reading: 'けんちくぶつのいしょう',
     definition: '2020年改正により建築物の外観・内装が意匠の保護対象に追加された。',
     subject: 'design',
@@ -136,6 +148,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-013',
     term: '内装の意匠',
+    english: 'Interior Design',
     reading: 'ないそうのいしょう',
     definition: '店舗・事務所等の内装全体を一つの意匠として保護する制度（第8条の2）。',
     subject: 'design',
@@ -147,6 +160,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-014',
     term: '組物の意匠',
+    english: 'Design of a Set of Articles',
     reading: 'くみもののいしょう',
     definition: '統一感のある2以上の物品を組物として一意匠で登録できる制度（第8条）。',
     subject: 'design',
@@ -158,6 +172,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-015',
     term: '創作非容易性',
+    english: 'Non-Easiness of Creation',
     reading: 'そうさくひよういせい',
     definition: '当業者が容易に創作できないこと。特許法の進歩性に相当する意匠の登録要件。',
     subject: 'design',
@@ -169,6 +184,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-016',
     term: '意匠権の侵害',
+    english: 'Infringement of Design Right',
     reading: 'いしょうけんのしんがい',
     definition: '登録意匠及びこれに類似する意匠を権限なく実施する行為。',
     subject: 'design',
@@ -180,6 +196,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-017',
     term: '利用・抵触関係',
+    english: 'Utilization and Conflict Relationship',
     reading: 'りよう・ていしょくかんけい',
     definition: '自己の意匠権が他人の先願の権利と重なる場合、許諾なく実施できない関係（第26条）。',
     subject: 'design',
@@ -191,6 +208,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-018',
     term: 'ハーグ協定',
+    english: 'Hague Agreement',
     reading: 'はーぐきょうてい',
     definition: '意匠の国際登録制度。一出願で複数国の意匠保護が可能。基礎出願・登録不要。',
     subject: 'design',
@@ -202,6 +220,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-019',
     term: '意匠の国際分類',
+    english: 'International Classification of Designs',
     reading: 'いしょうのこくさいぶんるい',
     definition: 'ロカルノ分類と呼ばれる意匠の国際的な物品分類体系。',
     subject: 'design',
@@ -213,6 +232,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-020',
     term: '動的意匠',
+    english: 'Dynamic Design',
     reading: 'どうてきいしょう',
     definition: '形態が変化する物品の意匠。変化の前後の状態を図面で表す。',
     subject: 'design',
@@ -224,6 +244,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-021',
     term: '意匠公報',
+    english: 'Design Gazette',
     reading: 'いしょうこうほう',
     definition: '意匠登録後に発行される公報。秘密意匠の場合は一定期間非公開となる。',
     subject: 'design',
@@ -235,6 +256,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-022',
     term: '先使用権（意匠）',
+    english: 'Prior User Right (Design)',
     reading: 'せんしようけん',
     definition: '意匠登録出願前から善意に実施又は準備をしていた者に認められる法定の実施権。',
     subject: 'design',
@@ -246,6 +268,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-023',
     term: '新規性喪失の例外（意匠）',
+    english: 'Exception to Loss of Novelty (Design)',
     reading: 'しんきせいそうしつのれいがい',
     definition: '自ら公開した意匠について、公開後1年以内の出願で新規性喪失の例外が適用される（第4条）。',
     subject: 'design',
@@ -257,6 +280,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-024',
     term: '物品の部分',
+    english: 'Part of an Article',
     reading: 'ぶっぴんのぶぶん',
     definition: '部分意匠として物品の一部のみのデザインを意匠登録により保護できる。',
     subject: 'design',
@@ -268,6 +292,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-025',
     term: '意匠登録出願',
+    english: 'Application for Design Registration',
     reading: 'いしょうとうろくしゅつがん',
     definition: '願書に意匠に係る物品名と図面を添付して特許庁に出願する手続。',
     subject: 'design',
@@ -279,6 +304,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-026',
     term: '画像意匠',
+    english: 'Image Design',
     reading: 'がぞういしょう',
     definition: '画面に表示されるUI等のデザインを保護する意匠。2019年改正で大幅拡大。',
     subject: 'design',
@@ -290,6 +316,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-027',
     term: '内装の意匠',
+    english: 'Interior Design',
     reading: 'ないそうのいしょう',
     definition: '店舗・オフィス等の施設の内装全体を1つの意匠として保護する制度。',
     subject: 'design',
@@ -301,6 +328,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-028',
     term: '建築物の意匠',
+    english: 'Design of Buildings',
     reading: 'けんちくぶつのいしょう',
     definition: '建築物の外観・内部デザインを保護する意匠。2019年改正で新たに保護対象に。',
     subject: 'design',
@@ -312,6 +340,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-029',
     term: '連鎖する関連意匠',
+    english: 'Chained Related Designs',
     reading: 'れんさするかんれんいしょう',
     definition: '関連意匠にのみ類似する意匠も関連意匠として登録できる2019年改正の制度。',
     subject: 'design',
@@ -323,6 +352,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-030',
     term: '全件審査',
+    english: 'Examination of All Applications',
     reading: 'ぜんけんしんさ',
     definition: '意匠法では出願審査請求制度がなく、すべての出願が自動的に審査される。',
     subject: 'design',
@@ -334,6 +364,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-031',
     term: '要旨変更',
+    english: 'Amendment of Gist',
     reading: 'ようしへんこう',
     definition: '意匠登録出願の補正において、出願当初の意匠の要旨を変更する補正。意匠法第17条の2により却下される。',
     subject: 'design',
@@ -345,6 +376,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-032',
     term: '日本意匠分類',
+    english: 'Japanese Design Classification',
     reading: 'にほんいしょうぶんるい',
     definition: '日本独自の意匠分類体系（Dターム）。物品の用途・機能に基づいて体系化されており、J-PlatPatでの意匠検索に使用される。',
     subject: 'design',
@@ -356,6 +388,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-033',
     term: 'ロカルノ分類',
+    english: 'Locarno Classification',
     reading: 'ろかるのぶんるい',
     definition: 'ロカルノ協定に基づく意匠の国際分類。ハーグ協定による意匠の国際登録でも使用される。日本でも国際分類として併用。',
     subject: 'design',
@@ -367,6 +400,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-034',
     term: '一意匠一出願',
+    english: 'One Design One Application',
     reading: 'いちいしょういちしゅつがん',
     definition: '意匠登録出願は一意匠ごとに行わなければならないとする原則（第7条）。組物の意匠（第8条）と内装の意匠（第8条の2）が例外。',
     subject: 'design',
@@ -378,6 +412,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-035',
     term: '連鎖する関連意匠',
+    english: 'Chained Related Designs',
     reading: 'れんさするかんれんいしょう',
     definition: '2019年改正で認められた、関連意匠にのみ類似する意匠も関連意匠として登録できる制度。デザインの段階的進化を保護。',
     subject: 'design',
@@ -389,6 +424,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-036',
     term: '意匠権の存続期間',
+    english: 'Duration of Design Right',
     reading: 'いしょうけんのそんぞくきかん',
     definition: '出願日から25年（2020年改正前は登録日から20年）。更新なし。',
     subject: 'design',
@@ -400,6 +436,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-037',
     term: '意匠の類否判断',
+    english: 'Judgment of Similarity of Designs',
     reading: 'いしょうのるいひはんだん',
     definition: '需要者の視覚を通じた美感に基づいて判断。全体観察が原則だが、意匠の要部を重視した判断も行う。',
     subject: 'design',
@@ -411,6 +448,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-038',
     term: '一意匠一出願',
+    english: 'One Design One Application',
     reading: 'いちいしょういちしゅつがん',
     definition: '1つの意匠ごとに1つの出願をしなければならない原則（第7条）。',
     subject: 'design',
@@ -422,6 +460,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-039',
     term: '応用美術',
+    english: 'Applied Art',
     reading: 'おうようびじゅつ',
     definition: '工業的に量産される美術工芸品やデザイン。原則として意匠法で保護され、著作権法での保護は限定的。',
     subject: 'design',
@@ -433,6 +472,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-040',
     term: '秘密意匠の請求期間',
+    english: 'Request Period for Secret Design',
     reading: 'ひみついしょうのせいきゅうきかん',
     definition: '意匠登録出願人は登録日から3年以内の期間を指定して意匠を秘密にすることを請求できる（第14条）。',
     subject: 'design',
@@ -444,6 +484,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-041',
     term: '損害額の推定（意匠法第39条）',
+    english: 'Presumption of Damages (Design Law Article 39)',
     reading: 'そんがいがくのすいてい',
     definition: '意匠権侵害の損害賠償額を3段階で算定する規定。特許法第102条を準用。',
     subject: 'design',
@@ -455,6 +496,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-042',
     term: '間接侵害（意匠法第38条）',
+    english: 'Indirect Infringement (Design Law Article 38)',
     reading: 'かんせつしんがい',
     definition: '直接侵害を幇助する行為をみなし侵害とする規定。「にのみ」型と不可欠型の2類型。',
     subject: 'design',
@@ -466,6 +508,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-043',
     term: '意匠権の共有',
+    english: 'Co-Ownership of Design Right',
     reading: 'いしょうけんのきょうゆう',
     definition: '意匠権が複数人に共有される状態。意匠法第36条で特許法第73条を準用。',
     subject: 'design',
@@ -477,6 +520,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-044',
     term: '要旨変更',
+    english: 'Amendment of Gist',
     reading: 'ようしへんこう',
     definition: '出願当初の願書・図面に記載された意匠の要旨を変更する補正。認められない（第17条の2）。',
     subject: 'design',
@@ -488,6 +532,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-045',
     term: '意匠権の消尽',
+    english: 'Exhaustion of Design Right',
     reading: 'いしょうけんのしょうじん',
     definition: '権利者が正当に販売した製品についてはその後の転売等に意匠権の効力が及ばないとする原則。',
     subject: 'design',
@@ -499,6 +544,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-046',
     term: '関連意匠の分離移転禁止',
+    english: 'Prohibition of Separate Transfer of Related Designs',
     reading: 'かんれんいしょうのぶんりいてんきんし',
     definition: '本意匠と関連意匠は分離して移転できない（第22条）。連鎖する関連意匠も含め一括でのみ移転可能。',
     subject: 'design',
@@ -510,6 +556,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-047',
     term: '当然対抗制度（意匠法）',
+    english: 'Automatic Counterclaim System (Design Law)',
     reading: 'とうぜんたいこうせいど',
     definition: '通常実施権は登録なしでも第三者に対抗できる制度。2011年特許法改正で導入され意匠法にも準用。',
     subject: 'design',
@@ -521,6 +568,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-048',
     term: '補正却下不服審判',
+    english: 'Appeal Against Dismissal of Amendment',
     reading: 'ほせいきゃっかふふくしんぱん',
     definition: '要旨変更として補正が却下された場合に請求できる審判。出願は補正前の内容で審査続行。',
     subject: 'design',
@@ -533,6 +581,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-049',
     term: '出願変更（意匠法第13条）',
+    english: 'Conversion of Application (Design Law Article 13)',
     reading: 'しゅつがんへんこう',
     definition: '意匠登録出願を特許出願や実用新案登録出願に変更し、又はその逆を行う手続。',
     subject: 'design',
@@ -544,6 +593,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-050',
     term: '要旨変更の禁止',
+    english: 'Prohibition of Amendment of Gist',
     reading: 'ようしへんこうのきんし',
     definition: '意匠登録出願の補正において、意匠の要旨を変更する補正は認められないとする規定（第17条の2）。',
     subject: 'design',
@@ -555,6 +605,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-051',
     term: '過失の推定（意匠法第40条）',
+    english: 'Presumption of Negligence (Design Law Article 40)',
     reading: 'かしつのすいてい',
     definition: '登録意匠の侵害者に過失があったものと推定する規定。特許法第103条と同趣旨。',
     subject: 'design',
@@ -566,6 +617,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-052',
     term: '意匠権侵害罪',
+    english: 'Crime of Design Right Infringement',
     reading: 'いしょうけんしんがいざい',
     definition: '意匠権を侵害した者に対する刑事罰（第69条）。10年以下の懲役又は1000万円以下の罰金。',
     subject: 'design',
@@ -577,6 +629,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-053',
     term: '重畳保護',
+    english: 'Overlapping Protection',
     reading: 'ちょうじょうほご',
     definition: '一つのデザインを複数の知的財産法で重ねて保護すること。',
     subject: 'design',
@@ -588,6 +641,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-054',
     term: '利用・抵触関係（第26条）',
+    english: 'Utilization and Conflict Relationship (Article 26)',
     reading: 'りよう・ていしょくかんけい',
     definition: '意匠権が先願の特許権・商標権等と抵触する場合、先願権利者の許諾なしに実施できないとする規定。',
     subject: 'design',
@@ -599,6 +653,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-055',
     term: '組物の意匠（第8条）',
+    english: 'Design of a Set of Articles (Article 8)',
     reading: 'くみもののいしょう',
     definition: '同時に使用される2以上の物品を組物として一出願で登録する制度。一意匠一出願の例外。',
     subject: 'design',
@@ -610,6 +665,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-056',
     term: '内装の意匠（第8条の2）',
+    english: 'Interior Design (Article 8-2)',
     reading: 'ないそうのいしょう',
     definition: '店舗等の内装全体を一意匠として登録する制度。2019年改正で新設。',
     subject: 'design',
@@ -621,6 +677,7 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-057',
     term: '立体商標',
+    english: 'Three-Dimensional Trademark',
     reading: 'りったいしょうひょう',
     definition: '商品や容器の立体的な形状を商標として登録する制度。更新により半永久的に保護可能。',
     subject: 'design',
@@ -632,12 +689,205 @@ export const designTerms: DoomscrollTerm[] = [
   {
     id: 'ds-design-058',
     term: '意匠の分割出願（第10条の2）',
+    english: 'Divisional Application of Design (Article 10-2)',
     reading: 'いしょうのぶんかつしゅつがん',
     definition: '2以上の意匠を含む意匠登録出願の一部を新たな出願として分割する手続。',
     subject: 'design',
     category: '手続',
     keyPoint: 'もとの出願日に遡及。変更出願（13条）とは別制度。分割出願は査定前まで可能。特許法の分割出願（44条）と同趣旨。',
     relatedTermIds: ['ds-design-049'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-059',
+    term: '本意匠',
+    english: 'Principal Design',
+    reading: 'ほんいしょう',
+    definition: '関連意匠制度において基準となる意匠。関連意匠はこの本意匠に類似するものとして登録される。',
+    subject: 'design',
+    category: '制度',
+    keyPoint: '本意匠が消滅しても関連意匠は存続。本意匠には専用実施権を設定できない（関連意匠がある場合）。',
+    relatedTermIds: ['ds-design-003', 'ds-design-029'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-060',
+    term: '美感',
+    english: 'Aesthetic Impression',
+    reading: 'びかん',
+    definition: '意匠法における保護要件の一つ。物品等の形状・模様・色彩が視覚を通じて起こさせる美的な感覚。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '「美感を起こさせるもの」が意匠の定義の核心。高度な芸術性は不要で、何らかの美感があれば足りる。',
+    relatedTermIds: ['ds-design-002', 'ds-design-037'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-design-061',
+    term: '視覚性',
+    english: 'Visual Appeal',
+    reading: 'しかくせい',
+    definition: '意匠が視覚を通じて認識できるものであることの要件。肉眼で認識できない微細な構造は対象外。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '粉状物・粒状物の一つ一つの形状は視覚性を満たさない。外部から見えない内部構造も対象外。',
+    relatedTermIds: ['ds-design-002', 'ds-design-060'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-062',
+    term: '工業上利用可能性',
+    english: 'Industrial Applicability',
+    reading: 'こうぎょうじょうりようかのうせい',
+    definition: '意匠が工業的な方法により量産可能であることの登録要件（第3条第1項柱書）。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '一品制作の美術品は対象外。手工業的方法でも同一物を反復生産できれば該当。自然物をそのまま使用したものは非該当。',
+    relatedTermIds: ['ds-design-002', 'ds-design-006'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-063',
+    term: '意匠の単一性',
+    english: 'Unity of Design',
+    reading: 'いしょうのたんいつせい',
+    definition: '一つの意匠登録出願には一つの意匠のみを含むべきとする原則。一意匠一出願の基礎概念。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '物品ごとに形態が一つであること。組物・内装は例外。特許法の発明の単一性に対応する概念。',
+    relatedTermIds: ['ds-design-034', 'ds-design-055'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-064',
+    term: '意匠登録無効審判',
+    english: 'Trial for Invalidation of Design Registration',
+    reading: 'いしょうとうろくむこうしんぱん',
+    definition: '登録された意匠に無効理由がある場合に、その登録を無効にすることを請求する審判（第48条）。',
+    subject: 'design',
+    category: '手続',
+    keyPoint: '何人も請求可能（利害関係人に限定されない）。無効理由：新規性欠如、創作非容易性欠如、先願違反等。',
+    relatedTermIds: ['ds-design-006', 'ds-design-007'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-065',
+    term: '権利の消尽（意匠法）',
+    english: 'Exhaustion of Rights (Design Law)',
+    reading: 'けんりのしょうじん',
+    definition: '意匠権者等が適法に譲渡した製品について、以後の流通に意匠権の効力が及ばないとする法理。',
+    subject: 'design',
+    category: '権利',
+    keyPoint: '判例法理。国内消尽が原則。並行輸入（国際消尽）はBBS事件最判の枠組みで判断。',
+    relatedTermIds: ['ds-design-045', 'ds-design-016'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-design-066',
+    term: '意匠の国際登録',
+    english: 'International Registration of Designs',
+    reading: 'いしょうのこくさいとうろく',
+    definition: 'ハーグ協定に基づき、WIPO国際事務局への一つの出願で複数国の意匠保護を受ける制度。',
+    subject: 'design',
+    category: '条約',
+    keyPoint: '基礎出願不要（マドプロとの違い）。セントラルアタックなし。日本は2015年ジュネーブ改正協定に加入。',
+    relatedTermIds: ['ds-design-018', 'ds-design-019'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-067',
+    term: '新規性の判断基準',
+    english: 'Standard for Judging Novelty',
+    reading: 'しんきせいのはんだんきじゅん',
+    definition: '出願前に日本国内又は外国において公知・刊行物記載・電気通信回線公開された意匠との同一性で判断。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '世界公知主義。公知意匠と同一又は類似の意匠は新規性なし。類似の判断は需要者基準。',
+    relatedTermIds: ['ds-design-006', 'ds-design-037'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-068',
+    term: '公知意匠',
+    english: 'Known Design',
+    reading: 'こうちいしょう',
+    definition: '出願前に公然知られた意匠。新規性・創作非容易性の判断において引用される先行意匠。',
+    subject: 'design',
+    category: '定義',
+    keyPoint: '公知意匠には刊行物記載・インターネット公開も含む。審査・審判で引用される基礎資料となる。',
+    relatedTermIds: ['ds-design-006', 'ds-design-067'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-design-069',
+    term: '意匠の実施',
+    english: 'Working of a Design',
+    reading: 'いしょうのじっし',
+    definition: '意匠に係る物品の製造・使用・譲渡・貸渡し・輸出・輸入・譲渡等の申出をする行為（第2条第3項）。',
+    subject: 'design',
+    category: '定義',
+    keyPoint: '特許法の実施と類似構造。画像意匠は作成・使用・電気通信回線を通じた提供等が実施に該当。',
+    relatedTermIds: ['ds-design-001', 'ds-design-016'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-design-070',
+    term: '先願の地位（意匠法第9条）',
+    english: 'Status of Prior Application (Design Law Article 9)',
+    reading: 'せんがんのちい',
+    definition: '同一又は類似の意匠について異なった日に出願があった場合、最先の出願人のみが登録を受けられる規定。',
+    subject: 'design',
+    category: '制度',
+    keyPoint: '同日出願は協議。協議不成立は双方拒絶。取下げ・却下・拒絶確定出願にも先願の地位あり（特許法と同じ）。',
+    relatedTermIds: ['ds-design-025', 'ds-design-006'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-071',
+    term: '仮通常実施権（意匠法）',
+    english: 'Provisional Non-Exclusive License (Design Law)',
+    reading: 'かりつうじょうじっしけん',
+    definition: '意匠登録出願中に設定される仮の通常実施権。登録後に通常実施権とみなされる。',
+    subject: 'design',
+    category: '権利',
+    keyPoint: '特許法の仮通常実施権と同趣旨。出願段階でのライセンス契約を保護。当然対抗制度の対象。',
+    relatedTermIds: ['ds-design-047', 'ds-design-001'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-design-072',
+    term: '意匠権の効力範囲',
+    english: 'Scope of Design Right',
+    reading: 'いしょうけんのこうりょくはんい',
+    definition: '登録意匠と同一の意匠だけでなく、類似する意匠にも効力が及ぶ（第23条）。',
+    subject: 'design',
+    category: '権利',
+    keyPoint: '特許権（同一のみ）と異なり類似範囲まで独占。物品の類似＋形態の類似で類似範囲を判断。',
+    relatedTermIds: ['ds-design-001', 'ds-design-009'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-design-073',
+    term: '需要者の視覚',
+    english: 'Visual Perspective of Consumer',
+    reading: 'じゅようしゃのしかく',
+    definition: '意匠の類否判断の基準。取引者・需要者の視覚を通じた美感により意匠の類似を判断する。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '専門家ではなく一般需要者の目線。全体観察が原則だが、要部（注意を引く部分）を重視する場合もある。',
+    relatedTermIds: ['ds-design-037', 'ds-design-009'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-design-074',
+    term: '物品の類似',
+    english: 'Similarity of Articles',
+    reading: 'ぶっぴんのるいじ',
+    definition: '意匠の類否判断における物品面の類似性。用途及び機能の共通性により判断される。',
+    subject: 'design',
+    category: '要件',
+    keyPoint: '用途が共通→物品類似の可能性大。機能も共通→類似性が強い。意匠の類似＝物品の類似＋形態の類似。',
+    relatedTermIds: ['ds-design-009', 'ds-design-037'],
     difficulty: 2,
   },
 ];

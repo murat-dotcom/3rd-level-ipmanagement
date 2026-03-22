@@ -4,6 +4,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-001',
     term: '著作権',
+    english: 'Copyright',
     reading: 'ちょさくけん',
     definition: '著作物を独占的に利用できる財産的権利の総称。無方式主義で創作と同時に発生。',
     subject: 'copyright',
@@ -15,6 +16,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-002',
     term: '著作物',
+    english: 'Copyrighted Work',
     reading: 'ちょさくぶつ',
     definition: '思想又は感情を創作的に表現したものであって、文芸・学術・美術又は音楽の範囲に属するもの（第2条1項1号）。',
     subject: 'copyright',
@@ -26,6 +28,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-003',
     term: '著作者人格権',
+    english: 'Moral Rights of the Author',
     reading: 'ちょさくしゃじんかくけん',
     definition: '著作者の人格的利益を保護する権利。公表権・氏名表示権・同一性保持権の3つ。',
     subject: 'copyright',
@@ -37,6 +40,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-004',
     term: '二次的著作物',
+    english: 'Derivative Work',
     reading: 'にじてきちょさくぶつ',
     definition: '既存の著作物を翻訳・編曲・変形・翻案して創作した著作物（第2条1項11号）。',
     subject: 'copyright',
@@ -48,6 +52,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-005',
     term: '著作隣接権',
+    english: 'Neighboring Rights',
     reading: 'ちょさくりんせつけん',
     definition: '実演家・レコード製作者・放送事業者・有線放送事業者に認められる権利。',
     subject: 'copyright',
@@ -59,6 +64,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-006',
     term: '同一性保持権',
+    english: 'Right of Integrity',
     reading: 'どういつせいほじけん',
     definition: '著作物の内容や題号を意に反して改変されない権利（第20条）。',
     subject: 'copyright',
@@ -70,6 +76,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-007',
     term: '私的使用のための複製',
+    english: 'Reproduction for Private Use',
     reading: 'してきしようのためのふくせい',
     definition: '個人的にまたは家庭内で使用する目的で著作物を複製できる例外規定（第30条）。',
     subject: 'copyright',
@@ -81,6 +88,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-008',
     term: '引用',
+    english: 'Quotation',
     reading: 'いんよう',
     definition: '公表された著作物を正当な範囲で引用して利用できる例外規定（第32条）。',
     subject: 'copyright',
@@ -92,6 +100,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-009',
     term: '無方式主義',
+    english: 'No-Formality Principle',
     reading: 'むほうしきしゅぎ',
     definition: '著作権の発生に登録や出願などの手続を必要としない原則。',
     subject: 'copyright',
@@ -103,6 +112,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-010',
     term: '法人著作（職務著作）',
+    english: 'Work Made for Hire (Corporate Authorship)',
     reading: 'ほうじんちょさく',
     definition: '法人等の発意に基づき従業者が職務上作成した著作物の著作者を法人等とする制度（第15条）。',
     subject: 'copyright',
@@ -114,6 +124,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-011',
     term: '公衆送信権',
+    english: 'Right of Public Transmission',
     reading: 'こうしゅうそうしんけん',
     definition: '著作物を公衆向けに送信する権利。放送・有線放送・自動公衆送信（インターネット配信等）を含む。',
     subject: 'copyright',
@@ -125,6 +136,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-012',
     term: '複製権',
+    english: 'Right of Reproduction',
     reading: 'ふくせいけん',
     definition: '著作物を有形的に再製する権利（第21条）。著作権の中で最も基本的な権利。',
     subject: 'copyright',
@@ -136,6 +148,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-013',
     term: '著作隣接権',
+    english: 'Neighboring Rights',
     reading: 'ちょさくりんせつけん',
     definition: '著作物の伝達者に与えられる権利。実演家・レコード製作者・放送事業者・有線放送事業者が対象。',
     subject: 'copyright',
@@ -147,6 +160,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-014',
     term: '実演家',
+    english: 'Performer',
     reading: 'じつえんか',
     definition: '俳優・演奏家・歌手等の著作物を実演する者。著作隣接権の主体の一つ。',
     subject: 'copyright',
@@ -158,6 +172,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-015',
     term: 'レコード製作者',
+    english: 'Record Producer',
     reading: 'れこーどせいさくしゃ',
     definition: '音を最初にレコードに固定した者。著作隣接権の主体の一つ。',
     subject: 'copyright',
@@ -169,6 +184,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-016',
     term: '送信可能化権',
+    english: 'Right of Making Transmittable',
     reading: 'そうしんかのうかけん',
     definition: '著作物等をインターネット上で送信可能な状態にする権利。サーバーへのアップロード等が該当。',
     subject: 'copyright',
@@ -180,6 +196,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-017',
     term: '技術的保護手段',
+    english: 'Technological Protection Measures',
     reading: 'ぎじゅつてきほごしゅだん',
     definition: 'コピーガード等の著作権侵害を技術的に防止する手段。その回避は著作権法で規制される。',
     subject: 'copyright',
@@ -191,6 +208,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-018',
     term: 'プログラムの著作物',
+    english: 'Computer Program Work',
     reading: 'ぷろぐらむのちょさくぶつ',
     definition: 'コンピュータプログラムとして保護される著作物。プログラム言語・規約・解法は保護対象外。',
     subject: 'copyright',
@@ -202,6 +220,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-019',
     term: 'データベースの著作物',
+    english: 'Database Work',
     reading: 'でーたべーすのちょさくぶつ',
     definition: '情報の選択又は体系的な構成に創作性があるデータベース。著作物として保護される。',
     subject: 'copyright',
@@ -213,6 +232,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-020',
     term: '映画の著作物',
+    english: 'Cinematographic Work',
     reading: 'えいがのちょさくぶつ',
     definition: '著作権は映画製作者に帰属する特例がある著作物。保護期間は公表後70年。',
     subject: 'copyright',
@@ -224,6 +244,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-021',
     term: '出版権',
+    english: 'Publication Right',
     reading: 'しゅっぱんけん',
     definition: '著作権者から設定を受けて著作物を出版する排他的権利（第79条）。',
     subject: 'copyright',
@@ -235,6 +256,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-022',
     term: '柔軟な権利制限規定',
+    english: 'Flexible Limitations on Rights',
     reading: 'じゅうなんなけんりせいげんきてい',
     definition: '2018年改正で導入された第30条の4等の権利制限規定。AI学習等の非享受利用を許容。',
     subject: 'copyright',
@@ -246,6 +268,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-023',
     term: '著作権の登録',
+    english: 'Registration of Copyright',
     reading: 'ちょさくけんのとうろく',
     definition: '著作権の譲渡等の登録制度。譲渡の登録は第三者対抗要件であり、権利の発生には不要。',
     subject: 'copyright',
@@ -257,6 +280,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-024',
     term: '権利管理情報',
+    english: 'Rights Management Information',
     reading: 'けんりかんりじょうほう',
     definition: '権利者名や利用条件等の電磁的情報。故意の除去・改変は著作権侵害とみなされる。',
     subject: 'copyright',
@@ -268,6 +292,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-025',
     term: '二次的著作物',
+    english: 'Derivative Work',
     reading: 'にじてきちょさくぶつ',
     definition: '既存の著作物を翻訳・編曲・変形・翻案等することにより創作された著作物。',
     subject: 'copyright',
@@ -279,6 +304,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-026',
     term: 'SARTRAS',
+    english: 'SARTRAS (Society for the Administration of Remuneration for Public Transmission for School Lessons)',
     reading: 'さーとらす',
     definition: '授業目的公衆送信補償金等管理協会。教育機関の授業目的の公衆送信に対する補償金を徴収・分配する指定管理団体。',
     subject: 'copyright',
@@ -290,6 +316,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-027',
     term: 'JASRAC',
+    english: 'JASRAC (Japanese Society for Rights of Authors, Composers and Publishers)',
     reading: 'じゃすらっく',
     definition: '日本音楽著作権協会。音楽著作権の集中管理を行う日本最大の著作権等管理事業者。著作権等管理事業法に基づき登録。',
     subject: 'copyright',
@@ -301,6 +328,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-028',
     term: '私的録音録画補償金',
+    english: 'Private Recording Compensation',
     reading: 'してきろくおんろくがほしょうきん',
     definition: 'デジタル方式の録音・録画による著作権者の経済的不利益を補償するため、政令指定の機器・媒体の購入者が支払う補償金（第30条第2項）。',
     subject: 'copyright',
@@ -312,6 +340,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-029',
     term: '利用権の当然対抗',
+    english: 'Automatic Assertability of License Rights',
     reading: 'りようけんのとうぜんたいこう',
     definition: '2020年改正で導入。著作権の利用許諾を受けた者は、著作権が譲渡されても登録なしで利用を継続できる制度（第63条の2）。',
     subject: 'copyright',
@@ -323,6 +352,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-030',
     term: '共同著作物',
+    english: 'Joint Work',
     reading: 'きょうどうちょさくぶつ',
     definition: '2人以上が共同して創作し、各人の寄与を分離して個別に利用できない著作物（第2条第1項第12号）。',
     subject: 'copyright',
@@ -334,6 +364,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-031',
     term: '翻案権',
+    english: 'Right of Adaptation',
     reading: 'ほんあんけん',
     definition: '著作物を翻訳・編曲・変形・翻案する権利（第27条）。譲渡契約で明示しない限り譲渡人に留保されると推定される。',
     subject: 'copyright',
@@ -345,6 +376,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-032',
     term: '依拠性',
+    english: 'Derivation (Access and Copying)',
     reading: 'いきょせい',
     definition: '著作権侵害の成立要件の一つ。既存の著作物に接触し、それを参考にして（依拠して）作品を作成したこと。',
     subject: 'copyright',
@@ -356,6 +388,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-033',
     term: '非営利演奏の3要件',
+    english: 'Three Requirements for Non-Profit Performance',
     reading: 'ひえいりえんそうのさんようけん',
     definition: '第38条第1項により著作物を公に演奏等するための要件。①営利を目的としない②料金を受けない③実演家に報酬が支払われない。',
     subject: 'copyright',
@@ -367,6 +400,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-034',
     term: '放送事業者の権利',
+    english: 'Rights of Broadcasters',
     reading: 'ほうそうじぎょうしゃのけんり',
     definition: '著作隣接権の一つ。放送を業として行う者に認められる権利。複製権・再放送権・送信可能化権・テレビジョン放送の伝達権を有する。',
     subject: 'copyright',
@@ -378,6 +412,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-035',
     term: 'アイデア・表現二分論',
+    english: 'Idea-Expression Dichotomy',
     reading: 'あいであひょうげんにぶんろん',
     definition: '著作権法はアイデアそのものを保護せず、その具体的な表現のみを保護するという原則。',
     subject: 'copyright',
@@ -389,6 +424,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-036',
     term: '保護期間の起算',
+    english: 'Calculation of Protection Period',
     reading: 'ほごきかんのきさん',
     definition: '著作権の保護期間はすべて死亡・公表・創作の翌年の1月1日から起算する（第57条）。',
     subject: 'copyright',
@@ -400,6 +436,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-037',
     term: '違法ダウンロード',
+    english: 'Illegal Download',
     reading: 'いほうだうんろーど',
     definition: '違法にアップロードされた著作物を、それと知りながらダウンロードする行為。2020年改正で全著作物に拡大。',
     subject: 'copyright',
@@ -411,6 +448,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-038',
     term: '著作権侵害の親告罪',
+    english: 'Copyright Infringement as Complaint-Required Offense',
     reading: 'ちょさくけんしんがいのしんこくざい',
     definition: '著作権侵害は原則として親告罪で被害者の告訴が必要。ただし2018年改正で一部非親告罪化（対価目的＋有償＋原作まま＋不当害）。',
     subject: 'copyright',
@@ -422,6 +460,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-039',
     term: '裁定制度',
+    english: 'Compulsory License System',
     reading: 'さいていせいど',
     definition: '著作権者が不明・所在不明で許諾を得られない場合に、文化庁長官の裁定により適法に著作物を利用できる制度。',
     subject: 'copyright',
@@ -433,6 +472,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-040',
     term: '教育機関における権利制限',
+    english: 'Limitations on Rights for Educational Institutions',
     reading: 'きょういくきかんにおけるけんりせいげん',
     definition: '学校等の非営利教育機関で授業の過程において著作物を利用できる制度（第35条）。2018年改正でオンライン授業にも拡大。',
     subject: 'copyright',
@@ -444,6 +484,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-041',
     term: '損害額の推定（著作権法第114条）',
+    english: 'Presumption of Damages (Article 114)',
     reading: 'そんがいがくのすいてい',
     definition: '著作権侵害の損害賠償額を3段階で算定する規定。産業財産権法と同じ構造だが過失の推定規定がない。',
     subject: 'copyright',
@@ -455,6 +496,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-042',
     term: 'みなし侵害（第113条）',
+    english: 'Deemed Infringement (Article 113)',
     reading: 'みなししんがい',
     definition: '直接的な複製等に該当しないが著作権侵害とみなされる行為の列挙規定。',
     subject: 'copyright',
@@ -466,6 +508,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-043',
     term: '譲渡権の消尽',
+    english: 'Exhaustion of Distribution Right',
     reading: 'じょうとけんのしょうじん',
     definition: '適法に譲渡された著作物の原作品・複製物のその後の譲渡に譲渡権が及ばないとする規定（第26条の2第2項）。',
     subject: 'copyright',
@@ -477,6 +520,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-044',
     term: '頒布権の消尽',
+    english: 'Exhaustion of Right of Distribution',
     reading: 'はんぷけんのしょうじん',
     definition: '映画の著作物の頒布権について、中古ゲームソフト事件（最判平成14年）で大量複製物の消尽が認められた。',
     subject: 'copyright',
@@ -488,6 +532,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-045',
     term: '著作権の共有の特殊性',
+    english: 'Special Characteristics of Joint Copyright Ownership',
     reading: 'ちょさくけんのきょうゆう',
     definition: '共有著作権の行使には共有者全員の合意が必要（第65条第2項）。特許法等の自己実施は同意不要とは正反対。',
     subject: 'copyright',
@@ -499,6 +544,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-046',
     term: '著作権侵害の親告罪',
+    english: 'Copyright Infringement as Complaint-Required Offense',
     reading: 'しんこくざい',
     definition: '著作権侵害罪は原則親告罪（第123条）。2018年TPP改正でデッドコピー海賊版のみ非親告罪化。',
     subject: 'copyright',
@@ -510,6 +556,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-047',
     term: '名誉声望の毀損（第113条第11項）',
+    english: 'Damage to Honor and Reputation (Article 113, Paragraph 11)',
     reading: 'めいよせいぼうのきそん',
     definition: '著作者の名誉又は声望を害する方法で著作物を利用する行為は著作者人格権の侵害とみなされる。',
     subject: 'copyright',
@@ -521,6 +568,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-048',
     term: '貸与権',
+    english: 'Right of Lending',
     reading: 'たいよけん',
     definition: '著作物の複製物を貸与により公衆に提供する権利（第26条の3）。譲渡権と異なり消尽しない。',
     subject: 'copyright',
@@ -533,6 +581,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-049',
     term: '裁定制度（第67条）',
+    english: 'Compulsory License System (Article 67)',
     reading: 'さいていせいど',
     definition: '著作権者が不明又は所在不明の場合に、文化庁長官の裁定を受けて補償金を供託することで著作物を利用できる制度。',
     subject: 'copyright',
@@ -544,6 +593,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-050',
     term: '出版権（第79条）',
+    english: 'Publication Right (Article 79)',
     reading: 'しゅっぱんけん',
     definition: '著作物の複製権又は公衆送信権に基づく独占的・排他的な利用権。物権的権利。',
     subject: 'copyright',
@@ -555,6 +605,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-051',
     term: '当然対抗制度（第63条の2）',
+    english: 'Automatic Assertability System (Article 63-2)',
     reading: 'とうぜんたいこうせいど',
     definition: '著作権の利用許諾が登録なしで当然に第三者に対抗できる制度。2020年改正で導入。',
     subject: 'copyright',
@@ -566,6 +617,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-052',
     term: '授業目的公衆送信補償金',
+    english: 'Compensation for Public Transmission for Educational Purposes',
     reading: 'じゅぎょうもくてきこうしゅうそうしんほしょうきん',
     definition: '教育機関がICTを活用した授業で著作物を公衆送信する際に支払う補償金（第35条第2項）。',
     subject: 'copyright',
@@ -577,6 +629,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-053',
     term: '私的録音録画補償金',
+    english: 'Private Recording Compensation',
     reading: 'してきろくおんろくがほしょうきん',
     definition: 'デジタル方式の私的録音・録画に対する補償金制度（第30条第2項）。',
     subject: 'copyright',
@@ -588,6 +641,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-054',
     term: '戦時加算',
+    english: 'Wartime Addition to Protection Period',
     reading: 'せんじかさん',
     definition: 'サンフランシスコ平和条約の連合国の著作物に日本での保護期間を約10年5月加算する制度。',
     subject: 'copyright',
@@ -599,6 +653,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-055',
     term: '不遡及の原則（保護期間延長）',
+    english: 'Principle of Non-Retroactivity (Extension of Protection Period)',
     reading: 'ふそきゅうのげんそく',
     definition: '保護期間延長の際、既にパブリックドメインとなった著作物の保護は復活しないという原則。',
     subject: 'copyright',
@@ -610,6 +665,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-056',
     term: '非親告罪化（TPP改正）',
+    english: 'Non-Complaint-Required Offense (TPP Amendment)',
     reading: 'ひしんこくざいか',
     definition: '2018年TPP関連改正で、一定の著作権侵害を告訴なしに起訴可能とした改正。',
     subject: 'copyright',
@@ -621,6 +677,7 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-057',
     term: '出版義務（第81条）',
+    english: 'Obligation to Publish (Article 81)',
     reading: 'しゅっぱんぎむ',
     definition: '出版権の設定を受けた者が原稿引渡しから6月以内に出版しなければならない義務。',
     subject: 'copyright',
@@ -632,12 +689,217 @@ export const copyrightTerms: DoomscrollTerm[] = [
   {
     id: 'ds-copyright-058',
     term: 'SARTRAS',
+    english: 'SARTRAS (Society for the Administration of Remuneration for Public Transmission for School Lessons)',
     reading: 'さーとらす',
     definition: '授業目的公衆送信補償金等管理協会。教育機関からの補償金を徴収・分配する指定管理団体。',
     subject: 'copyright',
     category: '制度',
     keyPoint: '2018年著作権法改正で創設の補償金を管理。2020年4月に運用開始（COVID-19で前倒し）。教育ICT利用の対価を権利者に分配。',
     relatedTermIds: ['ds-copyright-052'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-059',
+    term: '展示権',
+    english: 'Right of Exhibition',
+    reading: 'てんじけん',
+    definition: '美術の著作物又は未発行の写真の著作物の原作品を公に展示する権利（第25条）。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '原作品の所有者は美術の著作物を展示できる（第45条）。屋外設置の美術は自由利用可能（第46条）。',
+    relatedTermIds: ['ds-copyright-001', 'ds-copyright-012'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-060',
+    term: '口述権',
+    english: 'Right of Recitation',
+    reading: 'こうじゅつけん',
+    definition: '言語の著作物を公に口述する権利（第24条）。朗読会等が該当。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '口述とは朗読その他の方法で著作物を口頭で伝達すること。送信を除く。',
+    relatedTermIds: ['ds-copyright-001', 'ds-copyright-012'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-061',
+    term: '上映権',
+    english: 'Right of Screening',
+    reading: 'じょうえいけん',
+    definition: '著作物を公にスクリーンやディスプレイ等に映写する権利（第22条の2）。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '映画の著作物に限らず、写真や美術の著作物のスライド上映等も含む。',
+    relatedTermIds: ['ds-copyright-001', 'ds-copyright-020'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-062',
+    term: '演奏権',
+    english: 'Right of Performance',
+    reading: 'えんそうけん',
+    definition: '音楽の著作物を公に演奏する権利（第22条）。歌唱も含む。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '非営利・無料・無報酬の3要件を満たせば許諾不要（第38条1項）。JASRACが管理する主要権利。',
+    relatedTermIds: ['ds-copyright-001', 'ds-copyright-033', 'ds-copyright-027'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-copyright-063',
+    term: '頒布権',
+    english: 'Right of Distribution',
+    reading: 'はんぷけん',
+    definition: '映画の著作物をその複製物により頒布する権利（第26条）。映画の著作物にのみ認められる特別な権利。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '譲渡と貸与の両方を含む包括的権利。映画以外の著作物には譲渡権・貸与権が別々に存在。',
+    relatedTermIds: ['ds-copyright-020', 'ds-copyright-044', 'ds-copyright-043'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-064',
+    term: '著作権の消滅',
+    english: 'Extinction of Copyright',
+    reading: 'ちょさくけんのしょうめつ',
+    definition: '保護期間の満了、相続人不存在等により著作権が消滅しパブリックドメインとなること。',
+    subject: 'copyright',
+    category: '制度',
+    keyPoint: '保護期間満了で消滅。相続人なく国庫に帰属すべき場合も消滅（第62条1項1号）。',
+    relatedTermIds: ['ds-copyright-036', 'ds-copyright-055'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-065',
+    term: '共有著作権の行使',
+    english: 'Exercise of Joint Copyright',
+    reading: 'きょうゆうちょさくけんのこうし',
+    definition: '共有著作権は共有者全員の合意によらなければ行使できない（第65条第2項）。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '特許法では自己実施は同意不要だが著作権法は全員合意必要。正当理由なく合意を拒否できない。',
+    relatedTermIds: ['ds-copyright-045', 'ds-copyright-030'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-066',
+    term: '著作権の譲渡',
+    english: 'Assignment of Copyright',
+    reading: 'ちょさくけんのじょうと',
+    definition: '著作権の全部又は一部を他人に移転すること（第61条）。著作者人格権は譲渡不可。',
+    subject: 'copyright',
+    category: '制度',
+    keyPoint: '第27条・第28条の権利は特掲しない限り譲渡人に留保と推定（第61条2項）。登録は第三者対抗要件。',
+    relatedTermIds: ['ds-copyright-001', 'ds-copyright-031', 'ds-copyright-023'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-067',
+    term: '著作権の相続',
+    english: 'Inheritance of Copyright',
+    reading: 'ちょさくけんのそうぞく',
+    definition: '著作権は財産権として相続の対象となる。著作者人格権は一身専属のため相続されない。',
+    subject: 'copyright',
+    category: '制度',
+    keyPoint: '相続人不存在の場合は著作権が消滅（第62条1項1号）。著作者人格権の侵害は遺族が請求可能。',
+    relatedTermIds: ['ds-copyright-001', 'ds-copyright-003', 'ds-copyright-064'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-068',
+    term: 'ワンチャンス主義',
+    english: 'One Chance Doctrine',
+    reading: 'わんちゃんすしゅぎ',
+    definition: '実演家が映画の著作物に録音・録画を許諾した場合、その後の映画の利用には権利が及ばないとする原則（第91条2項等）。',
+    subject: 'copyright',
+    category: '制度',
+    keyPoint: '映画製作への参加時に一度だけ許諾の機会がある。以後の利用（DVD化・配信等）には権利行使不可。',
+    relatedTermIds: ['ds-copyright-014', 'ds-copyright-020', 'ds-copyright-005'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-copyright-069',
+    term: '氏名表示権',
+    english: 'Right of Attribution',
+    reading: 'しめいひょうじけん',
+    definition: '著作物の原作品や複製物に著作者名を表示し、又は表示しないことを決定する権利（第19条）。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '著作者人格権の一つ。実名・変名のいずれかを選択可能。既に周知の表示がある場合は省略可能。',
+    relatedTermIds: ['ds-copyright-003', 'ds-copyright-006'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-copyright-070',
+    term: '公表権',
+    english: 'Right of Publication',
+    reading: 'こうひょうけん',
+    definition: '未公表の著作物を公衆に提供・提示する権利（第18条）。公表の時期・方法を決定できる。',
+    subject: 'copyright',
+    category: '権利',
+    keyPoint: '著作者人格権の一つ。著作権を譲渡した場合は公表に同意したと推定される（第18条2項）。',
+    relatedTermIds: ['ds-copyright-003', 'ds-copyright-069'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-copyright-071',
+    term: '原著作物',
+    english: 'Original Work',
+    reading: 'げんちょさくぶつ',
+    definition: '二次的著作物の基となった著作物。原著作者は二次的著作物の利用に関して同一の権利を有する（第28条）。',
+    subject: 'copyright',
+    category: '定義',
+    keyPoint: '二次的著作物の利用には原著作者と二次的著作物の著作者の双方の許諾が必要。',
+    relatedTermIds: ['ds-copyright-004', 'ds-copyright-025', 'ds-copyright-031'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-072',
+    term: '編集著作物',
+    english: 'Compilation Work',
+    reading: 'へんしゅうちょさくぶつ',
+    definition: '素材の選択又は配列に創作性がある編集物として保護される著作物（第12条）。',
+    subject: 'copyright',
+    category: '定義',
+    keyPoint: '百科事典・新聞・雑誌等が該当。素材自体の著作権には影響しない。データベースは別途規定。',
+    relatedTermIds: ['ds-copyright-002', 'ds-copyright-019'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-copyright-073',
+    term: '美術の著作物',
+    english: 'Artistic Work',
+    reading: 'びじゅつのちょさくぶつ',
+    definition: '絵画・版画・彫刻その他の美術の著作物。美術工芸品を含む（第2条2項）。',
+    subject: 'copyright',
+    category: '定義',
+    keyPoint: '応用美術（工業デザイン等）の保護範囲が論点。屋外設置の美術は自由利用可能（第46条）。展示権の対象。',
+    relatedTermIds: ['ds-copyright-002', 'ds-copyright-059'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-copyright-074',
+    term: '写真の著作物',
+    english: 'Photographic Work',
+    reading: 'しゃしんのちょさくぶつ',
+    definition: '写真の著作物として保護されるもの。撮影者の創作性（構図・露光・シャッターチャンス等）が求められる。',
+    subject: 'copyright',
+    category: '定義',
+    keyPoint: '単なる機械的複写は著作物性なし。未発行の写真には展示権あり。保護期間は著作者の死後70年。',
+    relatedTermIds: ['ds-copyright-002', 'ds-copyright-059'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-copyright-075',
+    term: '建築の著作物',
+    english: 'Architectural Work',
+    reading: 'けんちくのちょさくぶつ',
+    definition: '建築物で芸術的な創作性を有するもの。一般的な住宅は該当しないことが多い。',
+    subject: 'copyright',
+    category: '定義',
+    keyPoint: '建築の著作物は所有者が増改築可能（第20条2項2号）。建築設計図は図形の著作物として別途保護。',
+    relatedTermIds: ['ds-copyright-002', 'ds-copyright-006'],
     difficulty: 2,
   },
 ];

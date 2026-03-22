@@ -4,6 +4,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-001',
     term: '特許権',
+    english: 'Patent Right',
     reading: 'とっきょけん',
     definition: '発明を独占的に実施できる権利。出願・審査を経て設定登録により発生する。',
     subject: 'patent',
@@ -15,6 +16,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-002',
     term: '発明',
+    english: 'Invention',
     reading: 'はつめい',
     definition: '自然法則を利用した技術的思想の創作のうち高度のもの（特許法第2条1項）。',
     subject: 'patent',
@@ -26,6 +28,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-003',
     term: '新規性',
+    english: 'Novelty',
     reading: 'しんきせい',
     definition: '出願前に公然と知られていない発明であること。特許の三大要件の一つ。',
     subject: 'patent',
@@ -37,6 +40,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-004',
     term: '進歩性',
+    english: 'Inventive Step',
     reading: 'しんぽせい',
     definition: '当業者が容易に発明できたものでないこと。特許の三大要件の一つ。',
     subject: 'patent',
@@ -48,6 +52,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-005',
     term: '産業上利用可能性',
+    english: 'Industrial Applicability',
     reading: 'さんぎょうじょうりようかのうせい',
     definition: '産業上利用できる発明であること。特許の三大要件の一つ。',
     subject: 'patent',
@@ -59,6 +64,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-006',
     term: '新規性喪失の例外',
+    english: 'Exception to Loss of Novelty',
     reading: 'しんきせいそうしつのれいがい',
     definition: '自らの行為で新規性を失った場合でも、一定の手続で新規性を失わなかったとみなす制度（第30条）。',
     subject: 'patent',
@@ -70,6 +76,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-007',
     term: '出願審査請求',
+    english: 'Request for Examination',
     reading: 'しゅつがんしんさせいきゅう',
     definition: '特許庁に出願の審査を開始するよう請求すること。出願しただけでは審査は始まらない。',
     subject: 'patent',
@@ -81,6 +88,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-008',
     term: '出願公開',
+    english: 'Laying Open of Application',
     reading: 'しゅつがんこうかい',
     definition: '出願内容が公開特許公報に掲載されること。',
     subject: 'patent',
@@ -92,6 +100,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-009',
     term: '拒絶査定不服審判',
+    english: 'Appeal against Examiner\'s Decision of Refusal',
     reading: 'きょぜつさていふふくしんぱん',
     definition: '審査官の拒絶査定に不服がある場合に審判部に審理を求める手続き（第121条）。',
     subject: 'patent',
@@ -103,6 +112,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-010',
     term: '職務発明',
+    english: 'Employee Invention',
     reading: 'しょくむはつめい',
     definition: '従業者が職務上行った発明。使用者は通常実施権を有する（第35条）。',
     subject: 'patent',
@@ -114,6 +124,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-011',
     term: '専用実施権',
+    english: 'Exclusive License',
     reading: 'せんようじっしけん',
     definition: '特許権者から設定を受けて、独占的に特許発明を実施できる権利。',
     subject: 'patent',
@@ -125,6 +136,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-012',
     term: '通常実施権',
+    english: 'Non-exclusive License',
     reading: 'つうじょうじっしけん',
     definition: '特許発明を実施する権利。独占権はなく、複数人に許諾可能。',
     subject: 'patent',
@@ -136,6 +148,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-013',
     term: '先願主義',
+    english: 'First-to-File Principle',
     reading: 'せんがんしゅぎ',
     definition: '同一発明について複数の出願があった場合、最先の出願人に特許を付与する原則（第39条）。',
     subject: 'patent',
@@ -147,6 +160,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-014',
     term: '実用新案権',
+    english: 'Utility Model Right',
     reading: 'じつようしんあんけん',
     definition: '物品の形状・構造・組合せに係る考案を保護する権利。無審査で登録される。',
     subject: 'patent',
@@ -158,6 +172,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-015',
     term: '特許請求の範囲',
+    english: 'Claims',
     reading: 'とっきょせいきゅうのはんい',
     definition: '特許出願において、保護を求める発明の技術的範囲を記載した書面（クレーム）。',
     subject: 'patent',
@@ -169,6 +184,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-016',
     term: '補正',
+    english: 'Amendment',
     reading: 'ほせい',
     definition: '出願後に明細書や特許請求の範囲等の内容を修正すること。新規事項の追加は禁止される。',
     subject: 'patent',
@@ -180,6 +196,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-017',
     term: '分割出願',
+    english: 'Divisional Application',
     reading: 'ぶんかつしゅつがん',
     definition: '2以上の発明を包含する出願の一部を新たな出願として切り出す手続（第44条）。',
     subject: 'patent',
@@ -191,6 +208,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-018',
     term: '国内優先権',
+    english: 'Domestic Priority Right',
     reading: 'こくないゆうせんけん',
     definition: '先の出願を基礎として1年以内に改良発明等を含む新たな出願をする制度（第41条）。',
     subject: 'patent',
@@ -202,6 +220,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-019',
     term: '補償金請求権',
+    english: 'Right to Claim Compensation',
     reading: 'ほしょうきんせいきゅうけん',
     definition: '出願公開後、設定登録前に特許発明を実施した者に対して実施料相当額を請求できる権利（第65条）。',
     subject: 'patent',
@@ -213,6 +232,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-020',
     term: '間接侵害',
+    english: 'Indirect Infringement',
     reading: 'かんせつしんがい',
     definition: '特許発明の実施にのみ使用する物の製造・販売等、又は課題解決に不可欠な物の提供等（第101条）。',
     subject: 'patent',
@@ -224,6 +244,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-021',
     term: '均等論',
+    english: 'Doctrine of Equivalents',
     reading: 'きんとうろん',
     definition: '特許請求の範囲の文言と異なる構成でも実質的に同一であれば侵害を認める判例法理。',
     subject: 'patent',
@@ -235,6 +256,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-022',
     term: '特許無効審判',
+    english: 'Trial for Patent Invalidation',
     reading: 'とっきょむこうしんぱん',
     definition: '特許要件違反等を理由に特許を無効にする審判手続（第123条）。',
     subject: 'patent',
@@ -246,6 +268,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-023',
     term: '訂正審判',
+    english: 'Trial for Correction',
     reading: 'ていせいしんぱん',
     definition: '特許権者が特許請求の範囲の減縮等のために請求する審判（第126条）。',
     subject: 'patent',
@@ -257,6 +280,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-024',
     term: '存続期間延長登録',
+    english: 'Extension of Patent Term Registration',
     reading: 'そんぞくきかんえんちょうとうろく',
     definition: '医薬品等の許認可取得のため実施できなかった期間について特許権の存続期間を延長する制度（第67条4項）。',
     subject: 'patent',
@@ -268,6 +292,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-025',
     term: '裁定実施権',
+    english: 'Compulsory License',
     reading: 'さいていじっしけん',
     definition: '特許発明が3年以上不実施の場合等に特許庁長官の裁定により設定される強制的な通常実施権（第83条〜）。',
     subject: 'patent',
@@ -279,6 +304,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-026',
     term: '共同出願',
+    english: 'Joint Application',
     reading: 'きょうどうしゅつがん',
     definition: '特許を受ける権利が共有の場合、全共有者が共同で行う出願（第38条）。',
     subject: 'patent',
@@ -290,6 +316,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-027',
     term: '冒認出願',
+    english: 'Usurped Application',
     reading: 'ぼうにんしゅつがん',
     definition: '発明者でもなく特許を受ける権利の承継人でもない者がした不正な出願。',
     subject: 'patent',
@@ -301,6 +328,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-028',
     term: '特許異議申立て',
+    english: 'Opposition to Patent',
     reading: 'とっきょいぎもうしたて',
     definition: '特許掲載公報発行日から6月以内に何人も申し立てられる特許の見直し制度（第113条）。',
     subject: 'patent',
@@ -312,6 +340,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-029',
     term: '変更出願',
+    english: 'Conversion of Application',
     reading: 'へんこうしゅつがん',
     definition: '特許出願を実用新案登録出願に、又はその逆に出願の種類を変更する手続。',
     subject: 'patent',
@@ -323,6 +352,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-030',
     term: '中用権',
+    english: 'Intervening Right',
     reading: 'ちゅうようけん',
     definition: '特許が無効審判で無効になった場合に、善意の実施者に認められる法定通常実施権（第80条）。',
     subject: 'patent',
@@ -334,6 +364,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-031',
     term: '新規事項の追加禁止',
+    english: 'Prohibition of Addition of New Matter',
     reading: 'しんきじこうのついかきんし',
     definition: '特許出願の補正において、願書に最初に添付した明細書・特許請求の範囲・図面に記載した事項の範囲を超える事項を追加することを禁止する制限（第17条の2第3項）。',
     subject: 'patent',
@@ -345,6 +376,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-032',
     term: '裁定実施権',
+    english: 'Compulsory License (Three Types)',
     reading: 'さいていじっしけん',
     definition: '特許庁長官の裁定により強制的に付与される通常実施権。不実施（第83条）、利用関係（第92条）、公共の利益（第93条）の3類型がある。',
     subject: 'patent',
@@ -356,6 +388,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-033',
     term: '存続期間の延長登録',
+    english: 'Registration of Extension of Duration',
     reading: 'そんぞくきかんのえんちょうとうろく',
     definition: '医薬品や農薬について、安全性審査のために特許発明を実施できなかった期間を補うため、最大5年間の存続期間延長を認める制度（第67条第4項）。',
     subject: 'patent',
@@ -367,6 +400,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-034',
     term: '国内消尽',
+    english: 'Domestic Exhaustion',
     reading: 'こくないしょうじん',
     definition: '特許権者が日本国内で適法に譲渡した特許製品について、その後の転売等に対して特許権を行使できなくなる法理（BBS事件最判平成9年）。',
     subject: 'patent',
@@ -378,6 +412,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-035',
     term: '間接侵害',
+    english: 'Contributory Infringement',
     reading: 'かんせつしんがい',
     definition: '特許法第101条が定める、直接侵害以外の一定の行為を侵害とみなす規定。専用品型（にのみ用いる物）と非専用品型（課題解決に不可欠な物）がある。',
     subject: 'patent',
@@ -389,6 +424,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-036',
     term: '当然対抗制度',
+    english: 'Automatic Opposability System',
     reading: 'とうぜんたいこうせいど',
     definition: '2011年改正で導入された制度。通常実施権は登録なしで第三者に対抗可能（特許法第99条）。特許権が譲渡されてもライセンスは存続する。',
     subject: 'patent',
@@ -400,6 +436,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-037',
     term: '仮専用実施権',
+    english: 'Provisional Exclusive License',
     reading: 'かりせんようじっしけん',
     definition: '特許権の設定登録前に将来の専用実施権設定を予約的に保全するための制度。出願段階で実施権を確保したい場合に用いられる。',
     subject: 'patent',
@@ -411,6 +448,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-038',
     term: '損害額の推定規定（第102条）',
+    english: 'Presumption of Damage Amount (Article 102)',
     reading: 'そんがいがくのすいていきてい',
     definition: '特許権侵害の損害賠償請求における立証負担軽減のための3段階推定規定。①逸失利益型②侵害者利益型③ライセンス料相当額型。',
     subject: 'patent',
@@ -422,6 +460,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-039',
     term: 'J-PlatPat',
+    english: 'Japan Platform for Patent Information',
     reading: 'じぇいぷらっとぱっと',
     definition: '特許庁が提供する無料の特許情報プラットフォーム。特許・実用新案・意匠・商標の公報検索が可能。',
     subject: 'patent',
@@ -433,6 +472,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-040',
     term: '拡大先願',
+    english: 'Enlarged Prior Application',
     reading: 'かくだいせんがん',
     definition: '先願の出願公開後の明細書等に記載された発明と実質的に同一の発明は、後願として拒絶される制度（特許法第29条の2）。',
     subject: 'patent',
@@ -444,6 +484,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-041',
     term: '特許権の消滅事由',
+    english: 'Grounds for Extinguishment of Patent Right',
     reading: 'とっきょけんのしょうめつじゆう',
     definition: '特許権が消滅する事由。①存続期間の満了（出願日から20年）②年金不納③権利の放棄④相続人の不存在。',
     subject: 'patent',
@@ -455,6 +496,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-042',
     term: '審決取消訴訟',
+    english: 'Suit to Revoke Trial Decision',
     reading: 'しんけつとりけしそしょう',
     definition: '特許庁の審判の審決に不服がある場合に、知的財産高等裁判所に提起する訴訟。審決送達日から30日以内。',
     subject: 'patent',
@@ -466,6 +508,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-043',
     term: '技術評価書',
+    english: 'Technical Evaluation Report',
     reading: 'ぎじゅつひょうかしょ',
     definition: '実用新案登録について新規性・進歩性等を評価した書面。何人も特許庁長官に請求可能。権利行使の前提条件。',
     subject: 'patent',
@@ -477,6 +520,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-044',
     term: '試験研究の例外',
+    english: 'Experimental Use Exception',
     reading: 'しけんけんきゅうのれいがい',
     definition: '特許発明の技術的意義を確認するための試験・研究には特許権の効力が及ばない（第69条第1項）。後発医薬品の承認試験も含む。',
     subject: 'patent',
@@ -488,6 +532,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-045',
     term: '特許権の共有',
+    english: 'Co-ownership of Patent Right',
     reading: 'とっきょけんのきょうゆう',
     definition: '特許権が複数人に共有される状態。自己実施は同意不要、持分譲渡・実施権設定には全共有者の同意が必要（第73条）。',
     subject: 'patent',
@@ -499,6 +544,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-046',
     term: '過失の推定',
+    english: 'Presumption of Negligence',
     reading: 'かしつのすいてい',
     definition: '特許権を侵害した者は過失があったものと推定される規定（第103条）。権利者は過失の立証不要。',
     subject: 'patent',
@@ -510,6 +556,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-047',
     term: '特許を受ける権利',
+    english: 'Right to Obtain a Patent',
     reading: 'とっきょをうけるけんり',
     definition: '発明を完成した者が有する、特許出願をして特許を受けることができる権利。発明完成と同時に発生し、譲渡可能（第33条）。',
     subject: 'patent',
@@ -521,6 +568,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-048',
     term: '共同出願',
+    english: 'Joint Application (Article 38)',
     reading: 'きょうどうしゅつがん',
     definition: '特許を受ける権利が共有の場合、共有者全員が共同で出願しなければならない（第38条）。単独出願は拒絶理由。',
     subject: 'patent',
@@ -532,6 +580,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-049',
     term: '査証制度',
+    english: 'Inspection System',
     reading: 'さしょうせいど',
     definition: '裁判所が指定した中立の専門家が相手方の工場等に立ち入り、侵害の証拠を収集する制度。2019年改正で新設（第105条の2）。',
     subject: 'patent',
@@ -543,6 +592,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-050',
     term: '無効の抗弁',
+    english: 'Invalidity Defense',
     reading: 'むこうのこうべん',
     definition: '侵害訴訟の被告が「当該特許は無効にされるべきもの」と主張し権利行使を阻止できる制度（第104条の3）。',
     subject: 'patent',
@@ -554,6 +604,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-051',
     term: '原始帰属',
+    english: 'Original Attribution to Employer',
     reading: 'げんしきぞく',
     definition: '職務発明について、契約等により特許を受ける権利を発明完成と同時に使用者に帰属させること。2015年改正で可能に（第35条3項）。',
     subject: 'patent',
@@ -565,6 +616,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-052',
     term: '専属管轄',
+    english: 'Exclusive Jurisdiction',
     reading: 'せんぞくかんかつ',
     definition: '特許権侵害訴訟の第一審は東京地裁又は大阪地裁の専属管轄。控訴審は知的財産高等裁判所の専属管轄。',
     subject: 'patent',
@@ -577,6 +629,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-053',
     term: '冒認出願',
+    english: 'Usurped Application (Detailed)',
     reading: 'ぼうにんしゅつがん',
     definition: '特許を受ける権利を有しない者がした特許出願。発明者でも承継人でもない者による出願。',
     subject: 'patent',
@@ -588,6 +641,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-054',
     term: '特許権の移転の特例（第74条）',
+    english: 'Special Provisions for Transfer of Patent Right (Article 74)',
     reading: 'とっきょけんのいてんのとくれい',
     definition: '冒認出願による特許権を真の権利者に移転させる制度。2011年改正で新設。',
     subject: 'patent',
@@ -599,6 +653,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-055',
     term: '仮通常実施権',
+    english: 'Provisional Non-exclusive License',
     reading: 'かりつうじょうじっしけん',
     definition: '特許出願中に将来の特許権について設定できる非独占的な実施権（第34条の3）。',
     subject: 'patent',
@@ -610,6 +665,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-056',
     term: '査証制度',
+    english: 'Inspection System (Article 105-2)',
     reading: 'さしょうせいど',
     definition: '裁判所が選任した中立専門家が相手方施設に立入り侵害証拠を収集する制度（第105条の2）。',
     subject: 'patent',
@@ -621,6 +677,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-057',
     term: '秘密保持命令',
+    english: 'Protective Order (Secrecy Order)',
     reading: 'ひみつほじめいれい',
     definition: '侵害訴訟で営業秘密の漏洩を防ぐため裁判所が発する命令（第105条の4）。',
     subject: 'patent',
@@ -632,6 +689,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-058',
     term: '存続期間の延長登録',
+    english: 'Extension of Duration Registration (Detailed)',
     reading: 'そんぞくきかんのえんちょうとうろく',
     definition: '安全性確保のための処分により実施できなかった期間、特許権の存続期間を延長する制度。',
     subject: 'patent',
@@ -643,6 +701,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-059',
     term: '無効の抗弁（第104条の3）',
+    english: 'Invalidity Defense (Article 104-3)',
     reading: 'むこうのこうべん',
     definition: '侵害訴訟で被告が特許の無効を主張して権利行使を阻止する防御手段。',
     subject: 'patent',
@@ -654,6 +713,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-060',
     term: '分割出願',
+    english: 'Divisional Application (Detailed)',
     reading: 'ぶんかつしゅつがん',
     definition: '2以上の発明を含む出願の一部を新たな出願として分割する手続（第44条）。',
     subject: 'patent',
@@ -665,6 +725,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-061',
     term: '外国語書面出願',
+    english: 'Foreign Language Document Application',
     reading: 'がいこくごしょめんしゅつがん',
     definition: '明細書・請求の範囲を外国語で記載して行う特許出願（第36条の2）。',
     subject: 'patent',
@@ -676,6 +737,7 @@ export const patentTerms: DoomscrollTerm[] = [
   {
     id: 'ds-patent-062',
     term: '特許料の追納',
+    english: 'Late Payment of Patent Fees',
     reading: 'とっきょりょうのついのう',
     definition: '特許料の納付期間を経過した場合に追加料金を支払って権利を維持する制度（第112条）。',
     subject: 'patent',
@@ -683,5 +745,210 @@ export const patentTerms: DoomscrollTerm[] = [
     keyPoint: '追納期間は納付期間経過後6月以内（1年ではない）。正当理由による回復は消滅日から2月以内かつ1年以内。追納時は倍額納付。',
     relatedTermIds: ['ds-patent-003'],
     difficulty: 2,
+  },
+  // ===== New patent terms (063-079) =====
+  {
+    id: 'ds-patent-063',
+    term: '明細書',
+    english: 'Specification',
+    reading: 'めいさいしょ',
+    definition: '発明の内容を詳細に記載した書面。特許出願の際に願書に添付する書類の一つで、発明の技術分野・背景技術・課題・解決手段・実施形態等を記載する。',
+    subject: 'patent',
+    category: '手続',
+    keyPoint: '特許請求の範囲を解釈する際の参考資料となる。補正は当初明細書の記載範囲内に限定される。',
+    relatedTermIds: ['ds-patent-015', 'ds-patent-016', 'ds-patent-031'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-064',
+    term: '要約書',
+    english: 'Abstract',
+    reading: 'ようやくしょ',
+    definition: '発明の概要を簡潔に記載した書面。特許出願の際に願書に添付する書類の一つ。技術情報としての利用を目的とする。',
+    subject: 'patent',
+    category: '手続',
+    keyPoint: '権利範囲の解釈には用いられない（技術情報の提供のみが目的）。400字以内で記載。',
+    relatedTermIds: ['ds-patent-015', 'ds-patent-063'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-065',
+    term: '図面',
+    english: 'Drawings',
+    reading: 'ずめん',
+    definition: '発明の内容を図示した書面。特許出願の際に必要に応じて願書に添付する。明細書の記載を補完する役割を持つ。',
+    subject: 'patent',
+    category: '手続',
+    keyPoint: '特許出願では任意（必須ではない）。実用新案登録出願では図面の添付が必須。',
+    relatedTermIds: ['ds-patent-063', 'ds-patent-014'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-066',
+    term: '審査請求料',
+    english: 'Examination Request Fee',
+    reading: 'しんさせいきゅうりょう',
+    definition: '出願審査請求の際に特許庁に納付する手数料。請求項の数に応じて金額が変動する。',
+    subject: 'patent',
+    category: '手続',
+    keyPoint: '中小企業・個人等には減免制度あり。審査請求しなければ審査は開始されない。',
+    relatedTermIds: ['ds-patent-007', 'ds-patent-062'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-067',
+    term: '実施例',
+    english: 'Working Example',
+    reading: 'じっしれい',
+    definition: '明細書中に記載される発明の具体的な実施の態様。発明の技術的内容を具体的に説明するために用いられる。',
+    subject: 'patent',
+    category: '定義',
+    keyPoint: '実施例は例示であり、特許請求の範囲を限定解釈する根拠とはならない。ただし実施可能要件の充足に重要。',
+    relatedTermIds: ['ds-patent-063', 'ds-patent-015'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-patent-068',
+    term: '特許発明の技術的範囲',
+    english: 'Technical Scope of Patented Invention',
+    reading: 'とっきょはつめいのぎじゅつてきはんい',
+    definition: '特許発明の保護範囲。特許請求の範囲の記載に基づいて定められる（第70条）。明細書・図面の記載を考慮して解釈される。',
+    subject: 'patent',
+    category: '権利',
+    keyPoint: '侵害訴訟での中心的争点。判定制度（第71条）で特許庁の見解を求めることも可能。',
+    relatedTermIds: ['ds-patent-015', 'ds-patent-021', 'ds-patent-001'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-patent-069',
+    term: '方法の発明',
+    english: 'Process Invention',
+    reading: 'ほうほうのはつめい',
+    definition: '時間の経過を伴う一連の行為・操作として特定される発明（特許法第2条3項2号・3号）。「方法の発明」と「物を生産する方法の発明」に分類される。',
+    subject: 'patent',
+    category: '定義',
+    keyPoint: '方法の発明の実施＝その方法を使用する行為。物を生産する方法の発明にはさらに譲渡等も含む。',
+    relatedTermIds: ['ds-patent-002', 'ds-patent-070', 'ds-patent-071'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-patent-070',
+    term: '物の発明',
+    english: 'Product Invention',
+    reading: 'もののはつめい',
+    definition: '物（プログラム等を含む）として特定される発明（特許法第2条3項1号）。実施行為は生産・使用・譲渡・輸出入・譲渡等の申出。',
+    subject: 'patent',
+    category: '定義',
+    keyPoint: 'プログラムは「物」に含まれる（2002年改正）。実施行為が最も広い発明カテゴリー。',
+    relatedTermIds: ['ds-patent-002', 'ds-patent-069', 'ds-patent-071'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-patent-071',
+    term: '生産方法の発明',
+    english: 'Method of Production Invention',
+    reading: 'せいさんほうほうのはつめい',
+    definition: '物を生産する方法の発明（特許法第2条3項3号）。実施行為にはその方法の使用に加え、その方法で生産した物の譲渡等も含む。',
+    subject: 'patent',
+    category: '定義',
+    keyPoint: '生産方法の発明は方法の発明の一種だが、実施行為がより広い。生産物の推定規定（第104条）あり。',
+    relatedTermIds: ['ds-patent-069', 'ds-patent-070', 'ds-patent-002'],
+    difficulty: 2,
+  },
+  {
+    id: 'ds-patent-072',
+    term: '願書',
+    english: 'Application Form',
+    reading: 'がんしょ',
+    definition: '特許出願の際に特許庁に提出する書面。発明者・出願人の情報等を記載し、明細書・特許請求の範囲・図面・要約書を添付する。',
+    subject: 'patent',
+    category: '手続',
+    keyPoint: '願書の提出日が出願日となる。出願日の確保は先願主義において極めて重要。',
+    relatedTermIds: ['ds-patent-007', 'ds-patent-013', 'ds-patent-063'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-073',
+    term: '出願人',
+    english: 'Applicant',
+    reading: 'しゅつがんにん',
+    definition: '特許出願をした者。特許を受ける権利を有する者が出願人となる。法人も出願人になれる。',
+    subject: 'patent',
+    category: '定義',
+    keyPoint: '発明者と出願人は異なり得る（職務発明の原始帰属等）。共同出願の場合は全員が出願人。',
+    relatedTermIds: ['ds-patent-047', 'ds-patent-010', 'ds-patent-051'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-074',
+    term: '特許権者',
+    english: 'Patent Holder',
+    reading: 'とっきょけんじゃ',
+    definition: '特許権の設定登録を受けた者。差止請求権・損害賠償請求権等を行使できる。専用実施権・通常実施権の設定が可能。',
+    subject: 'patent',
+    category: '権利',
+    keyPoint: '出願人と特許権者は通常同一だが、出願後の権利譲渡により異なることもある。',
+    relatedTermIds: ['ds-patent-001', 'ds-patent-011', 'ds-patent-012'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-075',
+    term: '審査官',
+    english: 'Examiner',
+    reading: 'しんさかん',
+    definition: '特許庁において特許出願の審査を行う職員。新規性・進歩性等の特許要件を審査し、特許査定又は拒絶査定を行う。',
+    subject: 'patent',
+    category: '定義',
+    keyPoint: '除斥理由（利害関係等）に該当する場合は審査できない。拒絶理由通知→意見書・補正書→査定の流れ。',
+    relatedTermIds: ['ds-patent-007', 'ds-patent-009', 'ds-patent-003'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-076',
+    term: '特許庁',
+    english: 'Japan Patent Office (JPO)',
+    reading: 'とっきょちょう',
+    definition: '経済産業省の外局として設置された行政機関。特許・実用新案・意匠・商標の出願受理・審査・登録等を所掌する。',
+    subject: 'patent',
+    category: '制度',
+    keyPoint: '審査部門と審判部門を有する。長官は裁定実施権の裁定等の権限を持つ。',
+    relatedTermIds: ['ds-patent-007', 'ds-patent-022', 'ds-patent-025'],
+    difficulty: 1,
+  },
+  {
+    id: 'ds-patent-077',
+    term: '再審',
+    english: 'Retrial',
+    reading: 'さいしん',
+    definition: '確定した審決に対して、法定の再審事由がある場合に審判のやり直しを求める手続（第171条〜）。',
+    subject: 'patent',
+    category: '手続',
+    keyPoint: '民事訴訟法の再審事由が準用される。確定審決の既判力を覆す非常の不服申立手段。',
+    relatedTermIds: ['ds-patent-022', 'ds-patent-042', 'ds-patent-009'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-patent-078',
+    term: '禁反言',
+    english: 'Prosecution History Estoppel',
+    reading: 'きんはんげん',
+    definition: '出願経過（包袋）において出願人が意識的に除外した構成について、後に均等論による権利範囲の拡張を主張できなくなる法理。',
+    subject: 'patent',
+    category: '権利',
+    keyPoint: '均等論の第5要件（意識的除外）として機能。補正や意見書での主張が出願経過禁反言の根拠となる。',
+    relatedTermIds: ['ds-patent-021', 'ds-patent-016', 'ds-patent-015'],
+    difficulty: 3,
+  },
+  {
+    id: 'ds-patent-079',
+    term: '均等侵害の5要件',
+    english: 'Five Requirements for Doctrine of Equivalents',
+    reading: 'きんとうしんがいのごようけん',
+    definition: '均等論による特許権侵害を認めるための5つの要件。①非本質的部分、②置換可能性、③置換容易性、④公知技術との同一性なし、⑤意識的除外なし。',
+    subject: 'patent',
+    category: '要件',
+    keyPoint: 'ボールスプライン事件（最判H10.2.24）で確立。①〜③は権利者が立証、④⑤は侵害者が立証（マキサカルシトール事件・最判H29.3.24）。',
+    relatedTermIds: ['ds-patent-021', 'ds-patent-078', 'ds-patent-015'],
+    difficulty: 3,
   },
 ];
