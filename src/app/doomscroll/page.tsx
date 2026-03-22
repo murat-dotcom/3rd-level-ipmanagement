@@ -128,6 +128,9 @@ function TermCard({
             </span>
           )}
         </h3>
+        {term.english && (
+          <p className="text-xs text-t-muted mt-0.5 italic">{term.english}</p>
+        )}
       </div>
 
       <div className="px-4 pb-3">

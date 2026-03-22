@@ -129,6 +129,7 @@ export type TermCategory = '定義' | '手続' | '期間' | '権利' | '要件' 
 export interface DoomscrollTerm {
   id: string;
   term: string;
+  english?: string;
   reading?: string;
   definition: string;
   subject: SubjectSlug;
