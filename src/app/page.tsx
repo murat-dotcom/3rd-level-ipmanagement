@@ -62,136 +62,147 @@ export default function Dashboard() {
     completedGoalCount === 2
       ? '今日の学習目標をすべて達成しました。仕上げに弱点補強へ進みましょう。'
       : completedGoalCount === 1
-      ? 'あと1つ目標を達成すれば今日の学習はコンプリートです。'
-      : '最初の5分だけでもOK。今日の学習をここから始めましょう。';
+        ? 'あと1つ目標を達成すれば今日の学習はコンプリートです。'
+        : '最初の5分だけでもOK。今日の学習をここから始めましょう。';
 
   return (
-    <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-primary">知財ドリル</h1>
-          <p className="text-sm text-t-muted mt-1">知的財産管理技能検定 3級 学習アプリ</p>
-        </div>
-        <div className="theme-card theme-gradient px-4 py-3 text-sm text-t-primary">
-          <p className="font-semibold text-primary">今日のナビゲーション</p>
-          <p className="mt-1 text-t-secondary">{motivationalMessage}</p>
+    <div className="mx-auto max-w-6xl space-y-6 px-4 py-4 md:px-8">
+      <div className="overflow-hidden rounded-[32px] border border-border/70 bg-gradient-to-br from-primary/15 via-surface to-accent/10 shadow-[0_28px_80px_-40px_rgba(15,23,42,0.45)]">
+        <div className="grid gap-6 px-5 py-6 md:grid-cols-[1.2fr,0.8fr] md:px-8 md:py-8">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-surface/80 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
+              <span>🧭</span>
+              <span>学習ホーム</span>
+            </div>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-t-primary md:text-4xl">次に何をするか、迷わない学習面へ。</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-t-secondary md:text-[15px]">
+              学習エリア全体を見直し、情報の優先順位を整理。進捗・おすすめ・復習の導線をひとつの面で追いやすくしました。
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-3xl border border-border/70 bg-surface/80 p-4 backdrop-blur">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-t-muted">今日の達成</p>
+                <p className="mt-2 text-2xl font-bold text-primary">{completedGoalCount}/2</p>
+                <p className="mt-1 text-xs text-t-secondary">カードと問題の目標進捗</p>
+              </div>
+              <div className="rounded-3xl border border-border/70 bg-surface/80 p-4 backdrop-blur">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-t-muted">読了率</p>
+                <p className="mt-2 text-2xl font-bold text-accent">{doomscrollCompletion}%</p>
+                <p className="mt-1 text-xs text-t-secondary">用語 feed の定着度</p>
+              </div>
+              <div className="rounded-3xl border border-border/70 bg-surface/80 p-4 backdrop-blur">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-t-muted">継続</p>
+                <p className="mt-2 text-2xl font-bold text-success">{progress.streakDays}日</p>
+                <p className="mt-1 text-xs text-t-secondary">短時間でも積み上げ中</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-3 rounded-[28px] border border-border/70 bg-surface/90 p-4 backdrop-blur">
+            <div className="rounded-3xl bg-bg/70 p-4 ring-1 ring-border/60">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-t-muted">Today’s brief</p>
+              <p className="mt-2 text-lg font-bold text-t-primary">{motivationalMessage}</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">まずはおすすめルートを上から順に進めれば、復習→演習→定着の流れを自然に回せます。</p>
+            </div>
+            <div className="rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-accent/10 p-4 ring-1 ring-border/60">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-t-muted">Focus now</p>
+              <p className="mt-2 text-lg font-bold text-t-primary">{recommendedFocus ? SUBJECT_LABELS[recommendedFocus] : 'まずは全体学習'}</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">
+                {recommendedFocus ? '正答率が落ちている科目を先に補強して、得点効率を上げましょう。' : 'まだ学習データが少ないので、模試か分野別ドリルから始めるのがおすすめです。'}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Main two-column layout */}
-      <div className="grid gap-4 lg:grid-cols-[1.15fr,0.85fr]">
-        {/* Recommended learning route */}
-        <div className="theme-card p-5 space-y-4">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold text-primary">おすすめ学習ルート</p>
-              <h2 className="text-xl font-bold mt-1 text-t-primary">次の一手がすぐ分かるホーム</h2>
-            </div>
-            <span className="text-3xl" aria-hidden="true">🧭</span>
+      <div className="grid gap-4 lg:grid-cols-[1.1fr,0.9fr]">
+        <div className="overflow-hidden rounded-[28px] border border-border/70 bg-surface shadow-[0_20px_55px_-38px_rgba(15,23,42,0.4)]">
+          <div className="border-b border-border/60 px-5 py-4">
+            <p className="text-sm font-semibold text-primary">おすすめ学習ルート</p>
+            <h2 className="mt-1 text-xl font-bold text-t-primary">学習の入り口を3ステップに整理</h2>
           </div>
-          <div className="grid sm:grid-cols-3 gap-3">
-            <Link href={dueCards > 0 ? '/flashcards' : '/quiz'} className="rounded-card border border-accent/20 bg-accent/5 p-4 hover:border-accent/40 hover:shadow-sm transition-all">
-              <p className="text-xs font-semibold text-accent">STEP 1</p>
-              <p className="font-bold mt-1 text-t-primary">復習を片付ける</p>
-              <p className="text-sm mt-1 text-t-secondary">期限到来の暗記カード {dueCards} 枚を先に消化。</p>
+          <div className="grid gap-3 px-5 py-5 sm:grid-cols-3">
+            <Link href={dueCards > 0 ? '/flashcards' : '/quiz'} className="group rounded-[24px] border border-accent/20 bg-gradient-to-br from-accent/10 to-transparent p-4 transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">STEP 1</p>
+              <p className="mt-3 text-lg font-bold text-t-primary">復習を片付ける</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">期限到来の暗記カード {dueCards} 枚を先に消化して、忘却を止めます。</p>
+              <p className="mt-4 text-sm font-semibold text-accent">すぐ始める →</p>
             </Link>
-            <Link href={recommendedFocus ? `/drill?subject=${recommendedFocus}` : '/drill'} className="rounded-card border border-error/20 bg-error/5 p-4 hover:border-error/40 hover:shadow-sm transition-all">
-              <p className="text-xs font-semibold text-error">STEP 2</p>
-              <p className="font-bold mt-1 text-t-primary">弱点を補強する</p>
-              <p className="text-sm mt-1 text-t-secondary">{recommendedFocus ? SUBJECT_LABELS[recommendedFocus] : '苦手分野'} を重点演習。</p>
+            <Link href={recommendedFocus ? `/drill?subject=${recommendedFocus}` : '/drill'} className="group rounded-[24px] border border-error/20 bg-gradient-to-br from-error/10 to-transparent p-4 transition-all hover:-translate-y-0.5 hover:border-error/40 hover:shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-error">STEP 2</p>
+              <p className="mt-3 text-lg font-bold text-t-primary">弱点を補強する</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">{recommendedFocus ? SUBJECT_LABELS[recommendedFocus] : '苦手分野'} を中心に、得点差が出る穴を埋めます。</p>
+              <p className="mt-4 text-sm font-semibold text-error">演習へ進む →</p>
             </Link>
-            <Link href="/doomscroll" className="rounded-card border border-primary/20 bg-primary/5 p-4 hover:border-primary/40 hover:shadow-sm transition-all">
-              <p className="text-xs font-semibold text-primary">STEP 3</p>
-              <p className="font-bold mt-1 text-t-primary">用語を流し読み</p>
-              <p className="text-sm mt-1 text-t-secondary">読了率 {doomscrollCompletion}%。隙間時間の定着に最適。</p>
+            <Link href="/doomscroll" className="group rounded-[24px] border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent p-4 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">STEP 3</p>
+              <p className="mt-3 text-lg font-bold text-t-primary">用語を流し読み</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">新しい social feed 風の用語面で、隙間時間に定着を重ねます。</p>
+              <p className="mt-4 text-sm font-semibold text-primary">feed を開く →</p>
             </Link>
           </div>
         </div>
 
-        {/* Today's highlights */}
-        <div className="theme-card p-5">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-sm font-semibold text-primary">学習ハイライト</p>
-              <h2 className="text-xl font-bold mt-1 text-t-primary">今日の進捗サマリー</h2>
-            </div>
-            <span className="text-3xl" aria-hidden="true">✨</span>
+        <div className="overflow-hidden rounded-[28px] border border-border/70 bg-surface shadow-[0_20px_55px_-38px_rgba(15,23,42,0.4)]">
+          <div className="border-b border-border/60 px-5 py-4">
+            <p className="text-sm font-semibold text-primary">学習ハイライト</p>
+            <h2 className="mt-1 text-xl font-bold text-t-primary">今日の進捗を大きく可視化</h2>
           </div>
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            <div className="rounded-xl bg-surface-alt p-3">
+          <div className="grid grid-cols-2 gap-3 px-5 py-5 text-sm">
+            <div className="rounded-3xl bg-bg/80 p-4 ring-1 ring-border/60">
               <p className="text-t-muted">トピック完了</p>
-              <p className="mt-1 text-2xl font-bold text-primary">{completedTopics}</p>
-              <p className="text-xs text-t-muted">全 {totalTopics} レッスン中 {completedTopicsRate}%</p>
+              <p className="mt-2 text-3xl font-bold text-primary">{completedTopics}</p>
+              <p className="text-xs text-t-secondary">全 {totalTopics} レッスン中 {completedTopicsRate}%</p>
             </div>
-            <div className="rounded-xl bg-surface-alt p-3">
+            <div className="rounded-3xl bg-bg/80 p-4 ring-1 ring-border/60">
               <p className="text-t-muted">読了用語</p>
-              <p className="mt-1 text-2xl font-bold text-primary">{doomscrollReadCount}</p>
-              <p className="text-xs text-t-muted">全 {allDoomscrollTerms.length} 語中 {doomscrollCompletion}%</p>
+              <p className="mt-2 text-3xl font-bold text-primary">{doomscrollReadCount}</p>
+              <p className="text-xs text-t-secondary">全 {allDoomscrollTerms.length} 語中 {doomscrollCompletion}%</p>
             </div>
-            <div className="rounded-xl bg-surface-alt p-3">
+            <div className="rounded-3xl bg-accent/10 p-4 ring-1 ring-accent/10">
               <p className="text-t-muted">連続学習</p>
-              <p className="mt-1 text-2xl font-bold text-accent">{progress.streakDays}日</p>
-              <p className="text-xs text-t-muted">毎日5分でも継続が力</p>
+              <p className="mt-2 text-3xl font-bold text-accent">{progress.streakDays}日</p>
+              <p className="text-xs text-t-secondary">毎日5分でも継続が力</p>
             </div>
-            <div className="rounded-xl bg-surface-alt p-3">
+            <div className="rounded-3xl bg-error/10 p-4 ring-1 ring-error/10">
               <p className="text-t-muted">要復習ミス</p>
-              <p className="mt-1 text-2xl font-bold text-error">{mistakeCount}</p>
-              <p className="text-xs text-t-muted">解けるまで反復</p>
+              <p className="mt-2 text-3xl font-bold text-error">{mistakeCount}</p>
+              <p className="text-xs text-t-secondary">解けるまで反復</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Daily goals */}
-      <div className="theme-card p-4">
-        <h2 className="text-lg font-bold text-t-primary mb-4">今日の目標</h2>
-        <div className="flex justify-center gap-8">
-          <DailyGoalRing current={daily.cardsReviewed} goal={goal.cardsPerDay} label="暗記カード" />
-          <DailyGoalRing current={daily.questionsAnswered} goal={goal.questionsPerDay} label="問題数" />
+      <div className="grid gap-4 xl:grid-cols-[0.9fr,1.1fr]">
+        <div className="theme-card p-4">
+          <h2 className="text-lg font-bold text-t-primary mb-4">今日の目標</h2>
+          <div className="flex justify-center gap-8">
+            <DailyGoalRing current={daily.cardsReviewed} goal={goal.cardsPerDay} label="暗記カード" />
+            <DailyGoalRing current={daily.questionsAnswered} goal={goal.questionsPerDay} label="問題数" />
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-[28px] border border-border/70 bg-surface shadow-[0_20px_55px_-38px_rgba(15,23,42,0.4)]">
+          <div className="border-b border-border/60 px-5 py-4">
+            <p className="text-sm font-semibold text-primary">クイックアクション</p>
+            <h2 className="mt-1 text-xl font-bold text-t-primary">今の気分で始めやすい導線</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-3 px-5 py-5 sm:grid-cols-2 xl:grid-cols-4">
+            <Link href="/quiz" className="rounded-[24px] bg-primary p-4 text-center font-medium text-white transition-all hover:bg-primary-hover hover:shadow-md">
+              模擬試験を始める
+            </Link>
+            <Link href="/flashcards" className="rounded-[24px] bg-accent p-4 text-center font-medium text-white transition-all hover:bg-accent-hover hover:shadow-md">
+              今日の暗記カード ({dueCards}枚)
+            </Link>
+            <Link href={weakSubjects.length > 0 ? `/drill?subject=${weakSubjects[0].subject}` : '/drill'} className="rounded-[24px] bg-success p-4 text-center font-medium text-white transition-all hover:opacity-90 hover:shadow-md">
+              {weakSubjects.length > 0 ? `苦手: ${SUBJECT_LABELS[weakSubjects[0].subject]}` : '苦手分野を復習'}
+            </Link>
+            <Link href="/doomscroll" className="rounded-[24px] border border-primary/20 bg-primary/10 p-4 text-center font-medium text-primary transition-all hover:bg-primary/20 hover:shadow-sm">
+              📜 用語 feed を見る
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* Stats cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="theme-card p-4 text-center">
-          <p className="text-3xl font-bold text-accent">{progress.streakDays}</p>
-          <p className="text-sm text-t-secondary">連続学習日数</p>
-        </div>
-        <div className="theme-card p-4 text-center">
-          <p className="text-3xl font-bold text-primary">{dueCards}</p>
-          <p className="text-sm text-t-secondary">復習カード</p>
-        </div>
-        <Link href="/mistakes" className="theme-card theme-card-hover p-4 text-center">
-          <p className="text-3xl font-bold text-error">{mistakeCount}</p>
-          <p className="text-sm text-t-secondary">間違い問題</p>
-        </Link>
-        <Link href="/topics" className="theme-card theme-card-hover p-4 text-center">
-          <p className="text-3xl font-bold text-success">{completedTopicsRate}%</p>
-          <p className="text-sm text-t-secondary">トピック達成率</p>
-        </Link>
-      </div>
-
-      {/* Quick actions */}
-      <div className="space-y-3">
-        <h2 className="text-lg font-bold text-t-primary">クイックアクション</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-          <Link href="/quiz" className="bg-primary text-white rounded-card p-4 text-center font-medium hover:bg-primary-hover transition-all shadow-sm hover:shadow-md">
-            模擬試験を始める
-          </Link>
-          <Link href="/flashcards" className="bg-accent text-white rounded-card p-4 text-center font-medium hover:bg-accent-hover transition-all shadow-sm hover:shadow-md">
-            今日の暗記カード ({dueCards}枚)
-          </Link>
-          <Link href={weakSubjects.length > 0 ? `/drill?subject=${weakSubjects[0].subject}` : '/drill'} className="bg-success text-white rounded-card p-4 text-center font-medium hover:opacity-90 transition-all shadow-sm hover:shadow-md">
-            {weakSubjects.length > 0 ? `苦手: ${SUBJECT_LABELS[weakSubjects[0].subject]}` : '苦手分野を復習'}
-          </Link>
-          <Link href="/doomscroll" className="bg-primary/10 text-primary border border-primary/20 rounded-card p-4 text-center font-medium hover:bg-primary/20 transition-all">
-            📜 用語をスクロール学習
-          </Link>
-        </div>
-      </div>
-
-      {/* Focus suggestion + Subject progress */}
       <div className="grid gap-4 lg:grid-cols-[1.05fr,0.95fr]">
         <div className="theme-card p-4">
           <div className="flex items-center justify-between mb-4">
@@ -200,12 +211,12 @@ export default function Dashboard() {
           </div>
           {recommendedFocus ? (
             <div className="space-y-4">
-              <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
+              <div className="rounded-[24px] bg-primary/5 border border-primary/10 p-4">
                 <p className="text-sm text-t-muted">最優先科目</p>
                 <div className="mt-2 flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xl font-bold text-t-primary">{SUBJECT_LABELS[recommendedFocus]}</p>
-                    <p className="text-sm text-t-secondary mt-1">理解と得点を同時に上げるなら、関連トピック→ドリル→用語確認の順がおすすめです。</p>
+                    <p className="text-sm text-t-secondary mt-1">関連トピック→ドリル→用語 feed の順で回すと、理解と定着の両方を伸ばしやすくなります。</p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-t-muted">推定正答率</p>
@@ -269,7 +280,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Weak subject alert */}
       {weakSubjects.length > 0 && weakSubjects[0].accuracy < 70 && (
         <div className="theme-card border-error/30 bg-error/5 p-4">
           <h3 className="font-bold text-error mb-2">苦手分野アラート</h3>
@@ -287,7 +297,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Score progress chart */}
       {progress.quizHistory.length >= 2 && (
         <div className="theme-card p-4">
           <h2 className="text-lg font-bold text-t-primary mb-4">成績推移</h2>
@@ -295,7 +304,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Recent results */}
       <div className="theme-card p-4">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-bold text-t-primary">最近の試験結果</h2>
@@ -326,7 +334,6 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Exam info */}
       <div className="theme-card bg-primary/5 border-primary/20 p-4">
         <h3 className="font-bold text-primary mb-2">次回試験情報</h3>
         <p className="text-sm text-t-primary">第54回 知的財産管理技能検定</p>
