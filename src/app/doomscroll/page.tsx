@@ -8,13 +8,38 @@ import { getProgress, saveProgress } from '@/lib/storage';
 const BATCH_SIZE = 12;
 const SEARCH_DEBOUNCE_MS = 250;
 const CATEGORY_ORDER: TermCategory[] = ['定義', '手続', '期間', '権利', '要件', '制度', '条約', '比較'];
+const READ_MODE_LABELS = {
+  all: 'すべて',
+  unread: '未読だけ',
+  read: '既読だけ',
+} as const;
+const FOCUS_MODE_META = {
+  balanced: {
+    label: '標準',
+    emoji: '🧠',
+    title: '全体をゆるく周回',
+    description: '科目横断でバランスよく流し見。スキマ時間の定着向けです。',
+  },
+  quick: {
+    label: '時短',
+    emoji: '⚡',
+    title: '5分で未読を回収',
+    description: '未読×基本レベルを優先表示。短時間で進捗を積み上げられます。',
+  },
+  challenge: {
+    label: '応用',
+    emoji: '🔥',
+    title: '難所だけ集中的に',
+    description: '応用レベル中心のフィードで、本番対応力を上げます。',
+  },
+} as const;
 
 const SUBJECT_COLORS: Record<SubjectSlug, string> = {
-  patent: 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300',
-  copyright: 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300',
-  trademark: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300',
-  design: 'bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300',
-  treaties: 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300',
+  patent: 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300',
+  copyright: 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300',
+  trademark: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+  design: 'bg-pink-100 text-pink-700 dark:bg-pink-900/40 dark:text-pink-300',
+  treaties: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
   other: 'bg-surface-alt text-t-secondary',
 };
 
@@ -29,7 +54,11 @@ const CATEGORY_ICONS: Record<string, string> = {
   比較: '⚖️',
 };
 
-const DIFFICULTY_LABELS = ['', '基本', '標準', '応用'];
+const DIFFICULTY_META = {
+  1: { label: '基本', className: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' },
+  2: { label: '標準', className: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300' },
+  3: { label: '応用', className: 'bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300' },
+} as const;
 
 function shuffleArray<T>(arr: T[]): T[] {
   const shuffled = [...arr];
@@ -38,6 +67,21 @@ function shuffleArray<T>(arr: T[]): T[] {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
+}
+
+function StatPill({ label, value, tone = 'default' }: { label: string; value: string | number; tone?: 'default' | 'accent' | 'success'; }) {
+  const toneClass = tone === 'accent'
+    ? 'bg-accent/10 text-accent border-accent/20'
+    : tone === 'success'
+      ? 'bg-success/10 text-success border-success/20'
+      : 'bg-surface-alt text-t-secondary border-border';
+
+  return (
+    <div className={`rounded-2xl border px-3 py-2 ${toneClass}`}>
+      <p className="text-[11px] uppercase tracking-[0.16em] opacity-80">{label}</p>
+      <p className="mt-1 text-lg font-semibold">{value}</p>
+    </div>
+  );
 }
 
 function TermCard({
@@ -58,47 +102,58 @@ function TermCard({
   onPin: (id: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const difficultyMeta = DIFFICULTY_META[term.difficulty];
 
   return (
-    <div
+    <article
       id={`term-${term.id}`}
-      className={`theme-card transition-all duration-300 ${
-        isRead ? 'border-success/40 bg-success/5' : ''
+      className={`overflow-hidden rounded-[28px] border border-border/70 bg-surface/95 shadow-[0_18px_50px_-32px_rgba(15,23,42,0.45)] transition-all duration-300 ${
+        isRead ? 'border-success/30 bg-success/5' : 'hover:-translate-y-0.5 hover:shadow-[0_26px_60px_-34px_rgba(15,23,42,0.4)]'
       }`}
     >
-      <div className="p-4 pb-2">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <div className="flex flex-wrap gap-1.5">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${SUBJECT_COLORS[term.subject]}`}>
-              {SUBJECT_LABELS[term.subject]}
-            </span>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-surface-alt text-t-secondary">
-              {CATEGORY_ICONS[term.category] || '📝'} {term.category}
-            </span>
-            <span
-              className={`text-xs px-2 py-0.5 rounded-full ${
-                term.difficulty === 1
-                  ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400'
-                  : term.difficulty === 2
-                    ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-400'
-                    : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'
-              }`}
-            >
-              {DIFFICULTY_LABELS[term.difficulty]}
-            </span>
-            {term.source === 'generated' && (
-              <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                AI生成
+      <div className="border-b border-border/60 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 px-5 py-4">
+        <div className="flex items-start justify-between gap-3">
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${SUBJECT_COLORS[term.subject]}`}>
+                {SUBJECT_LABELS[term.subject]}
               </span>
-            )}
+              <span className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-t-secondary border border-border/60">
+                {CATEGORY_ICONS[term.category] || '📝'} {term.category}
+              </span>
+              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${difficultyMeta.className}`}>
+                {difficultyMeta.label}
+              </span>
+              {term.source === 'generated' && (
+                <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                  AI生成
+                </span>
+              )}
+              {isPinned && (
+                <span className="rounded-full border border-primary/20 bg-surface px-3 py-1 text-xs font-semibold text-primary">
+                  📌 ピン留め中
+                </span>
+              )}
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight text-t-primary">
+                {term.term}
+                {term.reading && (
+                  <span className="ml-2 text-sm font-medium text-t-muted">({term.reading})</span>
+                )}
+              </h3>
+              {term.english && <p className="mt-1 text-sm italic text-t-muted">{term.english}</p>}
+            </div>
           </div>
-          <div className="flex items-center gap-1.5">
+
+          <div className="flex shrink-0 items-center gap-2">
             <button
               onClick={() => onPin(term.id)}
-              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+              className={`flex h-11 w-11 items-center justify-center rounded-2xl border transition-all ${
                 isPinned
-                  ? 'bg-primary text-white'
-                  : 'bg-surface-alt text-t-muted hover:bg-surface-hover'
+                  ? 'border-primary bg-primary text-white shadow-sm'
+                  : 'border-border bg-surface text-t-muted hover:border-primary/30 hover:bg-primary/5 hover:text-primary'
               }`}
               aria-label={isPinned ? 'ピン留めを解除' : 'この用語をピン留め'}
               title={isPinned ? 'ピン留めを解除' : 'この用語をピン留め'}
@@ -107,66 +162,62 @@ function TermCard({
             </button>
             <button
               onClick={() => onToggleRead(term.id)}
-              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+              className={`flex h-11 min-w-11 items-center justify-center rounded-2xl border px-3 text-sm font-semibold transition-all ${
                 isRead
-                  ? 'bg-success text-white'
-                  : 'bg-surface-alt text-t-muted hover:bg-surface-hover'
+                  ? 'border-success bg-success text-white shadow-sm'
+                  : 'border-border bg-surface text-t-secondary hover:border-success/30 hover:bg-success/5 hover:text-success'
               }`}
               aria-label={isRead ? '既読を解除' : '既読にする'}
               title={isRead ? '既読を解除' : '既読にする'}
             >
-              {isRead ? '✓' : '○'}
+              {isRead ? '既読' : '未読'}
             </button>
           </div>
         </div>
+      </div>
 
-        <h3 className="text-xl font-bold text-t-primary">
-          {term.term}
-          {term.reading && (
-            <span className="text-sm font-normal text-t-muted ml-2">
-              ({term.reading})
-            </span>
-          )}
-        </h3>
-        {term.english && (
-          <p className="text-xs text-t-muted mt-0.5 italic">{term.english}</p>
+      <div className="space-y-5 px-5 py-5">
+        <div className="rounded-3xl bg-bg/80 px-4 py-4 ring-1 ring-border/60">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-t-muted">Definition</p>
+          <p className="mt-2 text-[15px] leading-7 text-t-primary">{term.definition}</p>
+        </div>
+
+        <div className="rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 to-transparent px-4 py-4">
+          <div className="flex items-center gap-2 text-accent">
+            <span className="text-base">💡</span>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em]">Exam cue</p>
+          </div>
+          <p className="mt-2 text-sm leading-7 text-t-secondary">{term.keyPoint}</p>
+        </div>
+
+        {term.relatedTermIds.length > 0 && (
+          <div className="rounded-3xl bg-surface-alt/80 px-4 py-4 ring-1 ring-border/60">
+            <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80">
+              <span>{expanded ? '▼' : '▶'}</span>
+              <span>関連用語をひらく</span>
+              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary">{term.relatedTermIds.length}</span>
+            </button>
+            {expanded && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {term.relatedTermIds.map((relId) => {
+                  const relTerm = termMap.get(relId);
+                  if (!relTerm) return null;
+                  return (
+                    <button
+                      key={relId}
+                      onClick={() => onRelatedClick(relId)}
+                      className="rounded-full border border-primary/15 bg-surface px-3 py-2 text-xs font-semibold text-primary transition-all hover:border-primary/30 hover:bg-primary/5"
+                    >
+                      {relTerm.term}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         )}
       </div>
-
-      <div className="px-4 pb-3">
-        <p className="text-sm text-t-secondary leading-relaxed">{term.definition}</p>
-      </div>
-
-      <div className="mx-4 mb-3 p-3 bg-accent/10 rounded-xl border border-accent/20">
-        <p className="text-xs font-bold text-accent mb-1">💡 ポイント</p>
-        <p className="text-sm text-t-secondary">{term.keyPoint}</p>
-      </div>
-
-      {term.relatedTermIds.length > 0 && (
-        <div className="px-4 pb-4">
-          <button onClick={() => setExpanded(!expanded)} className="text-xs text-primary hover:underline font-medium">
-            {expanded ? '▼' : '▶'} 関連用語 ({term.relatedTermIds.length})
-          </button>
-          {expanded && (
-            <div className="flex flex-wrap gap-2 mt-2">
-              {term.relatedTermIds.map((relId) => {
-                const relTerm = termMap.get(relId);
-                if (!relTerm) return null;
-                return (
-                  <button
-                    key={relId}
-                    onClick={() => onRelatedClick(relId)}
-                    className="text-xs px-3 py-1.5 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition-all font-medium"
-                  >
-                    {relTerm.term}
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+    </article>
   );
 }
 
@@ -416,192 +467,297 @@ export default function DoomscrollPage() {
   const progressPercent = totalCount > 0 ? Math.round((readCount / totalCount) * 100) : 0;
   const filteredReadCount = filteredTerms.filter((term) => readIds.has(term.id)).length;
   const unreadFilteredCount = filteredTerms.length - filteredReadCount;
+  const activeFilterCount = Number(subjectFilter !== 'all') + Number(categoryFilter !== 'all') + Number(difficultyFilter !== 'all') + Number(Boolean(searchQuery)) + Number(readMode !== 'all');
+  const feedHeadline = focusMode === 'quick'
+    ? '今は「未読を片付ける」テンポ。'
+    : focusMode === 'challenge'
+      ? '今は「応用だけ深掘る」テンポ。'
+      : '今は「全体を流し見する」テンポ。';
 
   return (
-    <div className="p-4 md:p-8 max-w-4xl mx-auto pb-24">
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-primary">📜 用語ドゥームスクロール</h1>
-        <p className="text-sm text-t-muted mt-1">
-          検索・絞り込み・未読ジャンプで、だらだらスクロールをちゃんと学習時間に変えよう。
-        </p>
-      </div>
-
-      {/* AI generation card */}
-      <div className="mb-4 theme-card theme-gradient p-4">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm font-semibold text-primary">AIで新しい用語を追加</p>
-            <p className="text-sm text-t-secondary mt-1 leading-relaxed">
-              設定に保存した APIキー / モデルを使って、現在の科目に合わせた補足用語を Web検索つきで3件生成します。
-            </p>
-          </div>
-          <button
-            onClick={handleGenerateTerms}
-            disabled={isGenerating}
-            className="px-4 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-primary-hover disabled:opacity-60 disabled:cursor-not-allowed transition-all"
-          >
-            {isGenerating ? '生成中...' : 'AIで3件追加'}
-          </button>
-        </div>
-        {generationError && <p className="mt-3 text-sm text-error font-medium">{generationError}</p>}
-        {generatedTerms.length > 0 && (
-          <p className="mt-3 text-xs text-t-muted">
-            追加済み AI用語: {generatedTerms.length}件。生成カードには「AI生成」バッジを表示しています。
-          </p>
-        )}
-      </div>
-
-      {/* Progress + Focus mode */}
-      <div className="grid gap-4 md:grid-cols-[1.2fr,0.8fr] mb-4">
-        <div className="theme-card p-4">
-          <div className="flex justify-between items-center text-sm mb-1.5">
-            <span className="text-t-secondary">学習進捗</span>
-            <span className="font-bold text-primary">
-              {readCount}/{totalCount} ({progressPercent}%)
-            </span>
-          </div>
-          <div className="w-full bg-surface-alt rounded-full h-2.5">
-            <div className="bg-primary h-2.5 rounded-full transition-all duration-500" style={{ width: `${progressPercent}%` }} />
-          </div>
-          <div className="grid grid-cols-3 gap-3 mt-4 text-sm">
-            <div className="rounded-xl bg-surface-alt p-3">
-              <p className="text-t-muted">表示中</p>
-              <p className="text-xl font-bold text-primary mt-1">{filteredTerms.length}</p>
+    <div className="mx-auto max-w-6xl px-4 pb-24 pt-4 md:px-8">
+      <div className="mb-6 overflow-hidden rounded-[32px] border border-border/70 bg-gradient-to-br from-primary/15 via-surface to-accent/10 shadow-[0_28px_80px_-40px_rgba(15,23,42,0.45)]">
+        <div className="grid gap-6 px-5 py-6 md:grid-cols-[1.25fr,0.75fr] md:px-8 md:py-8">
+          <div className="space-y-5">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-surface/80 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
+              <span>📱</span>
+              <span>用語フィード</span>
             </div>
-            <div className="rounded-xl bg-surface-alt p-3">
-              <p className="text-t-muted">未読</p>
-              <p className="text-xl font-bold text-accent mt-1">{unreadFilteredCount}</p>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-t-primary md:text-4xl">学習用 doomscroll を、ちゃんと気持ちいい feed に。</h1>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-t-secondary md:text-[15px]">
+                検索・絞り込み・未読ジャンプはそのままに、フィードの視認性と没入感をアップ。流し見でも頭に入りやすいレイアウトへ再設計しました。
+              </p>
             </div>
-            <div className="rounded-xl bg-surface-alt p-3">
-              <p className="text-t-muted">読了</p>
-              <p className="text-xl font-bold text-success mt-1">{filteredReadCount}</p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <StatPill label="読了率" value={`${progressPercent}%`} tone="success" />
+              <StatPill label="未読" value={unreadFilteredCount} tone="accent" />
+              <StatPill label="フィード件数" value={filteredTerms.length} />
+            </div>
+            <div className="flex flex-wrap gap-2 text-sm">
+              <button onClick={handleJumpToUnread} className="rounded-full bg-primary px-4 py-2.5 font-semibold text-white transition-all hover:bg-primary-hover">
+                次の未読へ
+              </button>
+              <button onClick={handleMarkVisibleRead} className="rounded-full border border-success/20 bg-success/10 px-4 py-2.5 font-semibold text-success transition-all hover:bg-success/15">
+                表示中を既読 ({visibleTerms.filter((t) => !readIds.has(t.id)).length})
+              </button>
+              <button onClick={shuffled ? handleReset : handleShuffle} className="rounded-full border border-border bg-surface px-4 py-2.5 font-semibold text-t-secondary transition-all hover:border-primary/25 hover:bg-primary/5 hover:text-primary">
+                {shuffled ? '順序を戻す' : 'シャッフルする'}
+              </button>
+            </div>
+          </div>
+
+          <div className="grid gap-3 rounded-[28px] border border-border/70 bg-surface/90 p-4 backdrop-blur">
+            <div className="rounded-3xl bg-bg/70 p-4 ring-1 ring-border/60">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-t-muted">Now studying</p>
+              <p className="mt-2 text-lg font-bold text-t-primary">{feedHeadline}</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">{FOCUS_MODE_META[focusMode].description}</p>
+            </div>
+            <div className="rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-accent/10 p-4 ring-1 ring-border/60">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-t-muted">Pinned</p>
+                  <p className="mt-2 text-base font-bold text-t-primary">{pinnedTerm ? pinnedTerm.term : 'まだピン留めなし'}</p>
+                  <p className="mt-1 text-sm text-t-secondary">
+                    {pinnedTerm ? '比較したい用語や復習したい用語を上部に固定できます。' : '重要語を固定すると、フィードの先頭で繰り返し確認できます。'}
+                  </p>
+                </div>
+                <span className="text-2xl">📌</span>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="theme-card p-4">
-          <p className="text-sm font-semibold text-primary">フォーカスモード</p>
-          <div className="grid grid-cols-3 gap-2 mt-3 text-xs">
-            <button onClick={() => setFocusMode('balanced')} className={`rounded-xl px-3 py-2 font-medium transition-all ${focusMode === 'balanced' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'}`}>標準</button>
-            <button onClick={() => setFocusMode('quick')} className={`rounded-xl px-3 py-2 font-medium transition-all ${focusMode === 'quick' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'}`}>時短</button>
-            <button onClick={() => setFocusMode('challenge')} className={`rounded-xl px-3 py-2 font-medium transition-all ${focusMode === 'challenge' ? 'bg-primary text-white' : 'bg-surface-alt text-t-secondary hover:bg-surface-hover'}`}>応用</button>
-          </div>
-          <p className="text-xs text-t-muted mt-3 leading-relaxed">
-            {focusMode === 'quick' && '未読×基本だけを優先表示。5分学習向けです。'}
-            {focusMode === 'challenge' && '応用レベルを中心に流して、本番対応力を上げます。'}
-            {focusMode === 'balanced' && '科目横断でバランスよく確認できます。'}
-          </p>
-        </div>
       </div>
 
-      {/* Filter bar */}
-      <div className="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm rounded-2xl border border-border/80 p-3 md:p-4 mb-4 space-y-3">
-        <div className="grid gap-2 grid-cols-2 md:grid-cols-[1.2fr,0.8fr,0.8fr,0.8fr]">
-          <input
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="用語・定義・ポイントを検索..."
-            className="col-span-2 md:col-span-1 w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 text-t-primary"
-          />
-          <select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value as SubjectSlug | 'all')} className="rounded-xl border border-border bg-surface px-3 py-2.5 text-sm outline-none focus:border-primary text-t-primary">
-            <option value="all">全科目</option>
-            {ALL_SUBJECTS.map((subject) => (
-              <option key={subject} value={subject}>{SUBJECT_LABELS[subject]}</option>
+      <div className="mb-5 grid gap-4 lg:grid-cols-[0.95fr,1.05fr]">
+        <div className="overflow-hidden rounded-[28px] border border-border/70 bg-surface shadow-[0_20px_55px_-38px_rgba(15,23,42,0.4)]">
+          <div className="border-b border-border/60 px-5 py-4">
+            <p className="text-sm font-semibold text-primary">学習ダッシュボード</p>
+            <h2 className="mt-1 text-xl font-bold text-t-primary">進捗が一目で見える学習面</h2>
+          </div>
+          <div className="space-y-4 px-5 py-5">
+            <div>
+              <div className="mb-2 flex items-center justify-between text-sm">
+                <span className="text-t-secondary">全体の読了進捗</span>
+                <span className="font-bold text-primary">{readCount}/{totalCount} · {progressPercent}%</span>
+              </div>
+              <div className="h-3 overflow-hidden rounded-full bg-surface-alt">
+                <div className="h-full rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-500" style={{ width: `${progressPercent}%` }} />
+              </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-3xl bg-bg/80 p-4 ring-1 ring-border/60">
+                <p className="text-xs uppercase tracking-[0.16em] text-t-muted">表示中</p>
+                <p className="mt-2 text-2xl font-bold text-t-primary">{filteredTerms.length}</p>
+                <p className="mt-1 text-xs text-t-secondary">いまの条件で見える用語数</p>
+              </div>
+              <div className="rounded-3xl bg-accent/10 p-4 ring-1 ring-accent/10">
+                <p className="text-xs uppercase tracking-[0.16em] text-accent/80">未読</p>
+                <p className="mt-2 text-2xl font-bold text-accent">{unreadFilteredCount}</p>
+                <p className="mt-1 text-xs text-t-secondary">次に触れるべき用語</p>
+              </div>
+              <div className="rounded-3xl bg-success/10 p-4 ring-1 ring-success/10">
+                <p className="text-xs uppercase tracking-[0.16em] text-success/80">読了</p>
+                <p className="mt-2 text-2xl font-bold text-success">{filteredReadCount}</p>
+                <p className="mt-1 text-xs text-t-secondary">この条件内で読み終えた数</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-[28px] border border-border/70 bg-surface shadow-[0_20px_55px_-38px_rgba(15,23,42,0.4)]">
+          <div className="border-b border-border/60 px-5 py-4">
+            <p className="text-sm font-semibold text-primary">フォーカスモード</p>
+            <h2 className="mt-1 text-xl font-bold text-t-primary">見るリズムを先に選ぶ</h2>
+          </div>
+          <div className="grid gap-3 px-5 py-5 md:grid-cols-3">
+            {(Object.entries(FOCUS_MODE_META) as Array<[keyof typeof FOCUS_MODE_META, (typeof FOCUS_MODE_META)[keyof typeof FOCUS_MODE_META]]>).map(([mode, meta]) => (
+              <button
+                key={mode}
+                onClick={() => setFocusMode(mode)}
+                className={`rounded-[24px] border p-4 text-left transition-all ${
+                  focusMode === mode
+                    ? 'border-primary bg-primary text-white shadow-sm'
+                    : 'border-border bg-bg/70 text-t-primary hover:border-primary/20 hover:bg-primary/5'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-2xl">{meta.emoji}</span>
+                  <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${focusMode === mode ? 'bg-white/15 text-white' : 'bg-surface text-t-muted'}`}>
+                    {meta.label}
+                  </span>
+                </div>
+                <p className={`mt-4 font-bold ${focusMode === mode ? 'text-white' : 'text-t-primary'}`}>{meta.title}</p>
+                <p className={`mt-2 text-sm leading-6 ${focusMode === mode ? 'text-white/80' : 'text-t-secondary'}`}>{meta.description}</p>
+              </button>
             ))}
-          </select>
-          <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value as TermCategory | 'all')} className="rounded-xl border border-border bg-surface px-3 py-2.5 text-sm outline-none focus:border-primary text-t-primary">
-            <option value="all">全カテゴリ</option>
-            {CATEGORY_ORDER.map((category) => (
-              <option key={category} value={category}>{CATEGORY_ICONS[category] || ''} {category}</option>
-            ))}
-          </select>
-          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="hidden md:block rounded-xl border border-border bg-surface px-3 py-2.5 text-sm outline-none focus:border-primary text-t-primary">
-            <option value="all">全難易度</option>
-            <option value="1">基本</option>
-            <option value="2">標準</option>
-            <option value="3">応用</option>
-          </select>
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky top-0 z-40 mb-5 overflow-hidden rounded-[28px] border border-border/80 bg-bg/85 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+        <div className="border-b border-border/60 px-5 py-4">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-primary">Feed controls</p>
+              <h2 className="mt-1 text-xl font-bold text-t-primary">SNSっぽく、でも学習は迷わない</h2>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs text-t-secondary">
+              <span className="rounded-full bg-surface px-3 py-1.5 ring-1 ring-border/60">アクティブ条件 {activeFilterCount}</span>
+              <span className="rounded-full bg-surface px-3 py-1.5 ring-1 ring-border/60">{READ_MODE_LABELS[readMode]}</span>
+              <span className="rounded-full bg-surface px-3 py-1.5 ring-1 ring-border/60">{filteredTerms.length}件表示候補</span>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 md:gap-2 items-center">
-          <span className="text-xs text-t-muted font-medium mr-1">{filteredTerms.length}件</span>
-          {(['all', 'unread', 'read'] as const).map((mode) => (
-            <button key={mode} onClick={() => setReadMode(mode)} className={`text-xs px-3 py-1.5 rounded-full font-medium transition-all ${readMode === mode ? 'bg-primary text-white' : 'bg-surface text-t-secondary border border-border'}`}>
-              {mode === 'all' ? 'すべて' : mode === 'unread' ? '未読だけ' : '既読だけ'}
+        <div className="space-y-4 px-5 py-4">
+          <div className="grid gap-3 md:grid-cols-[1.5fr,0.8fr,0.8fr,0.8fr]">
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.16em] text-t-muted">検索</span>
+              <input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="用語・定義・ポイントを検索..."
+                className="w-full rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-t-primary outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/15"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.16em] text-t-muted">科目</span>
+              <select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value as SubjectSlug | 'all')} className="w-full rounded-2xl border border-border bg-surface px-3 py-3 text-sm text-t-primary outline-none transition-all focus:border-primary">
+                <option value="all">全科目</option>
+                {ALL_SUBJECTS.map((subject) => (
+                  <option key={subject} value={subject}>{SUBJECT_LABELS[subject]}</option>
+                ))}
+              </select>
+            </label>
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.16em] text-t-muted">カテゴリ</span>
+              <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value as TermCategory | 'all')} className="w-full rounded-2xl border border-border bg-surface px-3 py-3 text-sm text-t-primary outline-none transition-all focus:border-primary">
+                <option value="all">全カテゴリ</option>
+                {CATEGORY_ORDER.map((category) => (
+                  <option key={category} value={category}>{CATEGORY_ICONS[category] || ''} {category}</option>
+                ))}
+              </select>
+            </label>
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.16em] text-t-muted">難易度</span>
+              <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="w-full rounded-2xl border border-border bg-surface px-3 py-3 text-sm text-t-primary outline-none transition-all focus:border-primary">
+                <option value="all">全難易度</option>
+                <option value="1">基本</option>
+                <option value="2">標準</option>
+                <option value="3">応用</option>
+              </select>
+            </label>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {(['all', 'unread', 'read'] as const).map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setReadMode(mode)}
+                className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
+                  readMode === mode
+                    ? 'bg-primary text-white'
+                    : 'border border-border bg-surface text-t-secondary hover:border-primary/20 hover:bg-primary/5 hover:text-primary'
+                }`}
+              >
+                {READ_MODE_LABELS[mode]}
+              </button>
+            ))}
+            <button onClick={handleGenerateTerms} disabled={isGenerating} className="rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-xs font-semibold text-white transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
+              {isGenerating ? '生成中...' : 'AIで3件追加'}
             </button>
-          ))}
-          <select value={String(difficultyFilter)} onChange={(e) => setDifficultyFilter(e.target.value === 'all' ? 'all' : Number(e.target.value) as 1 | 2 | 3)} className="md:hidden text-xs px-3 py-1.5 rounded-full font-medium bg-surface text-t-secondary border border-border">
-            <option value="all">全難易度</option>
-            <option value="1">基本</option>
-            <option value="2">標準</option>
-            <option value="3">応用</option>
-          </select>
-          <button onClick={handleJumpToUnread} className="text-xs px-3 py-1.5 rounded-full font-medium bg-accent/10 text-accent">次の未読へ</button>
-          <button onClick={handleMarkVisibleRead} className="text-xs px-3 py-1.5 rounded-full font-medium bg-success/10 text-success">表示中を既読({visibleTerms.filter((t) => !readIds.has(t.id)).length})</button>
-          <button onClick={shuffled ? handleReset : handleShuffle} className="text-xs px-3 py-1.5 rounded-full font-medium bg-primary/10 text-primary">
-            {shuffled ? '元の順序に戻す' : 'シャッフル'}
-          </button>
-          {(subjectFilter !== 'all' || categoryFilter !== 'all' || difficultyFilter !== 'all' || searchQuery || readMode !== 'all') && (
-            <button onClick={clearFilters} className="text-xs px-3 py-1.5 rounded-full font-medium bg-error/10 text-error">条件をクリア</button>
+            {(subjectFilter !== 'all' || categoryFilter !== 'all' || difficultyFilter !== 'all' || searchQuery || readMode !== 'all') && (
+              <button onClick={clearFilters} className="rounded-full border border-error/20 bg-error/10 px-4 py-2 text-xs font-semibold text-error transition-all hover:bg-error/15">
+                条件をクリア
+              </button>
+            )}
+          </div>
+
+          {generationError && <p className="text-sm font-medium text-error">{generationError}</p>}
+          {generatedTerms.length > 0 && (
+            <p className="text-xs text-t-muted">追加済み AI用語: {generatedTerms.length}件。生成カードには「AI生成」バッジを表示しています。</p>
           )}
         </div>
       </div>
 
-      {/* Pinned term */}
       {pinnedTerm && (
-        <div className="mb-4 theme-card bg-primary/5 border-primary/20 p-4">
+        <div className="mb-5 rounded-[28px] border border-primary/20 bg-gradient-to-r from-primary/10 via-surface to-transparent p-5 shadow-[0_18px_50px_-40px_rgba(15,23,42,0.4)]">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold text-primary">
-                ピン留め中
-                {!filteredTerms.find((t) => t.id === pinnedTerm.id) && (
-                  <span className="ml-2 text-accent font-normal">(フィルター外の用語)</span>
-                )}
-              </p>
-              <p className="font-bold mt-1 text-t-primary">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Pinned card</p>
+              <p className="mt-2 text-xl font-bold text-t-primary">
                 {pinnedTerm.term}
-                <span className={`ml-2 text-xs font-normal px-2 py-0.5 rounded-full ${SUBJECT_COLORS[pinnedTerm.subject]}`}>
+                <span className={`ml-2 rounded-full px-2.5 py-1 align-middle text-xs font-semibold ${SUBJECT_COLORS[pinnedTerm.subject]}`}>
                   {SUBJECT_LABELS[pinnedTerm.subject]}
                 </span>
               </p>
+              <p className="mt-2 text-sm text-t-secondary">
+                {!filteredTerms.find((t) => t.id === pinnedTerm.id) ? '現在のフィルター外ですが、重要なので先頭に固定しています。' : '比較したい用語としてフィード上部に固定しています。'}
+              </p>
             </div>
-            <button onClick={() => setPinnedTermId(null)} className="text-xs text-primary font-medium hover:underline shrink-0">解除</button>
+            <button onClick={() => setPinnedTermId(null)} className="rounded-full border border-primary/20 bg-surface px-4 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary/5">解除</button>
           </div>
         </div>
       )}
 
-      {/* Term cards */}
-      <div className="space-y-4 mt-2">
-        {visibleTerms.map((term) => (
-          <TermCard
-            key={term.id}
-            term={term}
-            isRead={readIds.has(term.id)}
-            onToggleRead={toggleRead}
-            onRelatedClick={handleRelatedClick}
-            termMap={termMap}
-            isPinned={pinnedTermId === term.id}
-            onPin={setPinnedTermId}
-          />
-        ))}
+      <div className="mb-6 grid gap-4 lg:grid-cols-[0.7fr,1.3fr]">
+        <aside className="h-fit rounded-[28px] border border-border/70 bg-surface p-5 shadow-[0_18px_50px_-40px_rgba(15,23,42,0.35)] lg:sticky lg:top-[8.75rem]">
+          <p className="text-sm font-semibold text-primary">Feed summary</p>
+          <h2 className="mt-1 text-xl font-bold text-t-primary">今の学習面を整理</h2>
+          <div className="mt-4 space-y-3">
+            <div className="rounded-3xl bg-bg/70 p-4 ring-1 ring-border/60">
+              <p className="text-xs uppercase tracking-[0.16em] text-t-muted">フィルター状況</p>
+              <p className="mt-2 text-sm leading-6 text-t-secondary">
+                {activeFilterCount === 0 ? 'フィルターなし。全体を自然に流し読みできます。' : `${activeFilterCount}件の条件でフィードを調整中。必要な情報だけ残しています。`}
+              </p>
+            </div>
+            <div className="rounded-3xl bg-bg/70 p-4 ring-1 ring-border/60">
+              <p className="text-xs uppercase tracking-[0.16em] text-t-muted">次のアクション</p>
+              <ul className="mt-2 space-y-2 text-sm text-t-secondary">
+                <li>・未読が多いなら「時短」で回収</li>
+                <li>・引っかかる用語はピン留め</li>
+                <li>・比較系は関連用語を連続タップ</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+
+        <section className="space-y-4">
+          {visibleTerms.map((term) => (
+            <TermCard
+              key={term.id}
+              term={term}
+              isRead={readIds.has(term.id)}
+              onToggleRead={toggleRead}
+              onRelatedClick={handleRelatedClick}
+              termMap={termMap}
+              isPinned={pinnedTermId === term.id}
+              onPin={setPinnedTermId}
+            />
+          ))}
+        </section>
       </div>
 
       {hasMore && (
         <div ref={sentinelRef} className="py-6 text-center">
-          <p className="text-xs text-t-muted">下にスクロールして続きを表示（{visibleTerms.length}/{filteredTerms.length}）</p>
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-t-secondary">
+            <span>⬇️</span>
+            <span>さらに表示中… {visibleTerms.length}/{filteredTerms.length}</span>
+          </div>
         </div>
       )}
 
       {!hasMore && visibleTerms.length > 0 && (
         <div className="py-8 text-center">
-          <p className="text-sm text-t-muted">{filteredTerms.length} 用語を表示しました</p>
+          <p className="text-sm text-t-muted">{filteredTerms.length} 用語を表示しました。ここまで読めたら十分に前進です。</p>
         </div>
       )}
 
       {visibleTerms.length === 0 && (
         <div className="py-16 text-center">
           <p className="text-lg text-t-muted">該当する用語がありません</p>
-          <button onClick={clearFilters} className="mt-3 text-sm text-primary font-medium hover:underline">絞り込みをリセットする</button>
+          <button onClick={clearFilters} className="mt-3 text-sm font-medium text-primary hover:underline">絞り込みをリセットする</button>
         </div>
       )}
     </div>
